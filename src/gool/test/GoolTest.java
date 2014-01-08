@@ -143,6 +143,24 @@ public class GoolTest {
 		System.out.println(input);
 		compareResultsDifferentPlatforms(input, expected);
 	}
+	
+	@Test
+	public void monTest2() throws Exception {
+		String input = TestHelper.surroundWithClassMain(
+				"int x=0, y=42;" +
+				"x = y + 5;"+
+				"switch (x) {"+
+				"case 0: "+
+				"System.out.println(\"coucou\"+x);"+
+				"break;"+
+				"case 47: "+
+				"System.out.println(\"salut\"+x);"+
+				"break;}",
+				MAIN_CLASS_NAME);
+		String expected = "salut47";
+		System.out.println(input);
+		compareResultsDifferentPlatforms(input, expected);
+	}
 
 	@Test
 	public void goolLibraryTest1() throws Exception {
