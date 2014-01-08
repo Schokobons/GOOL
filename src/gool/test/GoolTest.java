@@ -148,10 +148,10 @@ public class GoolTest {
 		String input = TestHelper.surroundWithClassMain(
 				"int x=0, y=42;" +
 				"x = y + 5;"+
-				"if(x==0)"+
-				"System.out.println(\"coucou\"+x);"+
-				"else"+
-				"System.out.println(\"salut\"+x);",
+				"if(x==0){"+
+				"System.out.println(\"coucou\"+x);}"+
+				"if(x==47){"+
+				"System.out.println(\"salut\"+x);}",
 				MAIN_CLASS_NAME);
 		String expected = "salut47";
 		System.out.println(input);
