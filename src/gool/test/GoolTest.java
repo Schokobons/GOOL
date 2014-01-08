@@ -122,12 +122,24 @@ public class GoolTest {
 	public static void init() {
 	}
 
-	@Before
 	@Test
 	public void helloWorld() throws Exception {
 		String input = TestHelper.surroundWithClassMain(
 				"System.out.println(\"Hello World\");", MAIN_CLASS_NAME);
 		String expected = "Hello World";
+		compareResultsDifferentPlatforms(input, expected);
+	}
+	
+	@Test
+	public void monTest() throws Exception {
+		String input = TestHelper.surroundWithClassMain(
+				"int x=0, y=42;" +
+				"System.out.println(\"coucou\");" +
+				"x = y + 3;"+
+				"System.out.println(x);",
+				MAIN_CLASS_NAME);
+		String expected = "coucou45";
+		System.out.println(input);
 		compareResultsDifferentPlatforms(input, expected);
 	}
 
