@@ -131,6 +131,7 @@ public class GoolTest {
 	}
 	
 	@Test
+	// Exercice d'installation et test du projet
 	public void monTest() throws Exception {
 		String input = TestHelper.surroundWithClassMain(
 				"int x=0, y=42;" +
@@ -143,6 +144,7 @@ public class GoolTest {
 		compareResultsDifferentPlatforms(input, expected);
 	}
 	
+	/*
 	@Test
 	public void monTest2() throws Exception {
 		String input = TestHelper.surroundWithClassMain(
@@ -159,7 +161,7 @@ public class GoolTest {
 		String expected = "salut47";
 		System.out.println(input);
 		compareResultsDifferentPlatforms(input, expected);
-	}
+	}*/
 
 	@Test
 	public void goolLibraryTest1() throws Exception {
