@@ -148,6 +148,21 @@ public class GoolTest {
 		String input = TestHelper.surroundWithClassMain(
 				"int x=0, y=42;" +
 				"x = y + 5;"+
+				"if(x==0)"+
+				"System.out.println(\"coucou\"+x);"+
+				"else"+
+				"System.out.println(\"salut\"+x);",
+				MAIN_CLASS_NAME);
+		String expected = "salut47";
+		System.out.println(input);
+		compareResultsDifferentPlatforms(input, expected);
+	}
+	
+	@Test
+	public void monTest3() throws Exception {
+		String input = TestHelper.surroundWithClassMain(
+				"int x=0, y=42;" +
+				"x = y + 5;"+
 				"switch (x) {"+
 				"case 0: "+
 				"System.out.println(\"coucou\"+x);"+
