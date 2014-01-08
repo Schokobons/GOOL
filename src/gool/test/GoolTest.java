@@ -135,10 +135,10 @@ public class GoolTest {
 		String input = TestHelper.surroundWithClassMain(
 				"int x=0, y=42;" +
 				"System.out.println(\"coucou\");" +
-				"x = y + 3;"+
+				"x = y + 5;"+
 				"System.out.println(x);",
 				MAIN_CLASS_NAME);
-		String expected = "coucou45";
+		String expected = "coucou47";
 		System.out.println(input);
 		compareResultsDifferentPlatforms(input, expected);
 	}
