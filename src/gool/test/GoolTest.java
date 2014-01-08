@@ -38,7 +38,6 @@ import org.junit.Test;
 
 public class GoolTest {
 
-	//test laetitia 
 	
 	/*
 	 * At this day, the GOOL system supports 6 output languages that are
