@@ -50,8 +50,8 @@ public class GoolTest {
 
 			(Platform) JavaPlatform.getInstance(),
 			(Platform) CSharpPlatform.getInstance(),
-			(Platform) CppPlatform.getInstance(),
-			(Platform) PythonPlatform.getInstance()// ,
+			(Platform) CppPlatform.getInstance()//,
+			//(Platform) PythonPlatform.getInstance()// ,
 //			 (Platform) AndroidPlatform.getInstance() ,
 //			 (Platform) ObjcPlatform.getInstance()
 
@@ -169,6 +169,7 @@ public class GoolTest {
 				"System.out.println(\"coucou\"+x);"+
 				"break;"+
 				"case 47: "+
+				"y = y + 1;"+
 				"System.out.println(\"salut\"+x);"+
 				"break;}",
 				MAIN_CLASS_NAME);

@@ -18,6 +18,7 @@
 package gool.generator.java;
 
 import gool.ast.core.BinaryOperation;
+import gool.ast.core.Case;
 import gool.ast.core.Catch;
 import gool.ast.core.ClassDef;
 import gool.ast.core.ClassNew;
@@ -35,6 +36,7 @@ import gool.ast.core.Modifier;
 import gool.ast.core.Operator;
 import gool.ast.core.ParentCall;
 import gool.ast.core.RecognizedDependency;
+import gool.ast.core.Switch;
 import gool.ast.core.Throw;
 import gool.ast.core.ToStringCall;
 import gool.ast.core.Try;

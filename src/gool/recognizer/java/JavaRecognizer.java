@@ -27,6 +27,8 @@ import gool.ast.core.ArrayNew;
 import gool.ast.core.Assign;
 import gool.ast.core.BinaryOperation;
 import gool.ast.core.Block;
+import gool.ast.core.Break;
+import gool.ast.core.Case;
 import gool.ast.core.CastExpression;
 import gool.ast.core.Catch;
 import gool.ast.core.ClassDef;
@@ -60,6 +62,7 @@ import gool.ast.core.ParentCall;
 import gool.ast.core.RecognizedDependency;
 import gool.ast.core.Return;
 import gool.ast.core.Statement;
+import gool.ast.core.Switch;
 import gool.ast.core.ThisCall;
 import gool.ast.core.Throw;
 import gool.ast.core.ToStringCall;
@@ -199,6 +202,7 @@ import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.JCTree.JCClassDecl;
 import com.sun.tools.javac.tree.JCTree.JCModifiers;
 import com.sun.tools.javac.tree.TreeInfo;
+import com.sun.tools.javac.util.Name;
 
 /**
  * The JavaRecognizer does the work of converting Sun's abstract Java to
@@ -794,15 +798,17 @@ public class JavaRecognizer extends TreePathScanner<Object, Context> {
 		return new ExpressionUnknown(goolType(n, context), n.toString());
 	}
 
+	/*
 	@Override
 	public Object visitBreak(BreakTree n, Context context) {
 		return new ExpressionUnknown(goolType(n, context), n.toString());
-	}
+	}*/
 
+	/*
 	@Override
 	public Object visitCase(CaseTree n, Context context) {
 		return new ExpressionUnknown(goolType(n, context), n.toString());
-	}
+	}*/
 
 	@Override
 	public Object visitCatch(CatchTree n, Context context) {
@@ -864,10 +870,11 @@ public class JavaRecognizer extends TreePathScanner<Object, Context> {
 
 	}
 
+	/*
 	@Override
 	public Object visitSwitch(SwitchTree node, Context p) {
 		return new ExpressionUnknown(goolType(node, p), node.toString());
-	}
+	}*/
 
 	@Override
 	public Object visitSynchronized(SynchronizedTree node, Context p) {
@@ -964,6 +971,34 @@ public class JavaRecognizer extends TreePathScanner<Object, Context> {
 			}
 		}
 		return block;
+	}
+	
+	@Override
+	public Object visitBreak(BreakTree n, Context context) {
+		return new Break((Name) n.getLabel());
+	}
+	
+	@Override
+	public Object visitCase(CaseTree n, Context context) {
+		Expression expression = (Expression) n.getExpression().accept(this,
+				context);
+		List<Statement> statements = new ArrayList<Statement>();
+		for (int i=0; i<n.getStatements().size(); i++) {
+			statements.add((Statement) n.getStatements().get(i).accept(this, context));
+		}
+		
+		return new Case(expression, statements);
+	}
+	
+	@Override
+	public Object visitSwitch(SwitchTree n, Context context) {
+		Expression expression = (Expression) n.getExpression().accept(this, context);
+		List<Case> cases = new ArrayList<Case>();
+		for (int i=0; i<n.getCases().size(); i++) {
+			cases.add((Case) n.getCases().get(i).accept(this, context));
+		}
+		
+		return new Switch(expression, cases);
 	}
 
 	@Override
