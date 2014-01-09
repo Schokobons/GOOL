@@ -980,8 +980,11 @@ public class JavaRecognizer extends TreePathScanner<Object, Context> {
 	
 	@Override
 	public Object visitCase(CaseTree n, Context context) {
-		Expression expression = (Expression) n.getExpression().accept(this,
-				context);
+		Expression expression;
+		if (n.getExpression()==null)
+			expression = null;
+		else
+			expression = (Expression) n.getExpression().accept(this, context);
 		List<Statement> statements = new ArrayList<Statement>();
 		for (int i=0; i<n.getStatements().size(); i++) {
 			statements.add((Statement) n.getStatements().get(i).accept(this, context));

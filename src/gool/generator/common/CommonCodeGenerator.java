@@ -372,7 +372,11 @@ public abstract class CommonCodeGenerator implements CodeGenerator {
 	
 	@Override
 	public String getCode(Case pcase) {
-		String out = formatIndented("case %s : {", pcase.getExpression());
+		String out;
+		if(pcase.getExpression()==null)
+			out = formatIndented("default : {");
+		else
+			out = formatIndented("case %s : {", pcase.getExpression());
 		for(int i=0; i<pcase.getStatements().size(); i++){
 			out += formatIndented("%1;", pcase.getStatements().get(i));
 		}
