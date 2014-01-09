@@ -49,10 +49,10 @@ public class GoolTest {
 	 */
 	private List<Platform> platforms = Arrays.asList(
 
-			(Platform) JavaPlatform.getInstance(),
-			(Platform) CSharpPlatform.getInstance(),
-			(Platform) CppPlatform.getInstance(),
-			(Platform) PythonPlatform.getInstance()// ,
+			(Platform) JavaPlatform.getInstance()//,
+//			(Platform) CSharpPlatform.getInstance(),
+	//		(Platform) CppPlatform.getInstance()//,
+			//(Platform) PythonPlatform.getInstance()// ,
 //			 (Platform) AndroidPlatform.getInstance() ,
 //			 (Platform) ObjcPlatform.getInstance()
 
@@ -132,6 +132,7 @@ public class GoolTest {
 	}
 	
 	@Test
+	// Exercice d'installation et test du projet
 	public void monTest() throws Exception {
 		String input = TestHelper.surroundWithClassMain(
 				"int x=0, y=42;" +
@@ -149,15 +150,47 @@ public class GoolTest {
 		String input = TestHelper.surroundWithClassMain(
 				"int x=0, y=42;" +
 				"x = y + 5;"+
+				"if(x==0){"+
+				"System.out.println(\"coucou\"+x);}"+
+				"if(x==47){"+
+				"System.out.println(\"salut\"+x);}",
+				MAIN_CLASS_NAME);
+		String expected = "salut47";
+		System.out.println(input);
+		compareResultsDifferentPlatforms(input, expected);
+	}
+	
+	@Test
+	/* Ajout de primitive de base (switch/case) */
+	public void monTest3() throws Exception {
+		String input = TestHelper.surroundWithClassMain(
+				"int x=0, y=42;" +
+				"x = y + 5;"+
 				"switch (x) {"+
-				"case 0: "+
+				"case 47: "+
 				"System.out.println(\"coucou\"+x);"+
 				"break;"+
-				"case 47: "+
+				"default: "+
+				"y = y + 1;"+
 				"System.out.println(\"salut\"+x);"+
 				"break;}",
 				MAIN_CLASS_NAME);
-		String expected = "salut47";
+		String expected = "coucou47";
+		System.out.println(input);
+		compareResultsDifferentPlatforms(input, expected);
+	}
+	
+	@Test
+	/* Ajout de librairie Math */
+	public void monTest4() throws Exception {
+		String input = "import java.lang.Math;"
+				+ TestHelper.surroundWithClassMain(
+				"double x = 5.0;"+
+				"double z = 2.0;"+
+				"double y = Math.pow(x, z);"+
+				"System.out.println(\"coucou\"+y);",
+				MAIN_CLASS_NAME);
+		String expected = "coucou25.0";
 		System.out.println(input);
 		compareResultsDifferentPlatforms(input, expected);
 	}
