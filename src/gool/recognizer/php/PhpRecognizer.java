@@ -205,7 +205,7 @@ import com.sun.tools.javac.tree.TreeInfo;
 import com.sun.tools.javac.util.Name;
 
 /**
- * The JavaRecognizer does the work of converting Sun's abstract Java to
+ * The JavaRecognizer does the work of converting Sun's abstract Php to
  * abstract GOOL. The documentation of abstract Java is at
  * http://docs.oracle.com
  * /javase/7/docs/api/javax/lang/model/package-summary.html The class Context is
