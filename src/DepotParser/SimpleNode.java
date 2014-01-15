@@ -68,7 +68,7 @@ class SimpleNode implements Node {
      you need to do. */
 
   public String toString() { 
-	  if(name.length() == 0)
+	  if(name == null ||name.length() == 0)
 		  return ObjCParserTreeConstants.jjtNodeName[id];
 	  return ObjCParserTreeConstants.jjtNodeName[id] + " et son nom est : " + name;
   }
