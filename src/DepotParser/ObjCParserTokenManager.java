@@ -5934,7 +5934,7 @@ protected Token jjFillToken()
    final int beginColumn;
    final int endColumn;
    String im = jjstrLiteralImages[jjmatchedKind];
-   curTokenImage = (im == null) ? input_stream.GetImage() : im;
+   curTokenImage = (im == null) ? input_stream.GetImage() : im;System.out.println("YOLO " + curTokenImage);//TODO
    beginLine = input_stream.getBeginLine();
    beginColumn = input_stream.getBeginColumn();
    endLine = input_stream.getEndLine();
