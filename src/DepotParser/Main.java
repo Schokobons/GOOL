@@ -18,7 +18,7 @@ public class Main {
 		ObjCParser parser = null;
 		try {
 			parser = new ObjCParser(new java.io.FileInputStream("example.cc"));
-			System.out.println("Debut");
+			System.out.println("Debut.");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
