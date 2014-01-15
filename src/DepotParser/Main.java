@@ -5,19 +5,21 @@ import java.io.InputStream;
 
 public class Main {
 	public static void afficherArbre(Node n, int etage) {
-		if(n.jjtGetNumChildren() == 0 || (etage > 0 && n.jjtGetParent().jjtGetNumChildren() > 0 && !n.jjtGetParent().jjtGetChild(0).equals(n))) {
+		int newetage = etage;
+		if(true/*n.jjtGetNumChildren() != 1*//*n.jjtGetNumChildren() == 0 || (etage > 0 && n.jjtGetParent().jjtGetNumChildren() > 0 && !n.jjtGetParent().jjtGetChild(0).equals(n))*/) {
 			for(int i = 0; i < etage; i++)
 				System.out.print("  ");
 			System.out.println(n);
+			newetage++;
 		}
 		for(int i = 0; i < n.jjtGetNumChildren(); i++)
-			afficherArbre(n.jjtGetChild(i), etage + 1 );
+			afficherArbre(n.jjtGetChild(i), newetage);
 	}
 	
 	public static void main(String[] args) {
 		ObjCParser parser = null;
 		try {
-			parser = new ObjCParser(new java.io.FileInputStream("example.cc"));
+			parser = new ObjCParser(new java.io.FileInputStream("example.m"));
 			System.out.println("Debut.");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

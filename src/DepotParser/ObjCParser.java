@@ -223,7 +223,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[0] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -254,7 +254,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(LEFT_PAREN);
+      jj_consume_token(jjtn000, LEFT_PAREN);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LEFT_PAREN:
         StrippedParens();
@@ -263,7 +263,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         jj_la1[1] = jj_gen;
         ;
       }
-      jj_consume_token(RIGHT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -338,19 +338,19 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case EXPORTED_CALLBACK:
-        jj_consume_token(EXPORTED_CALLBACK);
-        jj_consume_token(LEFT_PAREN);
+        jj_consume_token(jjtn000, EXPORTED_CALLBACK);
+        jj_consume_token(jjtn000, LEFT_PAREN);
         ParameterTypeList();
-        jj_consume_token(RIGHT_PAREN);
-        jj_consume_token(LEFT_PAREN);
+        jj_consume_token(jjtn000, RIGHT_PAREN);
+        jj_consume_token(jjtn000, LEFT_PAREN);
         ParameterTypeList();
-        jj_consume_token(RIGHT_PAREN);
+        jj_consume_token(jjtn000, RIGHT_PAREN);
         break;
       default:
         jj_la1[2] = jj_gen;
         ;
       }
-      jj_consume_token(SEMICOLON);
+      jj_consume_token(jjtn000, SEMICOLON);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -378,7 +378,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(AT_INTERFACE);
+      jj_consume_token(jjtn000, AT_INTERFACE);
       ClassName();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case COLON:
@@ -399,13 +399,13 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       if (jj_2_10(2)) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case LEFT_BRACE:
-          jj_consume_token(LEFT_BRACE);
+          jj_consume_token(jjtn000, LEFT_BRACE);
           break;
         default:
           jj_la1[5] = jj_gen;
           ;
         }
-        jj_consume_token(AT_INTERFACE);
+        jj_consume_token(jjtn000, AT_INTERFACE);
         ClassName();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case COLON:
@@ -443,7 +443,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         InterfaceDeclaration();
       }
-      jj_consume_token(AT_END);
+      jj_consume_token(jjtn000, AT_END);
     } catch (Throwable jjte000) {
             if (jjtc000) {
               jjtree.clearNodeScope(jjtn000);
@@ -471,7 +471,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(AT_IMPLEMENTATION);
+      jj_consume_token(jjtn000, AT_IMPLEMENTATION);
       ClassName();
       if (jj_2_12(2)) {
         ColonSuperClassName();
@@ -495,7 +495,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         ImplementationDefinition();
       }
-      jj_consume_token(AT_END);
+      jj_consume_token(jjtn000, AT_END);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -523,9 +523,9 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(AT_INTERFACE);
+      jj_consume_token(jjtn000, AT_INTERFACE);
       ClassName();
-      jj_consume_token(LEFT_PAREN);
+      jj_consume_token(jjtn000, LEFT_PAREN);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case POSSIBLE_COCOA_TYPE:
       case POSSIBLE_CORE_TYPE:
@@ -536,7 +536,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         jj_la1[10] = jj_gen;
         ;
       }
-      jj_consume_token(RIGHT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LT:
         ProtocolReferenceList();
@@ -554,7 +554,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         InterfaceDeclaration();
       }
-      jj_consume_token(AT_END);
+      jj_consume_token(jjtn000, AT_END);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -582,11 +582,11 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(AT_IMPLEMENTATION);
+      jj_consume_token(jjtn000, AT_IMPLEMENTATION);
       ClassName();
-      jj_consume_token(LEFT_PAREN);
+      jj_consume_token(jjtn000, LEFT_PAREN);
       CategoryName();
-      jj_consume_token(RIGHT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
       label_5:
       while (true) {
         if (jj_2_15(1)) {
@@ -596,7 +596,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         ImplementationDefinition();
       }
-      jj_consume_token(AT_END);
+      jj_consume_token(jjtn000, AT_END);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -624,7 +624,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(AT_PROTOCOL);
+      jj_consume_token(jjtn000, AT_PROTOCOL);
       ProtocolList();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LT:
@@ -637,14 +637,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       ProtocolInterfaceDeclaration();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case AT_END:
-        jj_consume_token(AT_END);
+        jj_consume_token(jjtn000, AT_END);
         break;
       case SEMICOLON:
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       default:
         jj_la1[13] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -674,9 +674,9 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(AT_CLASS);
+      jj_consume_token(jjtn000, AT_CLASS);
       ClassList();
-      jj_consume_token(SEMICOLON);
+      jj_consume_token(jjtn000, SEMICOLON);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -707,7 +707,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       ClassName();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case 222:
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         ClassList();
         break;
       default:
@@ -741,14 +741,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(LT);
+      jj_consume_token(jjtn000, LT);
       ProtocolList();
-      jj_consume_token(GT);
+      jj_consume_token(jjtn000, GT);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LT:
-        jj_consume_token(LT);
+        jj_consume_token(jjtn000, LT);
         ProtocolList();
-        jj_consume_token(GT);
+        jj_consume_token(jjtn000, GT);
         break;
       default:
         jj_la1[15] = jj_gen;
@@ -784,7 +784,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       ProtocolName();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case 222:
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         ProtocolList();
         break;
       default:
@@ -820,26 +820,26 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case POSSIBLE_COCOA_TYPE:
-        t = jj_consume_token(POSSIBLE_COCOA_TYPE);
+        t = jj_consume_token(jjtn000, POSSIBLE_COCOA_TYPE);
                                     jjtree.closeNodeScope(jjtn000, true);
                                     jjtc000 = false;
                                     {if (true) return t;}
         break;
       case POSSIBLE_CORE_TYPE:
-        t = jj_consume_token(POSSIBLE_CORE_TYPE);
+        t = jj_consume_token(jjtn000, POSSIBLE_CORE_TYPE);
                                                                              jjtree.closeNodeScope(jjtn000, true);
                                                                              jjtc000 = false;
                                                                              {if (true) return t;}
         break;
       case IDENT:
-        t = jj_consume_token(IDENT);
+        t = jj_consume_token(jjtn000, IDENT);
                                                                                                          jjtree.closeNodeScope(jjtn000, true);
                                                                                                          jjtc000 = false;
                                                                                                          {if (true) return t;}
         break;
       default:
         jj_la1[17] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -912,7 +912,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(COLON);
+      jj_consume_token(jjtn000, COLON);
       SuperClassName();
     } catch (Throwable jjte000) {
           if (jjtc000) {
@@ -943,17 +943,17 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case POSSIBLE_COCOA_TYPE:
-        jj_consume_token(POSSIBLE_COCOA_TYPE);
+        jj_consume_token(jjtn000, POSSIBLE_COCOA_TYPE);
         break;
       case POSSIBLE_CORE_TYPE:
-        jj_consume_token(POSSIBLE_CORE_TYPE);
+        jj_consume_token(jjtn000, POSSIBLE_CORE_TYPE);
         break;
       case IDENT:
-        jj_consume_token(IDENT);
+        jj_consume_token(jjtn000, IDENT);
         break;
       default:
         jj_la1[18] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -971,17 +971,17 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case POSSIBLE_COCOA_TYPE:
-        jj_consume_token(POSSIBLE_COCOA_TYPE);
+        jj_consume_token(jjtn000, POSSIBLE_COCOA_TYPE);
         break;
       case POSSIBLE_CORE_TYPE:
-        jj_consume_token(POSSIBLE_CORE_TYPE);
+        jj_consume_token(jjtn000, POSSIBLE_CORE_TYPE);
         break;
       case IDENT:
-        jj_consume_token(IDENT);
+        jj_consume_token(jjtn000, IDENT);
         break;
       default:
         jj_la1[19] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -997,7 +997,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(LEFT_BRACE);
+      jj_consume_token(jjtn000, LEFT_BRACE);
       label_6:
       while (true) {
         if (jj_2_16(1)) {
@@ -1007,10 +1007,10 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         InstanceVariableDeclaration();
       }
-      jj_consume_token(RIGHT_BRACE);
+      jj_consume_token(jjtn000, RIGHT_BRACE);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case SEMICOLON:
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       default:
         jj_la1[20] = jj_gen;
@@ -1057,7 +1057,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         } else if (jj_2_18(1)) {
           StructDeclaration();
         } else {
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -1099,11 +1099,11 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         if (jj_2_19(2)) {
           ClassName();
-          jj_consume_token(STAR);
+          jj_consume_token(jjtn000, STAR);
         } else {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case ID:
-            jj_consume_token(ID);
+            jj_consume_token(jjtn000, ID);
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
             case LT:
               ProtocolReferenceList();
@@ -1115,16 +1115,16 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             break;
           default:
             jj_la1[24] = jj_gen;
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         }
-        jj_consume_token(IDENT);
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, IDENT);
+        jj_consume_token(jjtn000, SEMICOLON);
       } else if (jj_2_21(1)) {
         Declaration();
       } else {
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -1156,10 +1156,10 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case AT_PRIVATE:
-        jj_consume_token(AT_PRIVATE);
+        jj_consume_token(jjtn000, AT_PRIVATE);
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case SEMICOLON:
-          jj_consume_token(SEMICOLON);
+          jj_consume_token(jjtn000, SEMICOLON);
           break;
         default:
           jj_la1[25] = jj_gen;
@@ -1167,17 +1167,17 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         break;
       case AT_PROTECTED:
-        jj_consume_token(AT_PROTECTED);
+        jj_consume_token(jjtn000, AT_PROTECTED);
         break;
       case AT_PACKAGE:
-        jj_consume_token(AT_PACKAGE);
+        jj_consume_token(jjtn000, AT_PACKAGE);
         break;
       case AT_PUBLIC:
-        jj_consume_token(AT_PUBLIC);
+        jj_consume_token(jjtn000, AT_PUBLIC);
         break;
       default:
         jj_la1[26] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -1193,7 +1193,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(IBOUTLET);
+      jj_consume_token(jjtn000, IBOUTLET);
     } finally {
           if (jjtc000) {
             jjtree.closeNodeScope(jjtn000, true);
@@ -1258,7 +1258,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case AT_OPTIONAL:
-        jj_consume_token(AT_OPTIONAL);
+        jj_consume_token(jjtn000, AT_OPTIONAL);
         label_9:
         while (true) {
           if (jj_2_23(1)) {
@@ -1270,7 +1270,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         break;
       case AT_REQUIRED:
-        jj_consume_token(AT_REQUIRED);
+        jj_consume_token(jjtn000, AT_REQUIRED);
         label_10:
         while (true) {
           if (jj_2_24(1)) {
@@ -1283,7 +1283,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         break;
       default:
         jj_la1[28] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -1326,7 +1326,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[29] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -1357,7 +1357,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(AT_PROPERTY);
+      jj_consume_token(jjtn000, AT_PROPERTY);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LEFT_PAREN:
         PropertyAttributesDeclaration();
@@ -1371,7 +1371,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case ID:
-          jj_consume_token(ID);
+          jj_consume_token(jjtn000, ID);
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case LT:
             ProtocolReferenceList();
@@ -1380,12 +1380,12 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             jj_la1[31] = jj_gen;
             ;
           }
-          jj_consume_token(IDENT);
-          jj_consume_token(SEMICOLON);
+          jj_consume_token(jjtn000, IDENT);
+          jj_consume_token(jjtn000, SEMICOLON);
           break;
         default:
           jj_la1[32] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -1416,9 +1416,9 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(LEFT_PAREN);
+      jj_consume_token(jjtn000, LEFT_PAREN);
       PropertyAttributesList();
-      jj_consume_token(RIGHT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -1449,7 +1449,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       PropertyAttribute();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case 222:
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         PropertyAttributesList();
         break;
       default:
@@ -1484,12 +1484,12 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   jjtree.openNodeScope(jjtn000);
     try {
       if (jj_2_27(3)) {
-        jj_consume_token(IDENT);
-        jj_consume_token(ASSIGN);
-        jj_consume_token(IDENT);
+        jj_consume_token(jjtn000, IDENT);
+        jj_consume_token(jjtn000, ASSIGN);
+        jj_consume_token(jjtn000, IDENT);
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case COLON:
-          jj_consume_token(COLON);
+          jj_consume_token(jjtn000, COLON);
           break;
         default:
           jj_la1[34] = jj_gen;
@@ -1498,14 +1498,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case IDENT:
-          jj_consume_token(IDENT);
+          jj_consume_token(jjtn000, IDENT);
           break;
         case POSSIBLE_COCOA_TYPE:
-          jj_consume_token(POSSIBLE_COCOA_TYPE);
+          jj_consume_token(jjtn000, POSSIBLE_COCOA_TYPE);
           break;
         default:
           jj_la1[35] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -1531,7 +1531,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         break;
       default:
         jj_la1[36] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -1561,7 +1561,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(PLUS);
+      jj_consume_token(jjtn000, PLUS);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LEFT_PAREN:
         MethodType();
@@ -1571,7 +1571,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         ;
       }
       MethodSelector();
-      jj_consume_token(SEMICOLON);
+      jj_consume_token(jjtn000, SEMICOLON);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -1599,7 +1599,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(MINUS);
+      jj_consume_token(jjtn000, MINUS);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LEFT_PAREN:
         MethodType();
@@ -1609,7 +1609,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         ;
       }
       MethodSelector();
-      jj_consume_token(SEMICOLON);
+      jj_consume_token(jjtn000, SEMICOLON);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -1653,7 +1653,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[39] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -1686,18 +1686,18 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case AT_SYNTHESIZE:
-        jj_consume_token(AT_SYNTHESIZE);
+        jj_consume_token(jjtn000, AT_SYNTHESIZE);
         PropertySynthesizeList();
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       case AT_DYNAMIC:
-        jj_consume_token(AT_DYNAMIC);
+        jj_consume_token(jjtn000, AT_DYNAMIC);
         PropertySynthesizeList();
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       default:
         jj_la1[40] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -1730,7 +1730,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       PropertySynthesizeItem();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case 222:
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         PropertySynthesizeList();
         break;
       default:
@@ -1765,17 +1765,17 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   jjtree.openNodeScope(jjtn000);
     try {
       if (jj_2_30(2)) {
-        jj_consume_token(IDENT);
+        jj_consume_token(jjtn000, IDENT);
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case IDENT:
-          jj_consume_token(IDENT);
-          jj_consume_token(EQ);
-          jj_consume_token(IDENT);
+          jj_consume_token(jjtn000, IDENT);
+          jj_consume_token(jjtn000, EQ);
+          jj_consume_token(jjtn000, IDENT);
           break;
         default:
           jj_la1[42] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -1801,7 +1801,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         break;
       default:
         jj_la1[43] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -1831,7 +1831,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(PLUS);
+      jj_consume_token(jjtn000, PLUS);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LEFT_PAREN:
         MethodType();
@@ -1852,7 +1852,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case SEMICOLON:
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       default:
         jj_la1[45] = jj_gen;
@@ -1886,7 +1886,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(MINUS);
+      jj_consume_token(jjtn000, MINUS);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LEFT_PAREN:
         MethodType();
@@ -1907,7 +1907,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case SEMICOLON:
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       default:
         jj_la1[47] = jj_gen;
@@ -1946,15 +1946,15 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         if (jj_2_33(2)) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case 223:
-            jj_consume_token(223);
+            jj_consume_token(jjtn000, 223);
             break;
           case 222:
-            jj_consume_token(222);
-            jj_consume_token(ELLIPSIS);
+            jj_consume_token(jjtn000, 222);
+            jj_consume_token(jjtn000, ELLIPSIS);
             break;
           default:
             jj_la1[48] = jj_gen;
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         } else {
@@ -1967,7 +1967,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[49] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -2005,12 +2005,12 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         case COLON:
         case IDENT:
           KeywordSelector();
-          jj_consume_token(222);
+          jj_consume_token(jjtn000, 222);
           ParameterTypeList();
           break;
         default:
           jj_la1[50] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -2113,7 +2113,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         jj_la1[51] = jj_gen;
         ;
       }
-      jj_consume_token(COLON);
+      jj_consume_token(jjtn000, COLON);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case LEFT_PAREN:
         MethodType();
@@ -2122,7 +2122,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         jj_la1[52] = jj_gen;
         ;
       }
-      jj_consume_token(IDENT);
+      jj_consume_token(jjtn000, IDENT);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -2150,7 +2150,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(IDENT);
+      jj_consume_token(jjtn000, IDENT);
     } finally {
           if (jjtc000) {
             jjtree.closeNodeScope(jjtn000, true);
@@ -2164,16 +2164,16 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(LEFT_PAREN);
+      jj_consume_token(jjtn000, LEFT_PAREN);
       if (jj_2_37(3)) {
         Block();
       } else if (jj_2_38(1)) {
         TypeNameWithUnknownType();
       } else {
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
-      jj_consume_token(RIGHT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -2201,10 +2201,10 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(AT_SELECTOR);
-      jj_consume_token(LEFT_PAREN);
+      jj_consume_token(jjtn000, AT_SELECTOR);
+      jj_consume_token(jjtn000, LEFT_PAREN);
       SelectorName();
-      jj_consume_token(RIGHT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -2254,7 +2254,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[54] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -2293,7 +2293,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         jj_la1[55] = jj_gen;
         ;
       }
-      jj_consume_token(COLON);
+      jj_consume_token(jjtn000, COLON);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -2321,10 +2321,10 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(AT_PROTOCOL);
-      jj_consume_token(LEFT_PAREN);
+      jj_consume_token(jjtn000, AT_PROTOCOL);
+      jj_consume_token(jjtn000, LEFT_PAREN);
       ProtocolName();
-      jj_consume_token(RIGHT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -2352,10 +2352,10 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(AT_ENCODE);
-      jj_consume_token(LEFT_PAREN);
+      jj_consume_token(jjtn000, AT_ENCODE);
+      jj_consume_token(jjtn000, LEFT_PAREN);
       TypeNameWithUnknownType();
-      jj_consume_token(RIGHT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -2536,7 +2536,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           ;
         }
       } else {
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -2568,26 +2568,26 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case AUTO:
-        jj_consume_token(AUTO);
+        jj_consume_token(jjtn000, AUTO);
         break;
       case REGISTER:
-        jj_consume_token(REGISTER);
+        jj_consume_token(jjtn000, REGISTER);
         break;
       case STATIC:
-        jj_consume_token(STATIC);
+        jj_consume_token(jjtn000, STATIC);
         break;
       case EXTERN:
-        jj_consume_token(EXTERN);
+        jj_consume_token(jjtn000, EXTERN);
         break;
       case TYPEDEF:
-        jj_consume_token(TYPEDEF);
+        jj_consume_token(jjtn000, TYPEDEF);
           jjtree.closeNodeScope(jjtn000, true);
           jjtc000 = false;
                 typedefParsingStack.push(Boolean.TRUE);
         break;
       default:
         jj_la1[64] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -2610,68 +2610,68 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         GreedyFixedNumType();
         break;
       case VOID:
-        jj_consume_token(VOID);
+        jj_consume_token(jjtn000, VOID);
         break;
       case CHAR:
-    	  jjtn000.setName("CHAR");
-        jj_consume_token(CHAR);
+    	  jjtn000.setName(jj_nt.image);
+        jj_consume_token(jjtn000, CHAR);
         break;
       case FLOAT:
-        jj_consume_token(FLOAT);
+        jj_consume_token(jjtn000, FLOAT);
         break;
       case DOUBLE:
     	  jjtn000.setName("DOUBLE");
-        jj_consume_token(DOUBLE);
+        jj_consume_token(jjtn000, DOUBLE);
         break;
       case BOOL:
     	  jjtn000.setName("BOOL");
-        jj_consume_token(BOOL);
+        jj_consume_token(jjtn000, BOOL);
         break;
       case IBACTION:
-        jj_consume_token(IBACTION);
+        jj_consume_token(jjtn000, IBACTION);
         break;
       case ID:
-        jj_consume_token(ID);
+        jj_consume_token(jjtn000, ID);
         break;
       case INT32_T:
-        jj_consume_token(INT32_T);
+        jj_consume_token(jjtn000, INT32_T);
         break;
       case CGFLOAT:
-        jj_consume_token(CGFLOAT);
+        jj_consume_token(jjtn000, CGFLOAT);
         break;
       case NSRECT:
-        jj_consume_token(NSRECT);
+        jj_consume_token(jjtn000, NSRECT);
         break;
       case NSUINTEGER:
-        jj_consume_token(NSUINTEGER);
+        jj_consume_token(jjtn000, NSUINTEGER);
         break;
       case NSINTEGER:
-        jj_consume_token(NSINTEGER);
+        jj_consume_token(jjtn000, NSINTEGER);
         break;
       case NSSIZE:
-        jj_consume_token(NSSIZE);
+        jj_consume_token(jjtn000, NSSIZE);
         break;
       case SEL:
-        jj_consume_token(SEL);
+        jj_consume_token(jjtn000, SEL);
         break;
       case CLASS:
-        jj_consume_token(CLASS);
+        jj_consume_token(jjtn000, CLASS);
         break;
       case IMP:
-        jj_consume_token(IMP);
+        jj_consume_token(jjtn000, IMP);
         break;
       case SINT32:
-        jj_consume_token(SINT32);
+        jj_consume_token(jjtn000, SINT32);
         break;
       case BOOLEAN:
     	  jjtn000.setName("BOOLEAN");
-        jj_consume_token(BOOLEAN);
+        jj_consume_token(jjtn000, BOOLEAN);
         break;
       case SCHAR:
-        jj_consume_token(SCHAR);
+        jj_consume_token(jjtn000, SCHAR);
         break;
       case UCHAR:
-        jj_consume_token(UCHAR);
+        jj_consume_token(jjtn000, UCHAR);
         break;
       case STRUCT:
       case UNION:
@@ -2697,7 +2697,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             break;
           default:
             jj_la1[66] = jj_gen;
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         }
@@ -2735,14 +2735,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         case SIGNED:
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case SIGNED:
-            jj_consume_token(SIGNED);
+            jj_consume_token(jjtn000, SIGNED);
             break;
           case UNSIGNED:
-            jj_consume_token(UNSIGNED);
+            jj_consume_token(jjtn000, UNSIGNED);
             break;
           default:
             jj_la1[67] = jj_gen;
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
           break;
@@ -2750,23 +2750,23 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           jj_la1[68] = jj_gen;
           ;
         }
-        jj_consume_token(FIXED_NUM_TYPE);
+        jj_consume_token(jjtn000, FIXED_NUM_TYPE);
         if (jj_2_51(2)) {
-          jj_consume_token(FIXED_NUM_TYPE);
+          jj_consume_token(jjtn000, FIXED_NUM_TYPE);
         } else {
           ;
         }
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case SIGNED:
-          jj_consume_token(SIGNED);
+          jj_consume_token(jjtn000, SIGNED);
           break;
         case UNSIGNED:
-          jj_consume_token(UNSIGNED);
+          jj_consume_token(jjtn000, UNSIGNED);
           break;
         default:
           jj_la1[69] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -2783,7 +2783,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
                              boolean jjtc000 = true;
                              jjtree.openNodeScope(jjtn000);Token t;
     try {
-      t = jj_consume_token(POSSIBLE_COCOA_TYPE);
+      t = jj_consume_token(jjtn000, POSSIBLE_COCOA_TYPE);
           jjtree.closeNodeScope(jjtn000, true);
           jjtc000 = false;
            if (verbose)
@@ -2802,7 +2802,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
                             boolean jjtc000 = true;
                             jjtree.openNodeScope(jjtn000);Token t;
     try {
-      t = jj_consume_token(POSSIBLE_CORE_TYPE);
+      t = jj_consume_token(jjtn000, POSSIBLE_CORE_TYPE);
           jjtree.closeNodeScope(jjtn000, true);
           jjtc000 = false;
            if (verbose)
@@ -2821,7 +2821,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
                                boolean jjtc000 = true;
                                jjtree.openNodeScope(jjtn000);Token t;
     try {
-      t = jj_consume_token(IDENT);
+      t = jj_consume_token(jjtn000, IDENT);
           jjtree.closeNodeScope(jjtn000, true);
           jjtc000 = false;
            if (verbose)
@@ -2848,11 +2848,11 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           ObjCIDENT();
           break;
         case ID:
-          jj_consume_token(ID);
+          jj_consume_token(jjtn000, ID);
           break;
         default:
           jj_la1[70] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -2866,7 +2866,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       } else if (jj_2_54(1)) {
         TypeSpecifier();
       } else {
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -2898,14 +2898,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case CONST:
-        jj_consume_token(CONST);
+        jj_consume_token(jjtn000, CONST);
         break;
       case VOLATILE:
-        jj_consume_token(VOLATILE);
+        jj_consume_token(jjtn000, VOLATILE);
         break;
       default:
         jj_la1[72] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -2931,9 +2931,9 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case LEFT_BRACE:
-          jj_consume_token(LEFT_BRACE);
+          jj_consume_token(jjtn000, LEFT_BRACE);
           StructDeclarationList();
-          jj_consume_token(RIGHT_BRACE);
+          jj_consume_token(jjtn000, RIGHT_BRACE);
           break;
         case POSSIBLE_COCOA_TYPE:
         case POSSIBLE_CORE_TYPE:
@@ -2942,17 +2942,17 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[73] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case IDENT:
-          jj_consume_token(IDENT);
+          jj_consume_token(jjtn000, IDENT);
           break;
         default:
           jj_la1[74] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -2988,14 +2988,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case STRUCT:
-        jj_consume_token(STRUCT);
+        jj_consume_token(jjtn000, STRUCT);
         break;
       case UNION:
-        jj_consume_token(UNION);
+        jj_consume_token(jjtn000, UNION);
         break;
       default:
         jj_la1[75] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -3058,7 +3058,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           jj_la1[76] = jj_gen;
           break label_17;
         }
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         InitDeclarator();
       }
           jjtree.closeNodeScope(jjtn000, true);
@@ -3097,7 +3097,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       Declarator();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case ASSIGN:
-        jj_consume_token(ASSIGN);
+        jj_consume_token(jjtn000, ASSIGN);
         Initializer();
         break;
       default:
@@ -3133,14 +3133,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case PROTOCOL_QUALIFIER_EXCEPT_IN:
-        jj_consume_token(PROTOCOL_QUALIFIER_EXCEPT_IN);
+        jj_consume_token(jjtn000, PROTOCOL_QUALIFIER_EXCEPT_IN);
         break;
       default:
         jj_la1[78] = jj_gen;
         if (jj_2_58(1)) {
           In();
         } else {
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -3174,10 +3174,10 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       if (getToken(0).image.equals("in")) {
 
       } else {
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
-      jj_consume_token(IDENT);
+      jj_consume_token(jjtn000, IDENT);
     } finally {
       if (jjtc000) {
         jjtree.closeNodeScope(jjtn000, true);
@@ -3197,17 +3197,17 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case LEFT_SQUARE:
-          jj_consume_token(LEFT_SQUARE);
+          jj_consume_token(jjtn000, LEFT_SQUARE);
           ConstantExpression();
-          jj_consume_token(RIGHT_SQUARE);
+          jj_consume_token(jjtn000, RIGHT_SQUARE);
           break;
         default:
           jj_la1[79] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
-      jj_consume_token(SEMICOLON);
+      jj_consume_token(jjtn000, SEMICOLON);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -3248,7 +3248,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           if (jj_2_61(1)) {
             ProtocolQualifier();
           } else {
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         }
@@ -3300,7 +3300,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[82] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -3342,7 +3342,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           jj_la1[83] = jj_gen;
           break label_18;
         }
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         StructDeclarator();
       }
     } catch (Throwable jjte000) {
@@ -3400,7 +3400,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(ENUM);
+      jj_consume_token(jjtn000, ENUM);
       if (jj_2_63(3)) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case POSSIBLE_COCOA_TYPE:
@@ -3412,17 +3412,17 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           jj_la1[84] = jj_gen;
           ;
         }
-        jj_consume_token(LEFT_BRACE);
+        jj_consume_token(jjtn000, LEFT_BRACE);
         EnumeratorList();
-        jj_consume_token(RIGHT_BRACE);
+        jj_consume_token(jjtn000, RIGHT_BRACE);
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case IDENT:
-          jj_consume_token(IDENT);
+          jj_consume_token(jjtn000, IDENT);
           break;
         default:
           jj_la1[85] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -3464,7 +3464,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           jj_la1[86] = jj_gen;
           break label_19;
         }
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case POSSIBLE_COCOA_TYPE:
         case POSSIBLE_CORE_TYPE:
@@ -3506,7 +3506,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       ObjCIDENT();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case ASSIGN:
-        jj_consume_token(ASSIGN);
+        jj_consume_token(jjtn000, ASSIGN);
         ConstantExpression();
         break;
       default:
@@ -3554,7 +3554,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         DirectDeclarator();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case COLON:
-          jj_consume_token(COLON);
+          jj_consume_token(jjtn000, COLON);
           ConstantExpression();
           break;
         default:
@@ -3564,7 +3564,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case COLON:
-          jj_consume_token(COLON);
+          jj_consume_token(jjtn000, COLON);
           ConstantExpression();
           break;
         default:
@@ -3572,7 +3572,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           if (jj_2_66(2)) {
             TypeSpecifier();
           } else {
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         }
@@ -3612,14 +3612,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       case POSSIBLE_CORE_TYPE:
       case IDENT:
         if (jj_2_67(3)) {
-          jj_consume_token(VOID);
+          jj_consume_token(jjtn000, VOID);
         } else {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case BOOL:
-            jj_consume_token(BOOL);
+            jj_consume_token(jjtn000, BOOL);
             break;
           case ID:
-            jj_consume_token(ID);
+            jj_consume_token(jjtn000, ID);
             break;
           case POSSIBLE_COCOA_TYPE:
           case POSSIBLE_CORE_TYPE:
@@ -3627,7 +3627,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             ObjCIDENT();
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
             case STAR:
-              jj_consume_token(STAR);
+              jj_consume_token(jjtn000, STAR);
               break;
             default:
               jj_la1[92] = jj_gen;
@@ -3636,7 +3636,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             break;
           default:
             jj_la1[93] = jj_gen;
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         }
@@ -3645,7 +3645,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         jj_la1[94] = jj_gen;
         ;
       }
-      jj_consume_token(BLOCK);
+      jj_consume_token(jjtn000, BLOCK);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case POSSIBLE_COCOA_TYPE:
       case POSSIBLE_CORE_TYPE:
@@ -3656,10 +3656,10 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         jj_la1[95] = jj_gen;
         ;
       }
-      jj_consume_token(RIGHT_PAREN);
-      jj_consume_token(LEFT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
+      jj_consume_token(jjtn000, LEFT_PAREN);
       ParameterList();
-      jj_consume_token(RIGHT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
     } catch (Throwable jjte000) {
       if (jjtc000) {
         jjtree.clearNodeScope(jjtn000);
@@ -3699,11 +3699,11 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       default:
         jj_la1[96] = jj_gen;
         if (jj_2_68(3)) {
-          jj_consume_token(LEFT_PAREN);
+          jj_consume_token(jjtn000, LEFT_PAREN);
           Declarator();
-          jj_consume_token(RIGHT_PAREN);
+          jj_consume_token(jjtn000, RIGHT_PAREN);
         } else {
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -3721,7 +3721,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case LEFT_SQUARE:
-          jj_consume_token(LEFT_SQUARE);
+          jj_consume_token(jjtn000, LEFT_SQUARE);
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case BANG:
           case TILDE:
@@ -3752,18 +3752,18 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             jj_la1[98] = jj_gen;
             ;
           }
-          jj_consume_token(RIGHT_SQUARE);
+          jj_consume_token(jjtn000, RIGHT_SQUARE);
           break;
         default:
           jj_la1[100] = jj_gen;
           if (jj_2_69(3)) {
-            jj_consume_token(LEFT_PAREN);
+            jj_consume_token(jjtn000, LEFT_PAREN);
             ParameterTypeList();
-            jj_consume_token(RIGHT_PAREN);
+            jj_consume_token(jjtn000, RIGHT_PAREN);
           } else {
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
             case LEFT_PAREN:
-              jj_consume_token(LEFT_PAREN);
+              jj_consume_token(jjtn000, LEFT_PAREN);
               switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
               case IDENT:
                 IdentifierList();
@@ -3772,11 +3772,11 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
                 jj_la1[99] = jj_gen;
                 ;
               }
-              jj_consume_token(RIGHT_PAREN);
+              jj_consume_token(jjtn000, RIGHT_PAREN);
               break;
             default:
               jj_la1[101] = jj_gen;
-              jj_consume_token(-1);
+              jj_consume_token(jjtn000, -1);
               throw new ParseException();
             }
           }
@@ -3812,7 +3812,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(STAR);
+      jj_consume_token(jjtn000, STAR);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case VOLATILE:
       case CONST:
@@ -3900,8 +3900,8 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       ParameterList();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case 222:
-        jj_consume_token(222);
-        jj_consume_token(ELLIPSIS);
+        jj_consume_token(jjtn000, 222);
+        jj_consume_token(jjtn000, ELLIPSIS);
         break;
       default:
         jj_la1[105] = jj_gen;
@@ -3942,7 +3942,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         } else {
           break label_22;
         }
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         ParameterDeclaration();
       }
     } catch (Throwable jjte000) {
@@ -4014,7 +4014,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(IDENT);
+      jj_consume_token(jjtn000, IDENT);
       label_23:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -4025,8 +4025,8 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           jj_la1[107] = jj_gen;
           break label_23;
         }
-        jj_consume_token(222);
-        jj_consume_token(IDENT);
+        jj_consume_token(jjtn000, 222);
+        jj_consume_token(jjtn000, IDENT);
       }
     } finally {
           if (jjtc000) {
@@ -4068,21 +4068,21 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         AssignmentExpression();
         break;
       case LEFT_BRACE:
-        jj_consume_token(LEFT_BRACE);
+        jj_consume_token(jjtn000, LEFT_BRACE);
         InitializerList();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case 222:
-          jj_consume_token(222);
+          jj_consume_token(jjtn000, 222);
           break;
         default:
           jj_la1[108] = jj_gen;
           ;
         }
-        jj_consume_token(RIGHT_BRACE);
+        jj_consume_token(jjtn000, RIGHT_BRACE);
         break;
       default:
         jj_la1[109] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -4120,7 +4120,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         } else {
           break label_24;
         }
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         Initializer();
       }
     } catch (Throwable jjte000) {
@@ -4253,7 +4253,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[113] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -4285,13 +4285,13 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   jjtree.openNodeScope(jjtn000);
     try {
       if (jj_2_76(2)) {
-        jj_consume_token(LEFT_PAREN);
+        jj_consume_token(jjtn000, LEFT_PAREN);
         AbstractDeclarator();
-        jj_consume_token(RIGHT_PAREN);
+        jj_consume_token(jjtn000, RIGHT_PAREN);
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case LEFT_SQUARE:
-          jj_consume_token(LEFT_SQUARE);
+          jj_consume_token(jjtn000, LEFT_SQUARE);
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case BANG:
           case TILDE:
@@ -4322,20 +4322,20 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             jj_la1[114] = jj_gen;
             ;
           }
-          jj_consume_token(RIGHT_SQUARE);
+          jj_consume_token(jjtn000, RIGHT_SQUARE);
           break;
         case LEFT_PAREN:
-          jj_consume_token(LEFT_PAREN);
+          jj_consume_token(jjtn000, LEFT_PAREN);
           if (jj_2_75(1)) {
             ParameterTypeList();
           } else {
             ;
           }
-          jj_consume_token(RIGHT_PAREN);
+          jj_consume_token(jjtn000, RIGHT_PAREN);
           break;
         default:
           jj_la1[115] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -4352,7 +4352,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case LEFT_SQUARE:
-          jj_consume_token(LEFT_SQUARE);
+          jj_consume_token(jjtn000, LEFT_SQUARE);
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case BANG:
           case TILDE:
@@ -4383,20 +4383,20 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             jj_la1[117] = jj_gen;
             ;
           }
-          jj_consume_token(RIGHT_SQUARE);
+          jj_consume_token(jjtn000, RIGHT_SQUARE);
           break;
         case LEFT_PAREN:
-          jj_consume_token(LEFT_PAREN);
+          jj_consume_token(jjtn000, LEFT_PAREN);
           if (jj_2_77(1)) {
             ParameterTypeList();
           } else {
             ;
           }
-          jj_consume_token(RIGHT_PAREN);
+          jj_consume_token(jjtn000, RIGHT_PAREN);
           break;
         default:
           jj_la1[118] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -4507,7 +4507,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[119] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -4540,24 +4540,24 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case IDENT:
-        jj_consume_token(IDENT);
-        jj_consume_token(COLON);
+        jj_consume_token(jjtn000, IDENT);
+        jj_consume_token(jjtn000, COLON);
         Statement();
         break;
       case CASE:
-        jj_consume_token(CASE);
+        jj_consume_token(jjtn000, CASE);
         ConstantExpression();
-        jj_consume_token(COLON);
+        jj_consume_token(jjtn000, COLON);
         Statement();
         break;
       case DFLT:
-        jj_consume_token(DFLT);
-        jj_consume_token(COLON);
+        jj_consume_token(jjtn000, DFLT);
+        jj_consume_token(jjtn000, COLON);
         Statement();
         break;
       default:
         jj_la1[120] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -4594,13 +4594,13 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case STAR:
-        jj_consume_token(STAR);
+        jj_consume_token(jjtn000, STAR);
         break;
       default:
         jj_la1[121] = jj_gen;
         ;
       }
-      jj_consume_token(IDENT);
+      jj_consume_token(jjtn000, IDENT);
       label_27:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -4611,12 +4611,12 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           jj_la1[122] = jj_gen;
           break label_27;
         }
-        jj_consume_token(222);
-        jj_consume_token(IDENT);
+        jj_consume_token(jjtn000, 222);
+        jj_consume_token(jjtn000, IDENT);
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case ASSIGN:
-        jj_consume_token(ASSIGN);
+        jj_consume_token(jjtn000, ASSIGN);
         if (jj_2_81(3)) {
           MessageExpression();
         } else {
@@ -4639,30 +4639,30 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             break;
           default:
             jj_la1[123] = jj_gen;
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case SEMICOLON:
-          jj_consume_token(SEMICOLON);
+          jj_consume_token(jjtn000, SEMICOLON);
           break;
         case 222:
-          jj_consume_token(222);
+          jj_consume_token(jjtn000, 222);
           InitStatement();
           break;
         default:
           jj_la1[124] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
         break;
       case SEMICOLON:
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       default:
         jj_la1[125] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -4722,7 +4722,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         jj_la1[126] = jj_gen;
         ;
       }
-      jj_consume_token(SEMICOLON);
+      jj_consume_token(jjtn000, SEMICOLON);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -4750,7 +4750,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(LEFT_BRACE);
+      jj_consume_token(jjtn000, LEFT_BRACE);
       label_28:
       while (true) {
         if (jj_2_82(1)) {
@@ -4763,11 +4763,11 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         } else if (jj_2_84(1)) {
           StatementList();
         } else {
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
-      jj_consume_token(RIGHT_BRACE);
+      jj_consume_token(jjtn000, RIGHT_BRACE);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -4833,33 +4833,33 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case IF:
-        jj_consume_token(IF);
-        jj_consume_token(LEFT_PAREN);
+        jj_consume_token(jjtn000, IF);
+        jj_consume_token(jjtn000, LEFT_PAREN);
         if (jj_2_86(2)) {
           NestedLogicalExpression();
         } else {
           ;
         }
         Expression();
-        jj_consume_token(RIGHT_PAREN);
+        jj_consume_token(jjtn000, RIGHT_PAREN);
         Statement();
         if (jj_2_87(2)) {
-          jj_consume_token(ELSE);
+          jj_consume_token(jjtn000, ELSE);
           Statement();
         } else {
           ;
         }
         break;
       case SWITCH:
-        jj_consume_token(SWITCH);
-        jj_consume_token(LEFT_PAREN);
+        jj_consume_token(jjtn000, SWITCH);
+        jj_consume_token(jjtn000, LEFT_PAREN);
         Expression();
-        jj_consume_token(RIGHT_PAREN);
+        jj_consume_token(jjtn000, RIGHT_PAREN);
         Statement();
         break;
       default:
         jj_la1[127] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -4889,14 +4889,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(LEFT_PAREN);
+      jj_consume_token(jjtn000, LEFT_PAREN);
       if (jj_2_88(2)) {
         NestedLogicalExpression();
       } else {
         ;
       }
       Expression();
-      jj_consume_token(RIGHT_PAREN);
+      jj_consume_token(jjtn000, RIGHT_PAREN);
       LogicalOperator();
     } catch (Throwable jjte000) {
           if (jjtc000) {
@@ -4927,20 +4927,20 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case XOR:
-        jj_consume_token(XOR);
+        jj_consume_token(jjtn000, XOR);
         break;
       case EQ:
-        jj_consume_token(EQ);
+        jj_consume_token(jjtn000, EQ);
         break;
       case SC_OR:
-        jj_consume_token(SC_OR);
+        jj_consume_token(jjtn000, SC_OR);
         break;
       case SC_AND:
-        jj_consume_token(SC_AND);
+        jj_consume_token(jjtn000, SC_AND);
         break;
       default:
         jj_la1[128] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -4958,27 +4958,27 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case WHILE:
-        jj_consume_token(WHILE);
-        jj_consume_token(LEFT_PAREN);
+        jj_consume_token(jjtn000, WHILE);
+        jj_consume_token(jjtn000, LEFT_PAREN);
         Expression();
-        jj_consume_token(RIGHT_PAREN);
+        jj_consume_token(jjtn000, RIGHT_PAREN);
         Statement();
         break;
       case DO:
-        jj_consume_token(DO);
+        jj_consume_token(jjtn000, DO);
         Statement();
-        jj_consume_token(WHILE);
-        jj_consume_token(LEFT_PAREN);
+        jj_consume_token(jjtn000, WHILE);
+        jj_consume_token(jjtn000, LEFT_PAREN);
         Expression();
-        jj_consume_token(RIGHT_PAREN);
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, RIGHT_PAREN);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       case FOR:
-        jj_consume_token(FOR);
-        jj_consume_token(LEFT_PAREN);
+        jj_consume_token(jjtn000, FOR);
+        jj_consume_token(jjtn000, LEFT_PAREN);
         if (jj_2_90(3)) {
           TypeSpecifier();
-          jj_consume_token(IDENT);
+          jj_consume_token(jjtn000, IDENT);
           In();
           PrimaryExpression();
         } else {
@@ -5045,7 +5045,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
               jj_la1[129] = jj_gen;
               ;
             }
-            jj_consume_token(SEMICOLON);
+            jj_consume_token(jjtn000, SEMICOLON);
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
             case BANG:
             case TILDE:
@@ -5076,7 +5076,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
               jj_la1[130] = jj_gen;
               ;
             }
-            jj_consume_token(SEMICOLON);
+            jj_consume_token(jjtn000, SEMICOLON);
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
             case BANG:
             case TILDE:
@@ -5110,16 +5110,16 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             break;
           default:
             jj_la1[132] = jj_gen;
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         }
-        jj_consume_token(RIGHT_PAREN);
+        jj_consume_token(jjtn000, RIGHT_PAREN);
         Statement();
         break;
       default:
         jj_la1[133] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -5151,17 +5151,17 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case FIXED_NUM_TYPE:
-        jj_consume_token(FIXED_NUM_TYPE);
+        jj_consume_token(jjtn000, FIXED_NUM_TYPE);
         break;
       case FLOAT:
-        jj_consume_token(FLOAT);
+        jj_consume_token(jjtn000, FLOAT);
         break;
       case DOUBLE:
-        jj_consume_token(DOUBLE);
+        jj_consume_token(jjtn000, DOUBLE);
         break;
       default:
         jj_la1[134] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -5179,20 +5179,20 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case GOTO:
-        jj_consume_token(GOTO);
-        jj_consume_token(IDENT);
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, GOTO);
+        jj_consume_token(jjtn000, IDENT);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       case CONTINUE:
-        jj_consume_token(CONTINUE);
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, CONTINUE);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       case BREAK:
-        jj_consume_token(BREAK);
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, BREAK);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       case RETURN:
-        jj_consume_token(RETURN);
+        jj_consume_token(jjtn000, RETURN);
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case BANG:
         case TILDE:
@@ -5223,11 +5223,11 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           jj_la1[135] = jj_gen;
           ;
         }
-        jj_consume_token(SEMICOLON);
+        jj_consume_token(jjtn000, SEMICOLON);
         break;
       default:
         jj_la1[136] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -5268,7 +5268,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           jj_la1[137] = jj_gen;
           break label_30;
         }
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         AssignmentExpression();
       }
     } catch (Throwable jjte000) {
@@ -5305,7 +5305,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       } else if (jj_2_92(3)) {
         ConditionalExpression();
       } else {
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -5337,41 +5337,41 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case ASSIGN:
-        jj_consume_token(ASSIGN);
+        jj_consume_token(jjtn000, ASSIGN);
         break;
       case STARASSIGN:
-        jj_consume_token(STARASSIGN);
+        jj_consume_token(jjtn000, STARASSIGN);
         break;
       case SLASHASSIGN:
-        jj_consume_token(SLASHASSIGN);
+        jj_consume_token(jjtn000, SLASHASSIGN);
         break;
       case REMASSIGN:
-        jj_consume_token(REMASSIGN);
+        jj_consume_token(jjtn000, REMASSIGN);
         break;
       case PLUSASSIGN:
-        jj_consume_token(PLUSASSIGN);
+        jj_consume_token(jjtn000, PLUSASSIGN);
         break;
       case MINUSASSIGN:
-        jj_consume_token(MINUSASSIGN);
+        jj_consume_token(jjtn000, MINUSASSIGN);
         break;
       case LSHIFTASSIGN:
-        jj_consume_token(LSHIFTASSIGN);
+        jj_consume_token(jjtn000, LSHIFTASSIGN);
         break;
       case RSIGNEDSHIFTASSIGN:
-        jj_consume_token(RSIGNEDSHIFTASSIGN);
+        jj_consume_token(jjtn000, RSIGNEDSHIFTASSIGN);
         break;
       case ANDASSIGN:
-        jj_consume_token(ANDASSIGN);
+        jj_consume_token(jjtn000, ANDASSIGN);
         break;
       case XORASSIGN:
-        jj_consume_token(XORASSIGN);
+        jj_consume_token(jjtn000, XORASSIGN);
         break;
       case ORASSIGN:
-        jj_consume_token(ORASSIGN);
+        jj_consume_token(jjtn000, ORASSIGN);
         break;
       default:
         jj_la1[138] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -5390,9 +5390,9 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       LogicalORExpression();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case HOOK:
-        jj_consume_token(HOOK);
+        jj_consume_token(jjtn000, HOOK);
         Expression();
-        jj_consume_token(COLON);
+        jj_consume_token(jjtn000, COLON);
         ConditionalExpression();
         break;
       default:
@@ -5457,7 +5457,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       LogicalANDExpression();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case SC_OR:
-        jj_consume_token(SC_OR);
+        jj_consume_token(jjtn000, SC_OR);
         if (jj_2_93(3)) {
           LogicalORExpression();
         } else {
@@ -5467,7 +5467,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             break;
           default:
             jj_la1[140] = jj_gen;
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         }
@@ -5506,7 +5506,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       InclusiveORExpression();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case SC_AND:
-        jj_consume_token(SC_AND);
+        jj_consume_token(jjtn000, SC_AND);
         if (jj_2_94(3)) {
           LogicalANDExpression();
         } else {
@@ -5516,7 +5516,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
             break;
           default:
             jj_la1[142] = jj_gen;
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         }
@@ -5555,7 +5555,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       ExclusiveORExpression();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case BIT_OR:
-        jj_consume_token(BIT_OR);
+        jj_consume_token(jjtn000, BIT_OR);
         InclusiveORExpression();
         break;
       default:
@@ -5592,7 +5592,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       ANDExpression();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case XOR:
-        jj_consume_token(XOR);
+        jj_consume_token(jjtn000, XOR);
         ExclusiveORExpression();
         break;
       default:
@@ -5629,7 +5629,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       EqualityExpression();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case BIT_AND:
-        jj_consume_token(BIT_AND);
+        jj_consume_token(jjtn000, BIT_AND);
         ANDExpression();
         break;
       default:
@@ -5669,14 +5669,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       case NE:
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case EQ:
-          jj_consume_token(EQ);
+          jj_consume_token(jjtn000, EQ);
           break;
         case NE:
-          jj_consume_token(NE);
+          jj_consume_token(jjtn000, NE);
           break;
         default:
           jj_la1[147] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
         EqualityExpression();
@@ -5720,20 +5720,20 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       case GE:
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case LT:
-          jj_consume_token(LT);
+          jj_consume_token(jjtn000, LT);
           break;
         case GT:
-          jj_consume_token(GT);
+          jj_consume_token(jjtn000, GT);
           break;
         case LE:
-          jj_consume_token(LE);
+          jj_consume_token(jjtn000, LE);
           break;
         case GE:
-          jj_consume_token(GE);
+          jj_consume_token(jjtn000, GE);
           break;
         default:
           jj_la1[149] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
         RelationalExpression();
@@ -5775,14 +5775,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       case 224:
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case LSHIFT:
-          jj_consume_token(LSHIFT);
+          jj_consume_token(jjtn000, LSHIFT);
           break;
         case 224:
-          jj_consume_token(224);
+          jj_consume_token(jjtn000, 224);
           break;
         default:
           jj_la1[151] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
         ShiftExpression();
@@ -5824,14 +5824,14 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       case MINUS:
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case PLUS:
-          jj_consume_token(PLUS);
+          jj_consume_token(jjtn000, PLUS);
           break;
         case MINUS:
-          jj_consume_token(MINUS);
+          jj_consume_token(jjtn000, MINUS);
           break;
         default:
           jj_la1[153] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
         AdditiveExpression();
@@ -5874,17 +5874,17 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       case REM:
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case STAR:
-          jj_consume_token(STAR);
+          jj_consume_token(jjtn000, STAR);
           break;
         case SLASH:
-          jj_consume_token(SLASH);
+          jj_consume_token(jjtn000, SLASH);
           break;
         case REM:
-          jj_consume_token(REM);
+          jj_consume_token(jjtn000, REM);
           break;
         default:
           jj_la1[155] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
         MultiplicativeExpression();
@@ -5921,9 +5921,9 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   jjtree.openNodeScope(jjtn000);
     try {
       if (jj_2_95(2147483647)) {
-        jj_consume_token(LEFT_PAREN);
+        jj_consume_token(jjtn000, LEFT_PAREN);
         TypeName();
-        jj_consume_token(RIGHT_PAREN);
+        jj_consume_token(jjtn000, RIGHT_PAREN);
         CastExpression();
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -5954,7 +5954,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[157] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -5990,11 +5990,11 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case INCR:
-          jj_consume_token(INCR);
+          jj_consume_token(jjtn000, INCR);
           UnaryExpression();
           break;
         case DECR:
-          jj_consume_token(DECR);
+          jj_consume_token(jjtn000, DECR);
           UnaryExpression();
           break;
         case BANG:
@@ -6007,26 +6007,26 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           CastExpression();
           break;
         case SIZEOF:
-          jj_consume_token(SIZEOF);
+          jj_consume_token(jjtn000, SIZEOF);
           if (jj_2_96(2147483647)) {
             UnaryExpression();
           } else {
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
             case LEFT_PAREN:
-              jj_consume_token(LEFT_PAREN);
+              jj_consume_token(jjtn000, LEFT_PAREN);
               TypeName();
-              jj_consume_token(RIGHT_PAREN);
+              jj_consume_token(jjtn000, RIGHT_PAREN);
               break;
             default:
               jj_la1[158] = jj_gen;
-              jj_consume_token(-1);
+              jj_consume_token(jjtn000, -1);
               throw new ParseException();
             }
           }
           break;
         default:
           jj_la1[159] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -6059,26 +6059,26 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case BIT_AND:
-        jj_consume_token(BIT_AND);
+        jj_consume_token(jjtn000, BIT_AND);
         break;
       case STAR:
-        jj_consume_token(STAR);
+        jj_consume_token(jjtn000, STAR);
         break;
       case PLUS:
-        jj_consume_token(PLUS);
+        jj_consume_token(jjtn000, PLUS);
         break;
       case MINUS:
-        jj_consume_token(MINUS);
+        jj_consume_token(jjtn000, MINUS);
         break;
       case TILDE:
-        jj_consume_token(TILDE);
+        jj_consume_token(jjtn000, TILDE);
         break;
       case BANG:
-        jj_consume_token(BANG);
+        jj_consume_token(jjtn000, BANG);
         break;
       default:
         jj_la1[160] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -6096,7 +6096,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case NIL:
-        jj_consume_token(NIL);
+        jj_consume_token(jjtn000, NIL);
         break;
       case INTEGER_LITERAL:
       case FLOATING_POINT_LITERAL:
@@ -6129,43 +6129,43 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           }
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case LEFT_SQUARE:
-            jj_consume_token(LEFT_SQUARE);
+            jj_consume_token(jjtn000, LEFT_SQUARE);
             Expression();
-            jj_consume_token(RIGHT_SQUARE);
+            jj_consume_token(jjtn000, RIGHT_SQUARE);
             break;
           case LEFT_PAREN:
-            jj_consume_token(LEFT_PAREN);
+            jj_consume_token(jjtn000, LEFT_PAREN);
             if (jj_2_98(2147483647)) {
               ArgumentExpressionList();
             } else {
               ;
             }
-            jj_consume_token(RIGHT_PAREN);
+            jj_consume_token(jjtn000, RIGHT_PAREN);
             break;
           case 225:
-            jj_consume_token(225);
-            jj_consume_token(IDENT);
+            jj_consume_token(jjtn000, 225);
+            jj_consume_token(jjtn000, IDENT);
             break;
           case 226:
-            jj_consume_token(226);
-            jj_consume_token(IDENT);
+            jj_consume_token(jjtn000, 226);
+            jj_consume_token(jjtn000, IDENT);
             break;
           case INCR:
-            jj_consume_token(INCR);
+            jj_consume_token(jjtn000, INCR);
             break;
           case DECR:
-            jj_consume_token(DECR);
+            jj_consume_token(jjtn000, DECR);
             break;
           default:
             jj_la1[162] = jj_gen;
-            jj_consume_token(-1);
+            jj_consume_token(jjtn000, -1);
             throw new ParseException();
           }
         }
         break;
       default:
         jj_la1[163] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -6209,9 +6209,9 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         Constant();
         break;
       case LEFT_PAREN:
-        jj_consume_token(LEFT_PAREN);
+        jj_consume_token(jjtn000, LEFT_PAREN);
         Expression();
-        jj_consume_token(RIGHT_PAREN);
+        jj_consume_token(jjtn000, RIGHT_PAREN);
         break;
       case LEFT_SQUARE:
         MessageExpression();
@@ -6227,7 +6227,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         break;
       default:
         jj_la1[164] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } catch (Throwable jjte000) {
@@ -6257,10 +6257,10 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
     try {
-      jj_consume_token(LEFT_SQUARE);
+      jj_consume_token(jjtn000, LEFT_SQUARE);
       Receiver();
       MessageSelector();
-      jj_consume_token(RIGHT_SQUARE);
+      jj_consume_token(jjtn000, RIGHT_SQUARE);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -6301,7 +6301,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           break;
         default:
           jj_la1[165] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -6334,23 +6334,23 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case BOOL:
-        jj_consume_token(BOOL);
+        jj_consume_token(jjtn000, BOOL);
         break;
       case IMP:
-        jj_consume_token(IMP);
+        jj_consume_token(jjtn000, IMP);
         break;
       case SEL:
-        jj_consume_token(SEL);
+        jj_consume_token(jjtn000, SEL);
         break;
       case CLASS:
-        jj_consume_token(CLASS);
+        jj_consume_token(jjtn000, CLASS);
         break;
       case ID:
-        jj_consume_token(ID);
+        jj_consume_token(jjtn000, ID);
         break;
       default:
         jj_la1[166] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -6383,11 +6383,11 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case IDENT:
-          jj_consume_token(IDENT);
+          jj_consume_token(jjtn000, IDENT);
           break;
         default:
           jj_la1[168] = jj_gen;
-          jj_consume_token(-1);
+          jj_consume_token(jjtn000, -1);
           throw new ParseException();
         }
       }
@@ -6419,30 +6419,30 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   jjtree.openNodeScope(jjtn000);
     try {
       if (jj_2_101(3)) {
-        jj_consume_token(IDENT);
-        jj_consume_token(COLON);
+        jj_consume_token(jjtn000, IDENT);
+        jj_consume_token(jjtn000, COLON);
         Expression();
       } else {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case IDENT:
-          jj_consume_token(IDENT);
-          jj_consume_token(COLON);
-          jj_consume_token(NIL);
+          jj_consume_token(jjtn000, IDENT);
+          jj_consume_token(jjtn000, COLON);
+          jj_consume_token(jjtn000, NIL);
           break;
         default:
           jj_la1[169] = jj_gen;
           if (jj_2_102(2)) {
-            jj_consume_token(COLON);
-            jj_consume_token(NIL);
+            jj_consume_token(jjtn000, COLON);
+            jj_consume_token(jjtn000, NIL);
           } else {
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
             case COLON:
-              jj_consume_token(COLON);
+              jj_consume_token(jjtn000, COLON);
               Expression();
               break;
             default:
               jj_la1[170] = jj_gen;
-              jj_consume_token(-1);
+              jj_consume_token(jjtn000, -1);
               throw new ParseException();
             }
           }
@@ -6486,7 +6486,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           jj_la1[171] = jj_gen;
           break label_33;
         }
-        jj_consume_token(222);
+        jj_consume_token(jjtn000, 222);
         AssignmentExpression();
       }
     } catch (Throwable jjte000) {
@@ -6518,23 +6518,23 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case INTEGER_LITERAL:
-        jj_consume_token(INTEGER_LITERAL);
+        jj_consume_token(jjtn000, INTEGER_LITERAL);
         break;
       case FLOATING_POINT_LITERAL:
-        jj_consume_token(FLOATING_POINT_LITERAL);
+        jj_consume_token(jjtn000, FLOATING_POINT_LITERAL);
         break;
       case CHARACTER_LITERAL:
-        jj_consume_token(CHARACTER_LITERAL);
+        jj_consume_token(jjtn000, CHARACTER_LITERAL);
         break;
       case STRING_LITERAL:
-        jj_consume_token(STRING_LITERAL);
+        jj_consume_token(jjtn000, STRING_LITERAL);
         break;
       case INTEGER_CONSTANT:
-        jj_consume_token(INTEGER_CONSTANT);
+        jj_consume_token(jjtn000, INTEGER_CONSTANT);
         break;
       default:
         jj_la1[172] = jj_gen;
-        jj_consume_token(-1);
+        jj_consume_token(jjtn000, -1);
         throw new ParseException();
       }
     } finally {
@@ -10595,7 +10595,8 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  private Token jj_consume_token(int kind) throws ParseException {
+  private Token jj_consume_token(SimpleNode noeud, int kind) throws ParseException {
+	  noeud.setName(jj_nt.image);
     Token oldToken;
     if ((oldToken = token).next != null) token = token.next;
     else token = token.next = token_source.getNextToken();

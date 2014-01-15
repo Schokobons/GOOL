@@ -5,6 +5,6 @@ int main( int argc, const char *argv[] ) {
 	bool f;
 	double dou;
 	int cooper;
-	numerator = 10 + 6*2;
+	numerator = 10 + 6*2*3;
     return 0;
 }
