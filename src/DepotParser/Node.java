@@ -7,6 +7,8 @@ package DepotParser;
 
 public
 interface Node {
+  public void setName(String n);
+  public String getName();
 
   /** This method is called after the node has been made the current
     node.  It indicates that child nodes can now be added to it. */
