@@ -213,12 +213,14 @@ import com.sun.tools.javac.util.Name;
 //dans la classe abstraite Visitor.
 abstract class Visitor 
 { 
+abstract void visit(Node n);
 abstract void visitIntExp(IntExp e); 
 abstract void visitAddExp(AddExp e); 
 } 
 
 //Le recognizer implémente les méthodes abstraites du visiteur.
 class ExpressionRecognizer extends Visitor{
+	//switch
 	  void visitIntExp(IntExp e) 
 	  { 
 	    System.out.print(e.value); 
