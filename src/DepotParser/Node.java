@@ -26,6 +26,7 @@ interface Node {
   /** This method tells the node to add its argument to the node's
     list of children.  */
   public void jjtAddChild(Node n, int i);
+  public void jjtRemoveChild(int i);
 
   /** This method returns a child node.  The children are numbered
      from zero, left to right. */

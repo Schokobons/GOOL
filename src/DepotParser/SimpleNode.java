@@ -54,6 +54,14 @@ class SimpleNode implements Node {
     children[i] = n;
   }
 
+	public void jjtRemoveChild(int i) {
+		Node c[] = new Node[children.length-1];
+		for(int j = 0; j < i; j++)
+			c[j] = children[j];
+		for(int j = i+1; j < children.length; j++)
+			c[j-1] = children[j];
+	}
+
   public Node jjtGetChild(int i) {
     return children[i];
   }
