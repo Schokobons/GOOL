@@ -15,6 +15,10 @@ class SimpleNode implements Node {
 	  name = n;
   }
   
+  public int getKind() {
+	  return id;
+  }
+  
   public String getName() {
 	  return name;
   }
