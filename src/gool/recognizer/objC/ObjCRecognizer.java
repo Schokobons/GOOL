@@ -39,7 +39,6 @@ class ObjCRecognizer extends Visitor{
 
 	@Override
 	void visit(Node n) {
-		// TODO Auto-generated method stub
 	}
 	
 	void visitIntExp(Node e) 
