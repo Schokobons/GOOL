@@ -15,6 +15,10 @@ class SimpleNode implements Node {
 	  name = n;
   }
   
+  public String getName() {
+	  return name;
+  }
+  
   public SimpleNode(int i, String n) {
 	  name = n;
 	  id = i;

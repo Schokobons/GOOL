@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class Main {
-	public static void afficherArbre(Node n, int etage) {
+	public static void afficherArbreLong(Node n, int etage) {
 		int newetage = etage;
 		if(true/*n.jjtGetNumChildren() != 1*//*n.jjtGetNumChildren() == 0 || (etage > 0 && n.jjtGetParent().jjtGetNumChildren() > 0 && !n.jjtGetParent().jjtGetChild(0).equals(n))*/) {
 			for(int i = 0; i < etage; i++)
@@ -13,14 +13,13 @@ public class Main {
 			newetage++;
 		}
 		for(int i = 0; i < n.jjtGetNumChildren(); i++)
-			afficherArbre(n.jjtGetChild(i), newetage);
+			afficherArbreLong(n.jjtGetChild(i), newetage);
 	}
 	
 	public static void main(String[] args) {
 		ObjCParser parser = null;
 		try {
 			parser = new ObjCParser(new java.io.FileInputStream("example.m"));
-			System.out.println("Debut.");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -28,7 +27,7 @@ public class Main {
 			//SimpleNode n = parser.TranslationUnit();
 	        parser.TranslationUnit();
 	        Node first = parser.jjtree.rootNode();
-	        afficherArbre(first, 0);
+	        afficherArbreLong(first, 0);
 	        SimpleNode simple = (SimpleNode) parser.jjtree.rootNode();
 	        System.out.println("ObjectiveC 2.0 Parser Version 1.0:  ObjectiveC program parsed successfully.");
 		} catch (ParseException e) {

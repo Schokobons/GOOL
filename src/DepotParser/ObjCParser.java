@@ -89,7 +89,7 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
    }
 
    // Prints out all the types used in parsing the c source
-   private static void printTypes(){
+   public static void printTypes(){
      for (Iterator i = types.iterator(); i.hasNext();) {
        System.out.println(i.next());
      }
@@ -111,7 +111,6 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
           types.add("__const");
           types.add("__inline__");
           types.add("__signed");
-
     if (args.length == 0) {
       System.out.println("ObjectiveC 2.0 Parser Version 1.0:  Reading from standard input . . .");
       parser = new ObjCParser(System.in);
@@ -2613,18 +2612,15 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         jj_consume_token(jjtn000, VOID);
         break;
       case CHAR:
-    	  jjtn000.setName(jj_nt.image);
         jj_consume_token(jjtn000, CHAR);
         break;
       case FLOAT:
         jj_consume_token(jjtn000, FLOAT);
         break;
       case DOUBLE:
-    	  jjtn000.setName("DOUBLE");
         jj_consume_token(jjtn000, DOUBLE);
         break;
       case BOOL:
-    	  jjtn000.setName("BOOL");
         jj_consume_token(jjtn000, BOOL);
         break;
       case IBACTION:
@@ -2664,7 +2660,6 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
         jj_consume_token(jjtn000, SINT32);
         break;
       case BOOLEAN:
-    	  jjtn000.setName("BOOLEAN");
         jj_consume_token(jjtn000, BOOLEAN);
         break;
       case SCHAR:
@@ -10595,11 +10590,13 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  private Token jj_consume_token(SimpleNode noeud, int kind) throws ParseException {
-	  noeud.setName(jj_nt.image);
+  private Token jj_consume_token(Node n, int kind) throws ParseException {
+  n.setName(n.getName() + jj_nt.image);
     Token oldToken;
     if ((oldToken = token).next != null) token = token.next;
-    else token = token.next = token_source.getNextToken();
+    else {
+    	token = token.next = token_source.getNextToken();
+    }
     jj_ntk = -1;
     if (token.kind == kind) {
       jj_gen++;
@@ -10647,7 +10644,9 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
 /** Get the next Token. */
   final public Token getNextToken() {
     if (token.next != null) token = token.next;
-    else token = token.next = token_source.getNextToken();
+    else {
+    	token = token.next = token_source.getNextToken();
+    }
     jj_ntk = -1;
     jj_gen++;
     return token;
@@ -10658,14 +10657,17 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
     Token t = jj_lookingAhead ? jj_scanpos : token;
     for (int i = 0; i < index; i++) {
       if (t.next != null) t = t.next;
-      else t = t.next = token_source.getNextToken();
+      else {
+    	  t = t.next = token_source.getNextToken();
+      }
     }
     return t;
   }
 
   private int jj_ntk() {
-    if ((jj_nt=token.next) == null)
-      return (jj_ntk = (token.next=token_source.getNextToken()).kind);
+    if ((jj_nt=token.next) == null) {
+    	return (jj_ntk = (token.next=token_source.getNextToken()).kind);
+    }
     else
       return (jj_ntk = jj_nt.kind);
   }

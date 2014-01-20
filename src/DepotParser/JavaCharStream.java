@@ -261,7 +261,6 @@ class JavaCharStream
 
       if (++bufpos == bufsize)
         bufpos = 0;
-System.out.println(buffer[bufpos]);//TODO
       return buffer[bufpos];
     }
 
@@ -296,7 +295,6 @@ System.out.println(buffer[bufpos]);//TODO
             }
 
             backup(backSlashCnt);
-System.out.println('\\');//TODO
             return '\\';
           }
         }
@@ -305,7 +303,6 @@ System.out.println('\\');//TODO
 	  // We are returning one backslash so we should only backup (count-1)
           if (backSlashCnt > 1)
             backup(backSlashCnt-1);
-System.out.println('\\');//TODO
           return '\\';
         }
 
@@ -333,19 +330,17 @@ System.out.println('\\');//TODO
       }
 
       if (backSlashCnt == 1)
-{System.out.println(c);//TODO
+{
         return c;}
       else
       {
         backup(backSlashCnt - 1);
-System.out.println('\\');//TODO
         return '\\';
       }
     }
     else
     {
       UpdateLineColumn(c);
-System.out.println(c);//TODO
       return c;
     }
   }
