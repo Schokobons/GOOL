@@ -2,7 +2,7 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class ConstanteCaractere extends Noeud {
+public class ConstanteCaractere extends Expression {
 
 	private char constantecaractere;
 	

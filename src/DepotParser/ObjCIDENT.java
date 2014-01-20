@@ -2,7 +2,7 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class ObjCIDENT extends Noeud{
+public class ObjCIDENT extends Expression{
 
 	private String nom;
 	@Override
