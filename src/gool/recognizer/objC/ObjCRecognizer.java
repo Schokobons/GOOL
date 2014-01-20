@@ -22,187 +22,7 @@
 
 package gool.recognizer.objC;
 
-import gool.ast.core.ArrayAccess;
-import gool.ast.core.ArrayNew;
-import gool.ast.core.Assign;
-import gool.ast.core.BinaryOperation;
-import gool.ast.core.Block;
-import gool.ast.core.Break;
-import gool.ast.core.Case;
-import gool.ast.core.CastExpression;
-import gool.ast.core.Catch;
-import gool.ast.core.ClassDef;
-import gool.ast.core.ClassNew;
-import gool.ast.core.Comment;
-import gool.ast.core.CompoundAssign;
-import gool.ast.core.Constant;
-import gool.ast.core.Constructor;
-import gool.ast.core.CustomDependency;
-import gool.ast.core.Dec;
-import gool.ast.core.Dependency;
-import gool.ast.core.EnhancedForLoop;
-import gool.ast.core.EqualsCall;
-import gool.ast.core.Expression;
-import gool.ast.core.ExpressionUnknown;
-import gool.ast.core.Field;
-import gool.ast.core.For;
-import gool.ast.core.If;
-import gool.ast.core.InitCall;
-import gool.ast.core.Language;
-import gool.ast.core.MainMeth;
-import gool.ast.core.MemberSelect;
-import gool.ast.core.Meth;
-import gool.ast.core.MethCall;
-import gool.ast.core.Modifier;
-import gool.ast.core.Node;
-import gool.ast.core.Operator;
-import gool.ast.core.Package;
-import gool.ast.core.Parameterizable;
-import gool.ast.core.ParentCall;
-import gool.ast.core.RecognizedDependency;
-import gool.ast.core.Return;
-import gool.ast.core.Statement;
-import gool.ast.core.Switch;
-import gool.ast.core.ThisCall;
-import gool.ast.core.Throw;
-import gool.ast.core.ToStringCall;
-import gool.ast.core.Try;
-import gool.ast.core.TypeDependency;
-import gool.ast.core.UnaryOperation;
-import gool.ast.core.UnrecognizedDependency;
-import gool.ast.core.VarAccess;
-import gool.ast.core.VarDeclaration;
-import gool.ast.core.While;
-import gool.ast.list.ListAddCall;
-import gool.ast.list.ListContainsCall;
-import gool.ast.list.ListGetCall;
-import gool.ast.list.ListGetIteratorCall;
-import gool.ast.list.ListIsEmptyCall;
-import gool.ast.list.ListRemoveAtCall;
-import gool.ast.list.ListRemoveCall;
-import gool.ast.list.ListSizeCall;
-import gool.ast.map.MapContainsKeyCall;
-import gool.ast.map.MapEntryGetKeyCall;
-import gool.ast.map.MapEntryGetValueCall;
-import gool.ast.map.MapGetCall;
-import gool.ast.map.MapGetIteratorCall;
-import gool.ast.map.MapIsEmptyCall;
-import gool.ast.map.MapPutCall;
-import gool.ast.map.MapRemoveCall;
-import gool.ast.map.MapSizeCall;
-import gool.ast.system.SystemOutDependency;
-import gool.ast.system.SystemOutPrintCall;
-import gool.ast.type.IType;
-import gool.ast.type.TypeArray;
-import gool.ast.type.TypeBool;
-import gool.ast.type.TypeByte;
-import gool.ast.type.TypeChar;
-import gool.ast.type.TypeClass;
-import gool.ast.type.TypeDecimal;
-import gool.ast.type.TypeEntry;
-import gool.ast.type.TypeException;
-import gool.ast.type.TypeInt;
-import gool.ast.type.TypeList;
-import gool.ast.type.TypeMap;
-import gool.ast.type.TypeGoolLibraryClass;
-import gool.ast.type.TypeMethod;
-import gool.ast.type.TypeNone;
-import gool.ast.type.TypeNull;
-import gool.ast.type.TypeObject;
-import gool.ast.type.TypePackage;
-import gool.ast.type.TypeString;
-import gool.ast.type.TypeUnknown;
-import gool.ast.type.TypeVar;
-import gool.ast.type.TypeVoid;
-import gool.generator.common.Platform;
-import gool.generator.java.JavaPlatform;
-import gool.generator.objc.ObjcPlatform;
-import gool.recognizer.common.GoolLibraryClassAstBuilder;
-import gool.recognizer.common.RecognizerMatcher;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import javax.lang.model.type.ArrayType;
-import javax.lang.model.type.ExecutableType;
-import javax.lang.model.type.TypeKind;
-import javax.lang.model.type.TypeMirror;
-
-import logger.Log;
-
-import com.sun.source.tree.AnnotationTree;
-import com.sun.source.tree.ArrayAccessTree;
-import com.sun.source.tree.ArrayTypeTree;
-import com.sun.source.tree.AssertTree;
-import com.sun.source.tree.AssignmentTree;
-import com.sun.source.tree.BinaryTree;
-import com.sun.source.tree.BlockTree;
-import com.sun.source.tree.BreakTree;
-import com.sun.source.tree.CaseTree;
-import com.sun.source.tree.CatchTree;
-import com.sun.source.tree.ClassTree;
-import com.sun.source.tree.CompilationUnitTree;
-import com.sun.source.tree.CompoundAssignmentTree;
-import com.sun.source.tree.ConditionalExpressionTree;
-import com.sun.source.tree.ContinueTree;
-import com.sun.source.tree.DoWhileLoopTree;
-import com.sun.source.tree.EmptyStatementTree;
-import com.sun.source.tree.EnhancedForLoopTree;
-import com.sun.source.tree.ErroneousTree;
-import com.sun.source.tree.ExpressionStatementTree;
-import com.sun.source.tree.ExpressionTree;
-import com.sun.source.tree.ForLoopTree;
-import com.sun.source.tree.IdentifierTree;
-import com.sun.source.tree.IfTree;
-import com.sun.source.tree.ImportTree;
-import com.sun.source.tree.InstanceOfTree;
-import com.sun.source.tree.LabeledStatementTree;
-import com.sun.source.tree.LiteralTree;
-import com.sun.source.tree.MemberSelectTree;
-import com.sun.source.tree.MethodInvocationTree;
-import com.sun.source.tree.MethodTree;
-import com.sun.source.tree.ModifiersTree;
-import com.sun.source.tree.NewArrayTree;
-import com.sun.source.tree.NewClassTree;
-import com.sun.source.tree.ParameterizedTypeTree;
-import com.sun.source.tree.ParenthesizedTree;
-import com.sun.source.tree.PrimitiveTypeTree;
-import com.sun.source.tree.ReturnTree;
-import com.sun.source.tree.StatementTree;
-import com.sun.source.tree.SwitchTree;
-import com.sun.source.tree.SynchronizedTree;
-import com.sun.source.tree.ThrowTree;
-import com.sun.source.tree.Tree;
-import com.sun.source.tree.Tree.Kind;
-import com.sun.source.tree.TryTree;
-import com.sun.source.tree.TypeCastTree;
-import com.sun.source.tree.TypeParameterTree;
-import com.sun.source.tree.UnaryTree;
-import com.sun.source.tree.VariableTree;
-import com.sun.source.tree.WhileLoopTree;
-import com.sun.source.tree.WildcardTree;
-import com.sun.source.util.TreePath;
-import com.sun.source.util.TreePathScanner;
-import com.sun.source.util.Trees;
-import com.sun.tools.javac.code.Flags;
-import com.sun.tools.javac.code.Symbol;
-import com.sun.tools.javac.code.Symbol.MethodSymbol;
-import com.sun.tools.javac.code.Type;
-import com.sun.tools.javac.tree.JCTree;
-import com.sun.tools.javac.tree.JCTree.JCClassDecl;
-import com.sun.tools.javac.tree.JCTree.JCModifiers;
-import com.sun.tools.javac.tree.TreeInfo;
-import com.sun.tools.javac.util.Name;
+import DepotParser.Node;
 
 /**
  * The ObjCRecognizer does the work of converting javacc's abstract ObjC to
@@ -211,25 +31,27 @@ import com.sun.tools.javac.util.Name;
 //Un visiteur implémente des méthodes visit lors du parcours
 //des noeux construits par le parseur. Elles sont spécifiées
 //dans la classe abstraite Visitor.
-abstract class Visitor 
-{ 
-abstract void visit(Node n);
-abstract void visitIntExp(IntExp e); 
-abstract void visitAddExp(AddExp e); 
-} 
 
 //Le recognizer implémente les méthodes abstraites du visiteur.
-class ExpressionRecognizer extends Visitor{
+class ObjCRecognizer extends Visitor{
 	//switch
-	  void visitIntExp(IntExp e) 
-	  { 
-	    System.out.print(e.value); 
-	  } 
+	
 
-	  void visitAddExp(AddExp e) 
-	  { 
-	    e.e1.accept(this); 
-	    System.out.print(" + "); 
-	    e.e2.accept(this); 
-	  } 	
+	@Override
+	void visit(Node n) {
+		// TODO Auto-generated method stub
+	}
+	
+	void visitIntExp(Node e) 
+	{ 
+	   System.out.print(e.value); 
+	} 
+
+	void visitAddExp(Node e) 
+	{ 
+	  e.e1.accept(this); 
+	  System.out.print(" + "); 
+	  e.e2.accept(this); 
+	}
+
 }
