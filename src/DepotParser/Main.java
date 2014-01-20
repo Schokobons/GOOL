@@ -33,6 +33,14 @@ public class Main {
 		}
 	}
 	
+	/*public static nodeToNoeud(Node first, Noeud root) {
+		switch (first.getKind()) 
+		{
+		case 3 : 
+			FunctionDefinition courant = new FunctionDefinition();
+			
+	}*/
+	
 	public static void main(String[] args) {
 		ObjCParser parser = null;
 		try {
@@ -47,7 +55,7 @@ public class Main {
 	        afficherArbreLong(first, 0);
 	        System.out.println("\n\n\n     -----Reduction de l'arbre-----\n\n\n");
 	        reduireArbre(first, null);
-	        afficherArbreLong(first, 0);
+	        //afficherArbreLong(first, 0);
 	        SimpleNode simple = (SimpleNode) parser.jjtree.rootNode();
 	        System.out.println("ObjectiveC 2.0 Parser Version 1.0:  ObjectiveC program parsed successfully.");
 		} catch (ParseException e) {

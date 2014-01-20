@@ -1,4 +1,7 @@
-void main( ) {
+
+void main( ) {int a;
+a=0;
+/*
 	int numerator;
 	int terminator;
 	numerator = 10 + 6;
@@ -13,7 +16,7 @@ void main( ) {
 	else{
 	  numerator=5;
 	  terminator=numerator+3;
-	}
+	}*/
 }
 
 
