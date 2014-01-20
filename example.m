@@ -2,11 +2,12 @@
 
 int test (int a, int b){
 	int res=0;
-	res=a+b;
+	int res2 = res + 3; 
+	res=a;
 	return res;
 }
 
-int main( int argc, const char *argv[] ) {
+int main() {
 	int numerator;
 	BOOL p;
 	float cooper;

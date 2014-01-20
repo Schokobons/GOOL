@@ -36,11 +36,9 @@ import DepotParser.Node;
 class ObjCRecognizer extends Visitor{
 	//switch
 	
-
-	@Override
-	void visit(Node n) {
+	/*void visit(Node n) {
 		switch (n.getKind()) {
-		/*"TranslationUnit", //0
+		"TranslationUnit", //0
 			case 0:
 			break;
 	    "ExternalDeclaration", //1
@@ -439,22 +437,10 @@ class ObjCRecognizer extends Visitor{
 	    "ArgumentExpressionList", //132
 			case 132:
 			break;
-	    "Constant", //133*/
+	    "Constant", //133
 		case 133:
 		break;
 		}
-	}
-	
-	void visitIntExp(Node e) 
-	{ 
-	  // System.out.print(e.value); 
-	} 
-
-	void visitAddExp(Node e) 
-	{ 
-	  //e.e1.accept(this); 
-	  //System.out.print(" + "); 
-	  //e.e2.accept(this); 
-	}
+	}*/
 
 }
