@@ -195,4 +195,57 @@ public class GOOLCompiler {
 		return GeneratorHelper.printClassDefs(classDefs);
 	}
 
+	/**
+	 * Taking concrete ObjC into concrete Target is done in two steps: - we
+	 * parse the concrete ObjC into abstract GOOL; - we flatten the abstract
+	 * GOOL into concrete Target. Notice that the Target is specified at this
+	 * stage already: it will be carried kept in the abstract GOOL. This choice
+	 * is justified if we want to do multi-platform compilation, i.e. have some
+	 * pieces of the abstract GOOL to compile in some Target, and another piece
+	 * is some other Target.
+	 * 
+	 * @param destPlatform
+	 *            : the Target language
+	 * @param input
+	 *            : the concrete ObjC, as a string
+	 * @return a map of the compiled files for the different platforms
+	 * @throws Exception
+	 */
+	public static Map<Platform, List<File>> concreteObjCToConcretePlatform(
+			Platform destPlatform, String input) throws Exception {
+		Collection<ClassDef> classDefs = concreteObjCToAbstractGool(
+				destPlatform, input);
+		return abstractGool2Target(classDefs);
+	}
+
+	public static Map<Platform, List<File>> concreteObjCToConcretePlatform(
+			Platform destPlatform, Collection<? extends File> inputFiles)
+			throws Exception {
+		Collection<ClassDef> classDefs = concreteObjCToAbstractGool(
+				destPlatform, inputFiles);
+		return abstractGool2Target(classDefs);
+	}
+
+	/**
+	 * Parsing the concrete ObjC into abstract GOOL is done by ObjCParser.
+	 * 
+	 * @param destPlatform
+	 *            : the Target language
+	 * @param input
+	 *            : the concrete ObjC, as a string
+	 * @return abstract GOOL classes
+	 * @throws Exception
+	 */
+	private static Collection<ClassDef> concreteObjCToAbstractGool(
+			Platform destPlatform, String input) throws Exception {
+		return JavaParser.parseGool(destPlatform, input);
+	}
+
+	private static Collection<ClassDef> concreteObjCToAbstractGool(
+			Platform destPlatform, Collection<? extends File> inputFiles)
+			throws Exception {
+		return JavaParser.parseGool(destPlatform,
+				ExecutorHelper.getJavaFileObjects(inputFiles)); //TODO Je ne sais pas encore a quoi ca sert la.
+	}
+
 }

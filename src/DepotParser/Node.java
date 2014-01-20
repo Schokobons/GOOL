@@ -31,6 +31,7 @@ interface Node {
   /** This method returns a child node.  The children are numbered
      from zero, left to right. */
   public Node jjtGetChild(int i);
+  public int getKind();
 
   /** Return the number of children the node has. */
   public int jjtGetNumChildren();

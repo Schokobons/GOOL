@@ -22,7 +22,7 @@ public class Main {
 				reduireArbre(n.jjtGetChild(i), n);
 		}
 		else {
-			if(pere.jjtGetNumChildren() == 1 && n.jjtGetNumChildren() > 0 && (n.getName() != null || n.getName().length() == 0)) {
+			if(pere.jjtGetNumChildren() == 1 && n.jjtGetNumChildren() > 0 && (n.getName() == null || n.getName().length() == 0)) {
 				pere.jjtRemoveChild(0);
 				for(int i = 0; i < n.jjtGetNumChildren(); i++) {
 					pere.jjtAddChild(n.jjtGetChild(i), i);
