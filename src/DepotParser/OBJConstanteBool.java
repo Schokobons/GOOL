@@ -2,17 +2,18 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class ConstanteBool extends Expression {
+public class OBJConstanteBool extends OBJExpression {
 
 	private boolean constantebool;
 	
 	@Override
-	public void accept(Visitor v) {
+	public OBJConstanteBool accept(Visitor v) {
 		v.visitConstanteBool(this);
+		return this;
 		
 	}
 	
-	public ConstanteBool(boolean b){
+	public OBJConstanteBool(boolean b){
 		this.constantebool=b;
 	}
 

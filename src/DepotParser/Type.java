@@ -1,5 +1,5 @@
 package DepotParser;
 
 public enum Type {
-	entier , reel, caractere, chaine; 
+	entier , reel, caractere, chaine,booleen,vide; 
 }

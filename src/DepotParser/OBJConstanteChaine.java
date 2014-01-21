@@ -2,17 +2,18 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class ConstanteChaine extends Expression {
+public class OBJConstanteChaine extends OBJExpression {
 	
 	private String constantechaine;
 	
 	@Override
-	public void accept(Visitor v) {
+	public OBJConstanteChaine accept(Visitor v) {
 		v.visitConstanteChaine(this);
+		return this;
 		
 	}
 	
-	public ConstanteChaine(String c){
+	public OBJConstanteChaine(String c){
 		this.constantechaine=c;
 	}
 	

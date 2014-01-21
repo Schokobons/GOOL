@@ -2,13 +2,13 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class Declaration extends Noeud{
+public class OBJDeclaration extends OBJNoeud{
 	
 	private Type type;
-	private ObjCIDENT ident;
-	private Expression exp;
+	private OBJCIDENT ident;
+	private OBJExpression exp;
 	
-	public Declaration (Type t, ObjCIDENT id, Expression e){
+	public OBJDeclaration (Type t, OBJCIDENT id, OBJExpression e){
 		this.exp=e;
 		this.ident=id;
 		this.type=t;
@@ -16,8 +16,9 @@ public class Declaration extends Noeud{
 	
 	
 	@Override
-	public void accept(Visitor v) {
+	public OBJDeclaration accept(Visitor v) {
 		v.visitDeclaration(this);
+		return this;
 		
 	}
 
@@ -32,22 +33,22 @@ public class Declaration extends Noeud{
 	}
 
 
-	public ObjCIDENT getIdent() {
+	public OBJCIDENT getIdent() {
 		return ident;
 	}
 
 
-	public void setIdent(ObjCIDENT ident) {
+	public void setIdent(OBJCIDENT ident) {
 		this.ident = ident;
 	}
 
 
-	public Expression getExp() {
+	public OBJExpression getExp() {
 		return exp;
 	}
 
 
-	public void setExp(Expression exp) {
+	public void setExp(OBJExpression exp) {
 		this.exp = exp;
 	}
 

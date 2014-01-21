@@ -2,21 +2,22 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class ExpBinaire extends Expression {
+public class OBJExpBinaire extends OBJExpression {
 	
 	private Operation operation;
-	private Expression expGauche;
-	private Expression expDroite;
+	private OBJExpression expGauche;
+	private OBJExpression expDroite;
 	
-	public ExpBinaire(Operation op, Expression expG, Expression expD){
+	public OBJExpBinaire(Operation op, OBJExpression expG, OBJExpression expD){
 		this.operation=op;
 		this.expDroite=expD;
 		this.expGauche=expG;
 	}
 	
 	@Override
-	public void accept(Visitor v) {
+	public OBJExpBinaire accept(Visitor v) {
 		v.visitExpBinaire(this);
+		return this;
 		
 	}
 
@@ -28,19 +29,19 @@ public class ExpBinaire extends Expression {
 		this.operation = operation;
 	}
 
-	public Expression getExpGauche() {
+	public OBJExpression getExpGauche() {
 		return expGauche;
 	}
 
-	public void setExpGauche(Expression expGauche) {
+	public void setExpGauche(OBJExpression expGauche) {
 		this.expGauche = expGauche;
 	}
 
-	public Expression getExpDroite() {
+	public OBJExpression getExpDroite() {
 		return expDroite;
 	}
 
-	public void setExpDroite(Expression expDroite) {
+	public void setExpDroite(OBJExpression expDroite) {
 		this.expDroite = expDroite;
 	}
 
