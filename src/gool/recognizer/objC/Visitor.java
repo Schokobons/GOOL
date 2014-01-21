@@ -36,7 +36,7 @@ public class Visitor {
 		return new Switch(exp, cases);*/
 	}
 
-	public Object visitReturn(OBJReturn return1) {
+	public void visitReturn(OBJReturn return1) {
 		/*if(OBJCIDENT.class.isInstance(return1.getExp().accept(this))){
 			return new Return(Identifier(null,return1.getExp().accept(this).
 		}
