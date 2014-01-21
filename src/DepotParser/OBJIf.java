@@ -16,9 +16,8 @@ public class OBJIf extends OBJStatement{
 	}
 	
 	@Override
-	public OBJIf accept(Visitor v) {
-		v.visitIf(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitIf(this);
 		
 	}
 

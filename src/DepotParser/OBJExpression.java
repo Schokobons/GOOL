@@ -7,6 +7,6 @@ public abstract class OBJExpression extends OBJNoeud{
 	
 	
 	@Override
-	public abstract OBJExpression accept(Visitor v); 
+	public abstract Object accept(Visitor v); 
 
 }

@@ -13,9 +13,8 @@ public class OBJParameterDeclaration extends OBJNoeud {
 	}
 	
 	@Override
-	public OBJParameterDeclaration accept(Visitor v) {
-		v.visitParameterDeclaration(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitParameterDeclaration(this);
 		
 	}
 

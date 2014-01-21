@@ -19,9 +19,8 @@ public class OBJFunctionDefinition extends OBJNoeud{
 	}
 	
 	@Override
-	public OBJFunctionDefinition accept(Visitor v) {
-		v.visitFunctionDefinition(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitFunctionDefinition(this);
 		
 	}
 

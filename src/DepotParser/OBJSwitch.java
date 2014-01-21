@@ -15,9 +15,8 @@ public class OBJSwitch extends OBJStatement {
 	}
 	
 	@Override
-	public OBJSwitch accept(Visitor v) {
-		v.visitSwitch(this);
-		return this;		
+	public Object accept(Visitor v) {
+		return v.visitSwitch(this);	
 	}
 
 

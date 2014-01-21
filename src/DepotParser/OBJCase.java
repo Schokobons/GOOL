@@ -15,9 +15,8 @@ public class OBJCase extends OBJStatement {
 	}
 	
 	@Override
-	public OBJCase accept(Visitor v) {
-		v.visitCase(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitCase(this);
 		
 	}
 

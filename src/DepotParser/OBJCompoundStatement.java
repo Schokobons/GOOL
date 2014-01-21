@@ -15,9 +15,8 @@ public class OBJCompoundStatement extends OBJNoeud{
 	}
 	
 	@Override
-	public OBJCompoundStatement accept(Visitor v) {
-		v.visitCompoundStatement(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitCompoundStatement(this);
 		
 	}
 

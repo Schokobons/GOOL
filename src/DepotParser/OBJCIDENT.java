@@ -6,9 +6,8 @@ public class OBJCIDENT extends OBJExpression{
 
 	private String nom;
 	@Override
-	public OBJCIDENT accept(Visitor v) {
-		v.visitObjCIDENT(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitObjCIDENT(this);
 	}
 	
 	public OBJCIDENT(String n){

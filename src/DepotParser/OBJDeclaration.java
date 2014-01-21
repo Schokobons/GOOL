@@ -16,9 +16,8 @@ public class OBJDeclaration extends OBJNoeud{
 	
 	
 	@Override
-	public OBJDeclaration accept(Visitor v) {
-		v.visitDeclaration(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitDeclaration(this);
 		
 	}
 

@@ -26,22 +26,19 @@ import DepotParser.OBJSwitch;
 
 public class Visitor {
 	
-	public void visitSwitch(OBJSwitch switch1) {
-		/*Expression exp = switch1.getExp().accept(this);
+	public Object visitSwitch(OBJSwitch switch1) {
+		Expression exp = (Expression) switch1.getExp().accept(this);
 		
 		List<Case> cases = new ArrayList<Case>();
 		for (int i=0; i<switch1.getListecase().size(); i++) {
 			cases.add((Case) switch1.getListecase().get(i).accept(this));
 		}
-		return new Switch(exp, cases);*/
+		return new Switch(exp, cases);
+
 	}
 
-	public void visitReturn(OBJReturn return1) {
-		/*if(OBJCIDENT.class.isInstance(return1.getExp().accept(this))){
-			return new Return(Identifier(null,return1.getExp().accept(this).
-		}
-		return new Return((Expression) return1.getExp().accept(this);*/
-		
+	public Object visitReturn(OBJReturn return1) {
+		return new Return((Expression) return1.getExp().accept(this));
 	}
 
 	public Object visitObjCIDENT(OBJCIDENT objCIDENT) {
@@ -49,8 +46,10 @@ public class Visitor {
 		
 	}
 
-	public void visitIf(OBJIf if1) {
-		// TODO Auto-generated method stub
+	public Object visitIf(OBJIf if1) {
+		
+		return new If((Expression) if1.getExp().accept(this),
+				(Statement) if1.getTh().accept(this),(Statement) if1.getEl().accept(this));
 		
 	}
 
@@ -87,81 +86,105 @@ public class Visitor {
 				op=Operator.NOT;
 				sym="!";
 				break;
+			case egal :
+				op=Operator.EQUAL;
+				sym="==";
+				break;
 			default :
 				op=Operator.UNKNOWN;
 				break;			
 		}
 		
-		OBJExpression objexpG = expBinaire.getExpGauche().accept(this);
-		OBJExpression objexpD = expBinaire.getExpDroite().accept(this);
-		
-		if(OBJCIDENT.class.isInstance(objexpG)){
-			expG=new Identifier(null,((OBJCIDENT) (objexpG)).getNom());
-		}
-		if(OBJCIDENT.class.isInstance(objexpD)){
-			expD=new Identifier(null,((OBJCIDENT) (objexpD)).getNom());
-		}
-		
+		OBJExpression objexpG = expBinaire.getExpGauche();
+		OBJExpression objexpD = expBinaire.getExpDroite();	
+		expG = (Expression) objexpG.accept(this);
+		expD = (Expression) objexpD.accept(this);
+				
 		return new BinaryOperation(op,expG,expD,null,sym);
 		
 	}
 
-	public void visitDeclaration(OBJDeclaration declaration) {
-		// TODO Auto-generated method stub
+	public Object visitDeclaration(OBJDeclaration declaration) {
 		
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public Object visitConstanteReel(OBJConstanteReel constanteReel) {
 		return new Constant(null,this);
-		// TODO Auto-generated method stub
 	}
 
 	public Object visitConstanteEntier(OBJConstanteEntier constanteEntier) {
 		return new Constant(null,this);
-		// TODO Auto-generated method stub
 	}
 
 	public Object visitConstanteChaine(OBJConstanteChaine constanteChaine) {
 		return new Constant(null,this);
-		// TODO Auto-generated method stub
 	}
 
 	public Object visitConstanteCaractere(OBJConstanteCaractere constanteCaractere) {
 		return new Constant(null,this);
-		// TODO Auto-generated method stub
 		
 	}
 
 	public Object visitConstanteBool(OBJConstanteBool constanteBool) {
 		return new Constant(null,this);
-		// TODO Auto-generated method stub
 		
 	}
 
-	public void visitCompoundStatement(OBJCompoundStatement compoundStatement) {
+	public Object visitCompoundStatement(OBJCompoundStatement compoundStatement) {
 		// TODO Auto-generated method stub
+		return null;
 		
 	}
 
-	public void visitCase(OBJCase case1) {
-		// TODO Auto-generated method stub
+	public Object visitCase(OBJCase case1) {
+		Expression exp = (Expression) case1.getExp().accept(this);
 		
+		List<Statement> stats = new ArrayList<Statement>();
+		for (int i=0; i<case1.getListestatement().size(); i++) {
+			stats.add((Statement) case1.getListestatement().get(i).accept(this));
+		}
+		return new Case(exp,stats);
 	}
 
-	public void visitAssignement(OBJAssignement assignement) {
-		// TODO Auto-generated method stub
+	public Object visitAssignement(OBJAssignement assignement) {
 		
+		return new Assign((Node)assignement.getIdent().accept(this),(Expression)assignement.getExp().accept(this));
 	}
 
-	public void visitFunctionDefinition(OBJFunctionDefinition functionDefinition) {
+	public Object visitFunctionDefinition(OBJFunctionDefinition functionDefinition) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
-	public void visitParameterDeclaration(
-			OBJParameterDeclaration parameterDeclaration) {
-		// TODO Auto-generated method stub
+	public Object visitParameterDeclaration(OBJParameterDeclaration parameterDeclaration) {
 		
+		IType typ = null;
+		switch (parameterDeclaration.getType()){
+			case entier:
+				typ = TypeInt.INSTANCE;
+				break;
+			case reel:
+				typ = TypeDecimal.INSTANCE;
+				break;
+			case caractere:
+				typ = TypeChar.INSTANCE;
+				break;
+			case chaine:
+				typ = TypeString.INSTANCE;
+				break;
+			case booleen:
+				typ = TypeBool.INSTANCE;
+				break;
+			case vide: 
+				typ = TypeVoid.INSTANCE;
+				break;
+			case inconnu: 
+				typ = new TypeUnknown("Inconnu");
+				break;
+		}
+		return new VarDeclaration(typ, (String) parameterDeclaration.getIdent().accept(this));
 	}
 
 }

@@ -7,9 +7,8 @@ public class OBJConstanteBool extends OBJExpression {
 	private boolean constantebool;
 	
 	@Override
-	public OBJConstanteBool accept(Visitor v) {
-		v.visitConstanteBool(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitConstanteBool(this);
 		
 	}
 	

@@ -8,9 +8,8 @@ public class OBJConstanteReel extends OBJExpression {
 	
 		
 	@Override
-	public OBJConstanteReel accept(Visitor v) {
-		v.visitConstanteReel(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitConstanteReel(this);
 		
 	}
 

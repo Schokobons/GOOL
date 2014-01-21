@@ -7,9 +7,8 @@ public class OBJConstanteCaractere extends OBJExpression {
 	private char constantecaractere;
 	
 	@Override
-	public OBJConstanteCaractere accept(Visitor v) {
-		v.visitConstanteCaractere(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitConstanteCaractere(this);
 		
 	}
 	

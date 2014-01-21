@@ -13,9 +13,8 @@ public class OBJAssignement extends OBJStatement {
 	}
 
 	@Override
-	public OBJAssignement accept(Visitor v) {
-		v.visitAssignement(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitAssignement(this);
 		
 	}
 

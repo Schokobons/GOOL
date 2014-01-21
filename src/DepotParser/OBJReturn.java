@@ -11,9 +11,8 @@ public class OBJReturn extends OBJStatement{
 	}
 	
 	@Override
-	public OBJReturn accept(Visitor v) {
-		v.visitReturn(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitReturn(this);
 		
 	}
 

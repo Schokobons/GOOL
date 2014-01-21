@@ -15,9 +15,8 @@ public class OBJExpBinaire extends OBJExpression {
 	}
 	
 	@Override
-	public OBJExpBinaire accept(Visitor v) {
-		v.visitExpBinaire(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitExpBinaire(this);
 		
 	}
 

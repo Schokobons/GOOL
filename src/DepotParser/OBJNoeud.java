@@ -4,5 +4,5 @@ import gool.recognizer.objC.Visitor;
 
 public abstract class OBJNoeud {
 
-	public abstract OBJNoeud accept(Visitor v);
+	public abstract Object accept(Visitor v);
 }

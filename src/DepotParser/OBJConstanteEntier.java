@@ -7,9 +7,8 @@ public class OBJConstanteEntier extends OBJExpression{
 	private int constentier;
 	
 	@Override
-	public OBJConstanteEntier accept(Visitor v) {
-		v.visitConstanteEntier(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitConstanteEntier(this);
 		
 	}
 	

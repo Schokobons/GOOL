@@ -7,9 +7,8 @@ public class OBJConstanteChaine extends OBJExpression {
 	private String constantechaine;
 	
 	@Override
-	public OBJConstanteChaine accept(Visitor v) {
-		v.visitConstanteChaine(this);
-		return this;
+	public Object accept(Visitor v) {
+		return v.visitConstanteChaine(this);
 		
 	}
 	
