@@ -7,7 +7,7 @@ public class ObjCIDENT extends Expression{
 	private String nom;
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub	
+		v.visitObjCIDENT(this);
 	}
 	
 	public ObjCIDENT(String n){

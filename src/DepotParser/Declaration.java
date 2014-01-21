@@ -17,7 +17,7 @@ public class Declaration extends Noeud{
 	
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+		v.visitDeclaration(this);
 		
 	}
 

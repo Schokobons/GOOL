@@ -16,7 +16,7 @@ public class Switch extends Statement {
 	
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+		v.visitSwitch(this);
 		
 	}
 

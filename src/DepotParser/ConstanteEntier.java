@@ -8,7 +8,7 @@ public class ConstanteEntier extends Expression{
 	
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+		v.visitConstanteEntier(this);
 		
 	}
 	

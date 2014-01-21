@@ -16,7 +16,7 @@ public class Case extends Statement {
 	
 	@Override
 	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+		v.visitCase(this);
 		
 	}
 
