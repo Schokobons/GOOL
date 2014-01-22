@@ -26,12 +26,17 @@ import DepotParser.OBJSwitch;
 
 public class Visitor {
 	
+	public Visitor(){};
+	
 	public Object visitSwitch(OBJSwitch switch1) {
 		Expression exp = (Expression) switch1.getExp().accept(this);
 		
-		List<Case> cases = new ArrayList<Case>();
-		for (int i=0; i<switch1.getListecase().size(); i++) {
-			cases.add((Case) switch1.getListecase().get(i).accept(this));
+		List<Case> cases = null;
+		if(switch1.getListecase()!=null){
+			cases = new ArrayList<Case>();
+			for (int i=0; i<switch1.getListecase().size(); i++) {
+				cases.add((Case) switch1.getListecase().get(i).accept(this));
+			}
 		}
 		return new Switch(exp, cases);
 	}
@@ -45,8 +50,15 @@ public class Visitor {
 	}
 
 	public Object visitIf(OBJIf if1) {
-		return new If((Expression) if1.getExp().accept(this),
-				(Statement) if1.getTh().accept(this),(Statement) if1.getEl().accept(this));
+		Statement th = null;
+		if(if1.getTh()!=null){
+			th = (Statement) if1.getTh().accept(this);
+		}
+		Statement el = null;
+		if(if1.getTh()!=null){
+			el = (Statement) if1.getEl().accept(this);
+		}
+		return new If((Expression) if1.getExp().accept(this), th, el);
 	}
 
 	public Object visitExpBinaire(OBJExpBinaire expBinaire) {
@@ -168,13 +180,17 @@ public class Visitor {
 
 	public Object visitCompoundStatement(OBJCompoundStatement compoundStatement) {
 		Block b = new Block();
-		int i;
-		for (i = 0; i<compoundStatement.getDeclarationliste().size(); i++) {
-			b.addStatement((Statement) compoundStatement.getDeclarationliste().get(i).accept(this));
+		int i=0;
+		if(compoundStatement.getDeclarationliste()!=null){
+			for (i = 0; i<compoundStatement.getDeclarationliste().size(); i++) {
+				b.addStatement((Statement) compoundStatement.getDeclarationliste().get(i).accept(this));
+			}
 		}
-
-		for (i = i; i<compoundStatement.getListestatement().size(); i++) {
-			b.addStatement((Statement) compoundStatement.getListestatement().get(i).accept(this));
+		
+		if(compoundStatement.getListestatement()!=null){
+			for (i = i; i<compoundStatement.getListestatement().size(); i++) {
+				b.addStatement((Statement) compoundStatement.getListestatement().get(i).accept(this));
+			}
 		}
 		
 		return b;
@@ -183,9 +199,12 @@ public class Visitor {
 	public Object visitCase(OBJCase case1) {
 		Expression exp = (Expression) case1.getExp().accept(this);
 		
-		List<Statement> stats = new ArrayList<Statement>();
-		for (int i=0; i<case1.getListestatement().size(); i++) {
-			stats.add((Statement) case1.getListestatement().get(i).accept(this));
+		List<Statement> stats = null;
+		if(case1.getListestatement()!=null){
+			stats = new ArrayList<Statement>();
+			for (int i=0; i<case1.getListestatement().size(); i++) {
+				stats.add((Statement) case1.getListestatement().get(i).accept(this));
+			}
 		}
 		return new Case(exp,stats);
 	}
@@ -220,12 +239,16 @@ public class Visitor {
 				break;
 		}
 		Meth m = new Meth(typ,functionDefinition.getIdent().getNom());
-		int i;
-		for (i = 0; i<functionDefinition.getListeparam().size(); i++) {
-			m.addParameter((VarDeclaration) functionDefinition.getListeparam().get(i).accept(this));
+		if(functionDefinition.getListeparam()!=null){
+			int i;
+			for (i = 0; i<functionDefinition.getListeparam().size(); i++) {
+				m.addParameter((VarDeclaration) functionDefinition.getListeparam().get(i).accept(this));
+			}
 		}
 
-		m.addStatements(((Block) functionDefinition.getBlock().accept(this)).getStatements());
+		if(functionDefinition.getBlock()!=null){
+			m.addStatements(((Block) functionDefinition.getBlock().accept(this)).getStatements());
+		}
 
 		return m;
 	}
