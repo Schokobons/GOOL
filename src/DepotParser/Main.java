@@ -1,4 +1,5 @@
 package DepotParser;
+import gool.ast.core.ClassDef;
 import gool.recognizer.objC.Visitor;
 
 import java.io.File;
@@ -68,9 +69,12 @@ public class Main {
 		OBJDeclaration decl2= new OBJDeclaration(Type.entier,new OBJCIDENT("b"),new OBJConstanteEntier(3));
 		decls.add(decl1);
 		decls.add(decl2);
-		OBJCompoundStatement block = new OBJCompoundStatement(null,null);
+		ArrayList<OBJStatement> stats = new ArrayList();
+		OBJAssignement stat1= new OBJAssignement(new OBJCIDENT("a"),new OBJCIDENT("b"));
+		stats.add(stat1);
+		OBJCompoundStatement block = new OBJCompoundStatement(decls,stats);
 		OBJFunctionDefinition f = new OBJFunctionDefinition(Type.vide,new OBJCIDENT("test"),null,block);
-			
+		
 		Visitor v = new Visitor();
 		f.accept(v);
 		
