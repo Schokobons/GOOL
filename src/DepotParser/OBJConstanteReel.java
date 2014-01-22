@@ -2,18 +2,18 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class ConstanteReel extends Expression {
+public class OBJConstanteReel extends OBJExpression {
 
 	private float constantereel;
 	
 		
 	@Override
-	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+	public Object accept(Visitor v) {
+		return v.visitConstanteReel(this);
 		
 	}
 
-	public ConstanteReel(float f){
+	public OBJConstanteReel(float f){
 		this.constantereel=f;
 	}
 	

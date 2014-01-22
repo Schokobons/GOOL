@@ -2,19 +2,19 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class ParameterDeclaration extends Noeud {
+public class OBJParameterDeclaration extends OBJNoeud {
 
 	private Type type;
-	private ObjCIDENT ident;
+	private OBJCIDENT ident;
 	
-	public ParameterDeclaration(Type t, ObjCIDENT id){
+	public OBJParameterDeclaration(Type t, OBJCIDENT id){
 		this.ident=id;
 		this.type=t;
 	}
 	
 	@Override
-	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+	public Object accept(Visitor v) {
+		return v.visitParameterDeclaration(this);
 		
 	}
 
@@ -29,12 +29,12 @@ public class ParameterDeclaration extends Noeud {
 	}
 
 
-	public ObjCIDENT getIdent() {
+	public OBJCIDENT getIdent() {
 		return ident;
 	}
 
 
-	public void setIdent(ObjCIDENT ident) {
+	public void setIdent(OBJCIDENT ident) {
 		this.ident = ident;
 	}
 

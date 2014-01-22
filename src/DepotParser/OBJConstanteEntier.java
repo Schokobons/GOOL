@@ -2,17 +2,17 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class ConstanteEntier extends Expression{
+public class OBJConstanteEntier extends OBJExpression{
 	
 	private int constentier;
 	
 	@Override
-	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+	public Object accept(Visitor v) {
+		return v.visitConstanteEntier(this);
 		
 	}
 	
-	public ConstanteEntier(int e){
+	public OBJConstanteEntier(int e){
 		this.constentier=e;
 	}
 

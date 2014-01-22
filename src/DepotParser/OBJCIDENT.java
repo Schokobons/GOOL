@@ -2,15 +2,15 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class ObjCIDENT extends Expression{
+public class OBJCIDENT extends OBJExpression{
 
 	private String nom;
 	@Override
-	public void accept(Visitor v) {
-		// TODO Auto-generated method stub	
+	public Object accept(Visitor v) {
+		return v.visitObjCIDENT(this);
 	}
 	
-	public ObjCIDENT(String n){
+	public OBJCIDENT(String n){
 		this.nom=n;
 	}
 	

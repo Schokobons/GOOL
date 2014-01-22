@@ -2,17 +2,17 @@ package DepotParser;
 
 import gool.recognizer.objC.Visitor;
 
-public class ConstanteCaractere extends Expression {
+public class OBJConstanteCaractere extends OBJExpression {
 
 	private char constantecaractere;
 	
 	@Override
-	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
+	public Object accept(Visitor v) {
+		return v.visitConstanteCaractere(this);
 		
 	}
 	
-	public ConstanteCaractere(char c){
+	public OBJConstanteCaractere(char c){
 		this.constantecaractere=c;
 	}
 
