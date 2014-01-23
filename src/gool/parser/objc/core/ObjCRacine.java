@@ -6,9 +6,19 @@ import gool.recognizer.objc.*;
 
 
 public class ObjCRacine extends ObjCNoeud{
+	
+	private ObjCClassImplementation classImplementation;
 
 	public ObjCRacine() {
 		contexte = new ObjCContexte();
+	}
+	
+	public void addFils(ObjCNoeud n) {
+		if(n != null && n.contexte == null && contexte != null)
+			n.contexte = contexte.clone();
+		fils.add(n);
+		if(ObjCClassImplementation.class.isInstance(n))
+			classImplementation = (ObjCClassImplementation) n;
 	}
 	
 	public void print(int etage) {
@@ -16,6 +26,10 @@ public class ObjCRacine extends ObjCNoeud{
 			System.out.print("  ");
 		System.out.println("racine");
 		afficherFils(etage + 1);
+	}
+	
+	public ObjCClassImplementation getClassImplementation() {
+		return classImplementation;
 	}
 	
 	public ArrayList<ObjCNoeud> getFils() {

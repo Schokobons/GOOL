@@ -11,6 +11,16 @@ import java.util.List;
 
 public class Visitor implements IVisitor {
 	
+	private Modifier modiftoModifier(ObjCModifier modif) {
+		Modifier mod = null;
+		switch (modif)
+		{
+		case PUBLIC : mod = Modifier.PUBLIC; break;
+		case PRIVE : mod = Modifier.PRIVATE; break;
+		}
+		return mod;
+	}
+	
 	private IType typetoIType (ObjCType type) {
 		IType iType= null;
 		switch (type){
@@ -32,7 +42,7 @@ public class Visitor implements IVisitor {
 			case vide: 
 				iType = TypeVoid.INSTANCE;
 				break;
-			case inconnu: 
+			default : 
 				iType = new TypeUnknown("Inconnu");
 				break;
 		}
@@ -142,7 +152,8 @@ public class Visitor implements IVisitor {
 	public Object visitDeclaration(ObjCDeclaration declaration) {
 		IType typ = typetoIType((ObjCType) declaration.getTypeSpecifier().accept(this));
 		VarDeclaration vardec = new VarDeclaration(typ, (String) declaration.getIdent().getNom());
-		vardec.setInitialValue((Expression) declaration.getExp().accept(this));
+		if(declaration.getExp() != null)
+			vardec.setInitialValue((Expression) declaration.getExp().accept(this));
 		return vardec;
 	}
 
@@ -217,8 +228,21 @@ public class Visitor implements IVisitor {
 	}
 
 	public Object visitRacine(ObjCRacine objCRacine) {
-		// TODO Auto-generated method stub
-		return null;
+		if(objCRacine.getClassImplementation() != null)
+			return objCRacine.getClassImplementation().accept(this);
+		//On genere un nom aleatoire
+		String nom = "Random";
+		for(int i = 0; i < 5; i++)
+			nom += (int)Math.floor(Math.random() *10);
+		ClassDef cd = new ClassDef(nom);
+		for(int i = 0; i < objCRacine.getFils().size(); i++) {
+			if(ObjCDeclaration.class.isInstance(objCRacine.getFils().get(i)))
+				cd.addField(new Field(Modifier.PUBLIC, ((ObjCDeclaration)objCRacine.getFils().get(i)).getIdent().getNom(),
+						typetoIType(((ObjCDeclaration)objCRacine.getFils().get(i)).getTypeSpecifier().getType()), (Expression) ((ObjCDeclaration)objCRacine.getFils().get(i)).getExp().accept(this)));
+			if(ObjCModifier.class.isInstance(objCRacine.getFils().get(i)))
+				cd.addMethod((Meth) ((ObjCMethode)objCRacine.getFils().get(i)).accept(this)); 
+		}
+		return cd;
 	}
 
 	public Object visitPrimaryExpression(ObjCPrimaryExpression objCPrimaryExpression) {
@@ -228,6 +252,43 @@ public class Visitor implements IVisitor {
 
 	public Object visitTypeSpecifier(ObjCTypeSpecifier objCTypeSpecifier) {
 		return objCTypeSpecifier.getType();
+	}
+
+	@Override
+	public Object visitMethode(ObjCMethode methode) {
+		IType type;
+		if(methode.getTypeRetour() == null)
+			type = typetoIType(ObjCType.inconnu);
+		else
+			type = typetoIType((ObjCType) methode.getTypeRetour().accept(this));
+		Meth m = new Meth(type, modiftoModifier(methode.getModifier()), methode.getNom());
+		if(methode.getListeparam()!=null){
+			int i;
+			for (i = 0; i<methode.getListeparam().size(); i++) {
+				m.addParameter((VarDeclaration) methode.getListeparam().get(i).accept(this));
+			}
+		}
+
+		if(methode.getBlock()!=null){
+			m.addStatements(((Block) methode.getBlock().accept(this)).getStatements());
+		}
+
+		return m;
+	}
+
+	@Override
+	public Object visitClassImplementation(ObjCClassImplementation classImplementation) {
+		ClassDef cd = new ClassDef(classImplementation.getNom().getNom());
+		for(int i = 0; i < classImplementation.getListedeclaration().size(); i++)
+			if(classImplementation.getListedeclaration().get(i).getExp() == null)
+				cd.addField(new Field(Modifier.PUBLIC, classImplementation.getListedeclaration().get(i).getIdent().getNom(),
+						typetoIType(classImplementation.getListedeclaration().get(i).getTypeSpecifier().getType())));
+			else
+				cd.addField(new Field(Modifier.PUBLIC, classImplementation.getListedeclaration().get(i).getIdent().getNom(),
+					typetoIType(classImplementation.getListedeclaration().get(i).getTypeSpecifier().getType()), (Expression) classImplementation.getListedeclaration().get(i).getExp().accept(this)));
+		for(int i = 0; i < classImplementation.getListemethode().size(); i++)
+			cd.addMethod((Meth) classImplementation.getListemethode().get(i).accept(this)); 
+		return cd;
 	}
 
 }

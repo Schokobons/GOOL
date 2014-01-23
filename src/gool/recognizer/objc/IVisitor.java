@@ -37,4 +37,8 @@ public interface IVisitor {
 	public Object visitPrimaryExpression(ObjCPrimaryExpression primaryExpression);
 
 	public Object visitTypeSpecifier(ObjCTypeSpecifier typeSpecifier);
+	
+	public Object visitMethode(ObjCMethode methode);
+	
+	public Object visitClassImplementation(ObjCClassImplementation classImplementation);
 }

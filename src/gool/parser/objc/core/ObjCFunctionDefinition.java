@@ -24,10 +24,6 @@ public class ObjCFunctionDefinition extends ObjCNoeud{
 			}
 		if(n != null && n.contexte == null)
 			n.contexte = contexte.clone();
-		if(listeparam != null)
-			for(int i = 0; i < listeparam.size(); i++) {
-				contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier().getType());
-			}
 		ajoutFils(n);
 		if(ObjCTypeSpecifier.class.isInstance(n)) {
 			typeSpecifier = (ObjCTypeSpecifier) n;
