@@ -1,3 +1,4 @@
+package ajout;
 
 
 import gool.recognizer.objc.*;

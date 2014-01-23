@@ -1,3 +1,4 @@
+package ajout;
 
 
 public enum ObjCModifier {
