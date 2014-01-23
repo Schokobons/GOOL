@@ -10,35 +10,7 @@ import java.util.List;
 
 
 public class Visitor implements IVisitor {
-	
-	private IType typetoIType (ObjCType type) {
-		IType iType= null;
-		switch (type){
-			case entier:
-				iType = TypeInt.INSTANCE;
-				break;
-			case reel:
-				iType = TypeDecimal.INSTANCE;
-				break;
-			case caractere:
-				iType = TypeChar.INSTANCE;
-				break;
-			case chaine:
-				iType = TypeString.INSTANCE;
-				break;
-			case booleen:
-				iType = TypeBool.INSTANCE;
-				break;
-			case vide: 
-				iType = TypeVoid.INSTANCE;
-				break;
-			case inconnu: 
-				iType = new TypeUnknown("Inconnu");
-				break;
-		}
-		return iType;
-	}
-	
+		
 	public Visitor(){};
 	
 	public Object visitSwitch(ObjCSwitch switch1) {
@@ -59,7 +31,33 @@ public class Visitor implements IVisitor {
 	}
 
 	public Object visitObjCIDENT(ObjCIDENT objCIDENT) {
-		return new Identifier(typetoIType(objCIDENT.getType()),objCIDENT.getNom());
+		
+		IType typ = null;
+		switch (objCIDENT.getType()){
+			case entier:
+				typ = TypeInt.INSTANCE;
+				break;
+			case reel:
+				typ = TypeDecimal.INSTANCE;
+				break;
+			case caractere:
+				typ = TypeChar.INSTANCE;
+				break;
+			case chaine:
+				typ = TypeString.INSTANCE;
+				break;
+			case booleen:
+				typ = TypeBool.INSTANCE;
+				break;
+			case vide: 
+				typ = TypeVoid.INSTANCE;
+				break;
+			case inconnu: 
+				typ = new TypeUnknown("Inconnu");
+				break;
+		}
+		
+		return new Identifier(typ,objCIDENT.getNom());
 	}
 
 	public Object visitIf(ObjCIf if1) {
@@ -117,15 +115,15 @@ public class Visitor implements IVisitor {
 				break;
 			case inferieur :
 				op=Operator.LT;
-				sym="==";
+				sym="<";
 				break;
 			case superieurouegal :
 				op=Operator.GEQ;
-				sym="==";
+				sym=">=";
 				break;
 			case inferieurouegal :
 				op=Operator.LEQ;
-				sym="==";
+				sym="<=";
 				break;
 			default :
 				op=Operator.UNKNOWN;
@@ -135,19 +133,91 @@ public class Visitor implements IVisitor {
 		expG = (Expression) expBinaire.getExpGauche().accept(this);
 		expD = (Expression) expBinaire.getExpDroite().accept(this);
 				
-		return new BinaryOperation(op,expG,expD,typetoIType(expBinaire.getType()),sym);
+		IType typ = null;
+		switch (expBinaire.getType()){
+			case entier:
+				typ = TypeInt.INSTANCE;
+				break;
+			case reel:
+				typ = TypeDecimal.INSTANCE;
+				break;
+			case caractere:
+				typ = TypeChar.INSTANCE;
+				break;
+			case chaine:
+				typ = TypeString.INSTANCE;
+				break;
+			case booleen:
+				typ = TypeBool.INSTANCE;
+				break;
+			case vide: 
+				typ = TypeVoid.INSTANCE;
+				break;
+			case inconnu: 
+				typ = new TypeUnknown("Inconnu");
+				break;
+		}
+		
+		return new BinaryOperation(op,expG,expD,typ,sym);
 		
 	}
 
 	public Object visitDeclaration(ObjCDeclaration declaration) {
-		IType typ = typetoIType((ObjCType) declaration.getTypeSpecifier().accept(this));
+		IType typ = null;
+		switch (declaration.getTypeSpecifier().getType()){
+			case entier:
+				typ = TypeInt.INSTANCE;
+				break;
+			case reel:
+				typ = TypeDecimal.INSTANCE;
+				break;
+			case caractere:
+				typ = TypeChar.INSTANCE;
+				break;
+			case chaine:
+				typ = TypeString.INSTANCE;
+				break;
+			case booleen:
+				typ = TypeBool.INSTANCE;
+				break;
+			case vide: 
+				typ = TypeVoid.INSTANCE;
+				break;
+			case inconnu: 
+				typ = new TypeUnknown("Inconnu");
+				break;
+		}
 		VarDeclaration vardec = new VarDeclaration(typ, (String) declaration.getIdent().getNom());
 		vardec.setInitialValue((Expression) declaration.getExp().accept(this));
 		return vardec;
 	}
 
 	public Object visitConstante(ObjCConstante constante) {
-		return new Constant(typetoIType(constante.getType()),constante.getValeur());
+		IType typ = null;
+		switch (constante.getType()){
+			case entier:
+				typ = TypeInt.INSTANCE;
+				break;
+			case reel:
+				typ = TypeDecimal.INSTANCE;
+				break;
+			case caractere:
+				typ = TypeChar.INSTANCE;
+				break;
+			case chaine:
+				typ = TypeString.INSTANCE;
+				break;
+			case booleen:
+				typ = TypeBool.INSTANCE;
+				break;
+			case vide: 
+				typ = TypeVoid.INSTANCE;
+				break;
+			case inconnu: 
+				typ = new TypeUnknown("Inconnu");
+				break;
+		}
+		return new Constant(typ,constante.getValeur());
 	}
 
 	public Object visitCompoundStatement(ObjCCompoundStatement compoundStatement) {
@@ -186,7 +256,30 @@ public class Visitor implements IVisitor {
 	}
 
 	public Object visitFunctionDefinition(ObjCFunctionDefinition functionDefinition) {
-		IType typ = typetoIType((ObjCType) functionDefinition.getTypeSpecifier().accept(this));
+		IType typ = null;
+		switch (functionDefinition.getTypeSpecifier().getType()){
+			case entier:
+				typ = TypeInt.INSTANCE;
+				break;
+			case reel:
+				typ = TypeDecimal.INSTANCE;
+				break;
+			case caractere:
+				typ = TypeChar.INSTANCE;
+				break;
+			case chaine:
+				typ = TypeString.INSTANCE;
+				break;
+			case booleen:
+				typ = TypeBool.INSTANCE;
+				break;
+			case vide: 
+				typ = TypeVoid.INSTANCE;
+				break;
+			case inconnu: 
+				typ = new TypeUnknown("Inconnu");
+				break;
+		}
 		Meth m = new Meth(typ,functionDefinition.getIdent().getNom());
 		if(functionDefinition.getListeparam()!=null){
 			int i;
@@ -203,7 +296,30 @@ public class Visitor implements IVisitor {
 	}
 
 	public Object visitParameterDeclaration(ObjCParameterDeclaration parameterDeclaration) {
-		IType typ = typetoIType((ObjCType) parameterDeclaration.getTypeSpecifier().accept(this));
+		IType typ = null;
+		switch (parameterDeclaration.getTypeSpecifier().getType()){
+			case entier:
+				typ = TypeInt.INSTANCE;
+				break;
+			case reel:
+				typ = TypeDecimal.INSTANCE;
+				break;
+			case caractere:
+				typ = TypeChar.INSTANCE;
+				break;
+			case chaine:
+				typ = TypeString.INSTANCE;
+				break;
+			case booleen:
+				typ = TypeBool.INSTANCE;
+				break;
+			case vide: 
+				typ = TypeVoid.INSTANCE;
+				break;
+			case inconnu: 
+				typ = new TypeUnknown("Inconnu");
+				break;
+		}
 		return new VarDeclaration(typ, (String) parameterDeclaration.getIdent().getNom());
 	}
 
@@ -213,7 +329,32 @@ public class Visitor implements IVisitor {
 		
 		Expression exp = (Expression) objExpUnaire.getExpression().accept(this);
 				
-		return new UnaryOperation(op,exp,typetoIType(objExpUnaire.getType()),sym);
+		IType typ = null;
+		switch (objExpUnaire.getType()){
+			case entier:
+				typ = TypeInt.INSTANCE;
+				break;
+			case reel:
+				typ = TypeDecimal.INSTANCE;
+				break;
+			case caractere:
+				typ = TypeChar.INSTANCE;
+				break;
+			case chaine:
+				typ = TypeString.INSTANCE;
+				break;
+			case booleen:
+				typ = TypeBool.INSTANCE;
+				break;
+			case vide: 
+				typ = TypeVoid.INSTANCE;
+				break;
+			case inconnu: 
+				typ = new TypeUnknown("Inconnu");
+				break;
+		}
+		
+		return new UnaryOperation(op,exp,typ,sym);
 	}
 
 	public Object visitRacine(ObjCRacine objCRacine) {

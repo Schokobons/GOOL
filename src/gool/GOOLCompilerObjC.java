@@ -83,29 +83,15 @@ public class GOOLCompilerObjC {
 
 			Collection<File> filesNonChange = getFilesInFolderNonExe(folder,
 					extToNCopy);
-			/*concreteJavaToConcretePlatform(
-					JavaPlatform.getInstance(filesNonChange), files);
-			concreteJavaToConcretePlatform(
-					CSharpPlatform.getInstance(filesNonChange), files);
-			concreteJavaToConcretePlatform(
-					CppPlatform.getInstance(filesNonChange), files);
-			concreteJavaToConcretePlatform(
-					PythonPlatform.getInstance(filesNonChange), files);
-			concreteJavaToConcretePlatform(
-					XmlPlatform.getInstance(filesNonChange), files);
-			
-			// TODO: same for android & Objc
-			concreteJavaToConcretePlatform(AndroidPlatform.getInstance(), files);
-			concreteJavaToConcretePlatform(ObjcPlatform.getInstance(), files);*/
 
 			concreteObjCToConcretePlatform(
 					JavaPlatform.getInstance(filesNonChange), files);
 			concreteObjCToConcretePlatform(
 					CSharpPlatform.getInstance(filesNonChange), files);
-			concreteObjCToConcretePlatform(
+			/*concreteObjCToConcretePlatform(
 					CppPlatform.getInstance(filesNonChange), files);
 			concreteObjCToConcretePlatform(
-					PythonPlatform.getInstance(filesNonChange), files);
+					PythonPlatform.getInstance(filesNonChange), files);*/
 			concreteObjCToConcretePlatform(
 					XmlPlatform.getInstance(filesNonChange), files);
 		} catch (Exception e) {
@@ -243,7 +229,10 @@ public class GOOLCompilerObjC {
 		/*Collection<ClassDef> classDefs = concreteObjCToAbstractGool(
 				destPlatform, inputFiles);*/
 		ArrayList<ObjCDeclaration> decls = new ArrayList();
-		ObjCDeclaration decl1= new ObjCDeclaration(new ObjCTypeSpecifier(ObjCType.entier),new ObjCIDENT("a"),new ObjCConstante("5"));
+		ObjCTypeSpecifier c1 = new ObjCTypeSpecifier(ObjCType.entier);
+		ObjCIDENT c2 = new ObjCIDENT("a");
+		ObjCConstante c3 = new ObjCConstante("5");
+		ObjCDeclaration decl1= new ObjCDeclaration(c1,c2,c3);
 		ObjCDeclaration decl2= new ObjCDeclaration(new ObjCTypeSpecifier(ObjCType.entier),new ObjCIDENT("b"),new ObjCConstante("3"));
 		decls.add(decl1);
 		decls.add(decl2);
