@@ -38,7 +38,7 @@ import gool.generator.python.PythonPlatform;
 import gool.generator.xml.XmlPlatform;
 import gool.generator.objc.ObjcPlatform;
 import gool.parser.java.JavaParser;
-import gool.recognizer.objC.Visitor;
+import gool.recognizer.objc.Visitor;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -49,14 +49,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import DepotParser.OBJAssignement;
-import DepotParser.OBJCIDENT;
-import DepotParser.OBJCompoundStatement;
-import DepotParser.OBJConstanteEntier;
-import DepotParser.OBJDeclaration;
-import DepotParser.OBJFunctionDefinition;
-import DepotParser.OBJStatement;
-import DepotParser.Type;
+import gool.parser.objc.core.*;
 import logger.Log;
 
 public class GOOLCompilerObjC {
@@ -246,16 +239,16 @@ public class GOOLCompilerObjC {
 			throws Exception {
 		/*Collection<ClassDef> classDefs = concreteObjCToAbstractGool(
 				destPlatform, inputFiles);*/
-		ArrayList<OBJDeclaration> decls = new ArrayList();
-		OBJDeclaration decl1= new OBJDeclaration(Type.entier,new OBJCIDENT("a"),new OBJConstanteEntier(5));
-		OBJDeclaration decl2= new OBJDeclaration(Type.entier,new OBJCIDENT("b"),new OBJConstanteEntier(3));
+		ArrayList<ObjCDeclaration> decls = new ArrayList();
+		ObjCDeclaration decl1= new ObjCDeclaration(new ObjCTypeSpecifier(ObjCType.entier),new ObjCIDENT("a"),new ObjCConstante("5"));
+		ObjCDeclaration decl2= new ObjCDeclaration(new ObjCTypeSpecifier(ObjCType.entier),new ObjCIDENT("b"),new ObjCConstante("3"));
 		decls.add(decl1);
 		decls.add(decl2);
-		ArrayList<OBJStatement> stats = new ArrayList();
-		OBJAssignement stat1= new OBJAssignement(new OBJCIDENT("a"),new OBJCIDENT("b"));
+		ArrayList<ObjCStatement> stats = new ArrayList();
+		ObjCAssignement stat1= new ObjCAssignement(new ObjCIDENT("a"),new ObjCIDENT("b"));
 		stats.add(stat1);
-		OBJCompoundStatement block = new OBJCompoundStatement(decls,stats);
-		OBJFunctionDefinition f = new OBJFunctionDefinition(Type.vide,new OBJCIDENT("test"),null,block);
+		ObjCCompoundStatement block = new ObjCCompoundStatement(decls,stats);
+		ObjCFunctionDefinition f = new ObjCFunctionDefinition(new ObjCTypeSpecifier(ObjCType.vide),new ObjCIDENT("test"),null,block);
 		
 		Visitor v = new Visitor();
 		Meth m = (Meth) f.accept(v);

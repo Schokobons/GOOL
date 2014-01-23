@@ -1,4 +1,14 @@
-@interface Personnage : NSObject
+int main(int a) {
+	if(a + 3 == 5 + 10) {
+		a = 10;
+	}
+	if(2 + 3 == 5 + 10) {
+		a = 10;
+	}
+	return a;
+}
+
+/*@interface Personnage : NSObject
 {
     int vie;
     int mana;
@@ -12,7 +22,7 @@
 
 @end
 
-/*#import "Voiture.h"
+#import "Voiture.h"
 
 @implementation Voiture
 

@@ -20,7 +20,7 @@
  * 
  */
 
-package gool.recognizer.objC;
+package gool.recognizer.objc;
 
 import DepotParser.Node;
 
