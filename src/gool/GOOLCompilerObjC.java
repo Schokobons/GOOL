@@ -62,12 +62,15 @@ public class GOOLCompilerObjC {
 	public static void main(String[] args) {
 
 		try {
-			File folder = new File(Settings.get("obj_in_dir"));
-			Collection<File> files = getFilesInFolder(folder, "objc");
+			File folder = new File(Settings.get("objc_in_dir"));
+			if(folder==null){
+				System.out.println(Settings.get("objc_in_dir"));
+			}
+			Collection<File> files = getFilesInFolder(folder, "m");
 			ArrayList<String> extToNCopy = new ArrayList<String>();
 
 			try {
-				File t = new File(Settings.get("obj_in_dir") + File.separator
+				File t = new File(Settings.get("objc_in_dir") + File.separator
 						+ ".goolIgnore");
 				FileReader f = new FileReader(t);
 				BufferedReader g = new BufferedReader(f);
