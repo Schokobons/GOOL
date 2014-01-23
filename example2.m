@@ -1,3 +1,4 @@
+/*
 int main(int a) {
 	if(a + 3 == 5 + 10) {
 		a = 10;
@@ -7,8 +8,10 @@ int main(int a) {
 	}
 	return a;
 }
+*/
 
-/*@interface Personnage : NSObject
+/*
+@interface Personnage : NSObject
 {
     int vie;
     int mana;
@@ -21,7 +24,9 @@ int main(int a) {
 - (void) setMana:(int) unMana;
 
 @end
+*/
 
+/*
 #import "Voiture.h"
 
 @implementation Voiture
@@ -31,5 +36,28 @@ int main(int a) {
 }
 - (id) init2 {
    int a;a=0;
+}
+@end
+*/
 
-@end*/
+
+#import "BankAccount.h"
+
+static int openAccounts = 0;
+
+@implementation BankAccount
+
++(BankAccount *) newAlloc (int)a;
+{
+        openAccounts++;
+
+        return [BankAccount alloc];
+}
+
++(int) totalOpen
+{
+
+        return openAccounts;
+}
+@end
+

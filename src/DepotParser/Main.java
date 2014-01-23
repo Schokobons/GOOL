@@ -46,7 +46,7 @@ public class Main {
 	}*/
 	
 	public static void main(String[] args) {
-		/*
+		
 		ObjCParser parser = null;
 		try {
 			parser = new ObjCParser(new java.io.FileInputStream("example2.m"));
@@ -67,7 +67,7 @@ public class Main {
 	        System.out.println(e.getMessage());
 	        System.out.println("ObjectiveC 2.0 Parser Version 1.0:  Encountered errors during parse.");
 		}
-		*/
+		
 		/*test 1
 		 * OBJCompoundStatement block = new OBJCompoundStatement(null,null);
 		OBJFunctionDefinition f = new OBJFunctionDefinition(Type.vide,new OBJCIDENT("test"),null,block);
