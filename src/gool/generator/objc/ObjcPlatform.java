@@ -25,6 +25,7 @@ import gool.generator.common.Platform;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class ObjcPlatform extends Platform {
 	private final String outputDir = Settings.get("objc_out_dir");
