@@ -10591,7 +10591,8 @@ public class ObjCParser/*@bgen(jjtree)*/implements ObjCParserTreeConstants, ObjC
   }
 
   private Token jj_consume_token(Node n, int kind) throws ParseException {
-  n.setName(n.getName() + jj_nt.image);
+	  if(n != null && jj_nt != null)
+		  n.setName(n.getName() + jj_nt.image);
     Token oldToken;
     if ((oldToken = token).next != null) token = token.next;
     else {

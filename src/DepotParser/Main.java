@@ -44,7 +44,7 @@ public class Main {
 	public static void main(String[] args) {
 		ObjCParser parser = null;
 		try {
-			parser = new ObjCParser(new java.io.FileInputStream("example.m"));
+			parser = new ObjCParser(new java.io.FileInputStream("example2.m"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

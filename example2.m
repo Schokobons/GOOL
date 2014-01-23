@@ -1,22 +1,25 @@
-
-void main( ) {int a;
-a=0;
-/*
-	int numerator;
-	int terminator;
-	numerator = 10 + 6;
-	if(numerator==16){
-	  numerator=2;
-	  terminator=3;
-	}
-	else if(numerator==16){
-	  numerator=5;
-	  terminator=numerator+3;
-	}
-	else{
-	  numerator=5;
-	  terminator=numerator+3;
-	}*/
+@interface Personnage : NSObject
+{
+    int vie;
+    int mana;
 }
 
+- (id) init;
+- (int) vie;
+- (int) mana;
+- (void) setVie:(int) uneVie;
+- (void) setMana:(int) unMana;
 
+@end
+
+/*#import "Voiture.h"
+
+@implementation Voiture
+
+- (id) init {
+   int a;a=0;
+}
+- (id) init2 {
+   int a;a=0;
+
+@end*/
