@@ -334,4 +334,8 @@ public class Visitor implements IVisitor {
 		return cd;
 	}
 
+	public Object visitClassInterface(ObjCClassInterface objCClassInterface) {
+		return null;
+	}
+
 }

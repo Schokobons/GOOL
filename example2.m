@@ -17,7 +17,7 @@ int main(int a) {
     int mana;
 }
 
-- (id) init;
++ (id) init;
 - (int) vie;
 - (int) mana;
 - (void) setVie:(int) uneVie;
