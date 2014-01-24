@@ -272,9 +272,14 @@ public class Visitor implements IVisitor {
 			nom += (int)Math.floor(Math.random() *10);
 		ClassDef cd = new ClassDef(nom);
 		for(int i = 0; i < objCRacine.getFils().size(); i++) {
-			if(ObjCDeclaration.class.isInstance(objCRacine.getFils().get(i)))
-				cd.addField(new Field(Modifier.PUBLIC, ((ObjCDeclaration)objCRacine.getFils().get(i)).getIdent().getNom(),
+			if(ObjCDeclaration.class.isInstance(objCRacine.getFils().get(i))) {
+				if(((ObjCDeclaration)objCRacine.getFils().get(i)).getExp() != null)
+					cd.addField(new Field(Modifier.PUBLIC, ((ObjCDeclaration)objCRacine.getFils().get(i)).getIdent().getNom(),
 						typetoIType(((ObjCDeclaration)objCRacine.getFils().get(i)).getTypeSpecifier().getType()), (Expression) ((ObjCDeclaration)objCRacine.getFils().get(i)).getExp().accept(this)));
+				else
+					cd.addField(new Field(Modifier.PUBLIC, ((ObjCDeclaration)objCRacine.getFils().get(i)).getIdent().getNom(),
+							typetoIType(((ObjCDeclaration)objCRacine.getFils().get(i)).getTypeSpecifier().getType())));
+			}
 			if(ObjCModifier.class.isInstance(objCRacine.getFils().get(i)))
 				cd.addMethod((Meth) ((ObjCMethode)objCRacine.getFils().get(i)).accept(this)); 
 			if(ObjCFunctionDefinition.class.isInstance(objCRacine.getFils().get(i)))

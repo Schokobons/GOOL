@@ -10,7 +10,7 @@ int main(int a) {
 }
 */
 
-/*
+
 @interface Personnage : NSObject
 {
     int vie;
@@ -24,9 +24,9 @@ int main(int a) {
 - (void) setMana:(int) unMana;
 
 @end
-*/
 
 
+/*
 #import "Voiture.h"
 
 @implementation Voiture
@@ -39,7 +39,7 @@ int b; BOOL c;
    int a;a=0;
 }
 @end
-
+*/
 
 /*
 #import "BankAccount.h"
