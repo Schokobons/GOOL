@@ -1,4 +1,4 @@
-package parser.objc;
+package gool.parser.objc;
 
 import gool.parser.objc.core.ObjCNoeud;
 import gool.parser.objc.core.ObjCRacine;
