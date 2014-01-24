@@ -26,28 +26,29 @@ int main(int a) {
 @end
 */
 
-/*
+
 #import "Voiture.h"
 
 @implementation Voiture
+int b; BOOL c;
 
-- (id) init {
++ (id) init : (int) d : (BOOL) e {
    int a;a=0;
 }
-- (id) init2 {
++ (int) init2 {
    int a;a=0;
 }
 @end
-*/
 
 
+/*
 #import "BankAccount.h"
 
 static int openAccounts = 0;
 
 @implementation BankAccount
 
-+(BankAccount *) newAlloc (int)a;
++(BankAccount *) newAlloc
 {
         openAccounts++;
 
@@ -60,4 +61,4 @@ static int openAccounts = 0;
         return openAccounts;
 }
 @end
-
+*/
