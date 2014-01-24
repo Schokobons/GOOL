@@ -336,6 +336,17 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   }
 
   public R visit(final ClassMethodDeclaration n, final A argu) {
+	  if(n.f0.toString().equals("+")) {
+		  gool.parser.objc.core.ObjCMethodDeclaration me = new gool.parser.objc.core.ObjCMethodDeclaration(ObjCModifier.PUBLIC, null, null, null);
+		  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+		  noeud.addFils(me);
+		  R nRes = null;
+		  n.f0.accept(this, (A) me);
+		  n.f1.accept(this, (A) me);
+		  n.f2.accept(this, (A) me);
+		  n.f3.accept(this, (A) me);
+		  return nRes;
+	  }
     R nRes = null;
     n.f0.accept(this, argu);
     n.f1.accept(this, argu);
@@ -345,6 +356,17 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   }
 
   public R visit(final InstanceMethodDeclaration n, final A argu) {
+	  if(n.f0.toString().equals("-")) {
+		  gool.parser.objc.core.ObjCMethodDeclaration me = new gool.parser.objc.core.ObjCMethodDeclaration(ObjCModifier.PRIVE, null, null, null);
+		  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+		  noeud.addFils(me);
+		  R nRes = null;
+		  n.f0.accept(this, (A) me);
+		  n.f1.accept(this, (A) me);
+		  n.f2.accept(this, (A) me);
+		  n.f3.accept(this, (A) me);
+		  return nRes;
+	  }
     R nRes = null;
     n.f0.accept(this, argu);
     n.f1.accept(this, argu);

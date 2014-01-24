@@ -9,7 +9,7 @@ public class ObjCClassInterface extends ObjCNoeud {
 	private ObjCIDENT nom;
 	private ObjCSuperClassName superClass;
 	private ArrayList <ObjCDeclaration> listedeclarations;
-	private ArrayList <ObjCMethode> listemethodes;
+	private ArrayList <ObjCMethodDeclaration> listemethodes;
 	
 	public void addFils(ObjCNoeud n) {
 		if(contexte == null)
@@ -31,14 +31,14 @@ public class ObjCClassInterface extends ObjCNoeud {
 				listedeclarations = new ArrayList<ObjCDeclaration>();
 			listedeclarations.add((ObjCDeclaration) n);
 		}
-		else if(ObjCMethode.class.isInstance(n)) {
+		else if(ObjCMethodDeclaration.class.isInstance(n)) {
 			if(listemethodes == null)
-				listemethodes = new ArrayList<ObjCMethode>();
-			listemethodes.add((ObjCMethode) n);
+				listemethodes = new ArrayList<ObjCMethodDeclaration>();
+			listemethodes.add((ObjCMethodDeclaration) n);
 		}
 	}
 	
-	public ObjCClassInterface(ObjCIDENT nom, ObjCSuperClassName superClass, ArrayList<ObjCDeclaration> listedeclarations, ArrayList<ObjCMethode> listemethodes) {
+	public ObjCClassInterface(ObjCIDENT nom, ObjCSuperClassName superClass, ArrayList<ObjCDeclaration> listedeclarations, ArrayList<ObjCMethodDeclaration> listemethodes) {
 		this.nom = nom;
 		this.superClass = superClass;
 		this.listedeclarations = listedeclarations;
@@ -61,19 +61,19 @@ public class ObjCClassInterface extends ObjCNoeud {
 		this.superClass = superClass;
 	}
 
-	public ArrayList<ObjCDeclaration> getListedeclarations() {
+	public ArrayList<ObjCDeclaration> getListedeclaration() {
 		return listedeclarations;
 	}
 
-	public void setListedeclarations(ArrayList<ObjCDeclaration> listedeclarations) {
+	public void setListedeclaration(ArrayList<ObjCDeclaration> listedeclarations) {
 		this.listedeclarations = listedeclarations;
 	}
 
-	public ArrayList<ObjCMethode> getListemethodes() {
+	public ArrayList<ObjCMethodDeclaration> getListemethodes() {
 		return listemethodes;
 	}
 
-	public void setListemethodes(ArrayList<ObjCMethode> listemethodes) {
+	public void setListemethodes(ArrayList<ObjCMethodDeclaration> listemethodes) {
 		this.listemethodes = listemethodes;
 	}
 

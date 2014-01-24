@@ -315,7 +315,6 @@ public class Visitor implements IVisitor {
 		if(methode.getBlock()!=null){
 			m.addStatements(((Block) methode.getBlock().accept(this)).getStatements());
 		}
-
 		return m;
 	}
 
@@ -334,8 +333,35 @@ public class Visitor implements IVisitor {
 		return cd;
 	}
 
-	public Object visitClassInterface(ObjCClassInterface objCClassInterface) {
-		return null;
+	public Object visitClassInterface(ObjCClassInterface ClassInterface) {
+		ClassDef cd = new ClassDef(ClassInterface.getNom().getNom());
+		cd.setIsInterface(true);
+		for(int i = 0; i < ClassInterface.getListedeclaration().size(); i++)
+			if(ClassInterface.getListedeclaration().get(i).getExp() == null)
+				cd.addField(new Field(Modifier.PUBLIC, ClassInterface.getListedeclaration().get(i).getIdent().getNom(),
+						typetoIType(ClassInterface.getListedeclaration().get(i).getTypeSpecifier().getType())));
+			else
+				cd.addField(new Field(Modifier.PUBLIC, ClassInterface.getListedeclaration().get(i).getIdent().getNom(),
+					typetoIType(ClassInterface.getListedeclaration().get(i).getTypeSpecifier().getType()), (Expression) ClassInterface.getListedeclaration().get(i).getExp().accept(this)));
+		for(int i = 0; i < ClassInterface.getListemethodes().size(); i++)
+			cd.addMethod((Meth) ClassInterface.getListemethodes().get(i).accept(this)); 
+		return cd;
+	}
+
+	public Object visitMethodeDeclaration( ObjCMethodDeclaration MethodDeclaration) {
+		IType type;
+		if(MethodDeclaration.getTypeRetour() == null)
+			type = typetoIType(ObjCType.inconnu);
+		else
+			type = typetoIType((ObjCType) MethodDeclaration.getTypeRetour().accept(this));
+		Meth m = new Meth(type, modiftoModifier(MethodDeclaration.getModifier()), MethodDeclaration.getName());
+		if(MethodDeclaration.getListeparam()!=null){
+			int i;
+			for (i = 0; i<MethodDeclaration.getListeparam().size(); i++) {
+				m.addParameter((VarDeclaration) MethodDeclaration.getListeparam().get(i).accept(this));
+			}
+		}
+		return m;
 	}
 
 }
