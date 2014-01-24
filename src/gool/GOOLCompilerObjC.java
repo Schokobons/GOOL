@@ -228,7 +228,7 @@ public class GOOLCompilerObjC {
 			throws Exception {
 		/*Collection<ClassDef> classDefs = concreteObjCToAbstractGool(
 				destPlatform, inputFiles);*/
-		ArrayList<ObjCDeclaration> decls = new ArrayList();
+		/*ArrayList<ObjCDeclaration> decls = new ArrayList();
 		ObjCTypeSpecifier c1 = new ObjCTypeSpecifier(ObjCType.entier);
 		ObjCIDENT c2 = new ObjCIDENT("a");
 		c2.setType(ObjCType.entier);
@@ -249,8 +249,8 @@ public class GOOLCompilerObjC {
 		ClassDef classe = new ClassDef("ClasseTest",destPlatform);
 		classe.addMethod(m);
 		ArrayList<ClassDef> classDefs = new ArrayList ();
-		classDefs.add(classe);
-		return abstractGool2Target(classDefs);
+		classDefs.add(classe);*/
+		return abstractGool2Target(gool.recognizer.objc.Visitor.parseGool(destPlatform, inputFiles));
 	}
 
 	/**

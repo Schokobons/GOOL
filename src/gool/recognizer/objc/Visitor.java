@@ -2,15 +2,50 @@ package gool.recognizer.objc;
 
 import gool.ast.core.*;
 import gool.ast.type.*;
+import gool.generator.common.Platform;
 import gool.parser.objc.core.*;
+import gool.parser.objc.jtb.core.TranslationUnit;
+import gool.parser.objc.jtb.visitor.DepthFirstRetArguVisitor;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+
+import gool.parser.objc.*;
 
 
 
 public class Visitor implements IVisitor {
 
+	public static Collection<ClassDef> parseGool(Platform defaultPlatform,
+			Collection<? extends File> inputFiles)
+			throws Exception {
+		Collection<ClassDef> result = new ArrayList<ClassDef>();
+		Iterator<? extends File> it = inputFiles.iterator();
+		while (it.hasNext()) {
+			File courant = it.next();
+			ObjCParser parser = new ObjCParser(new java.io.FileInputStream(courant));
+		      try {
+		    	 TranslationUnit tu = parser.TranslationUnit();
+		         System.out.println("Java program parsed successfully.");//TODO
+		         DepthFirstRetArguVisitor<String, ObjCNoeud> v1 = new DepthFirstRetArguVisitor<String, ObjCNoeud>();
+		         ObjCRacine root = new ObjCRacine();
+		         v1.visit(tu, root);
+		         root.typageExpression();
+		         root.print(0);//TODO
+		         Visitor v = new Visitor();
+		         ClassDef classe = (ClassDef) v.visitRacine(root);
+		         classe.setPlatform(defaultPlatform);
+		         result.add(classe);
+		      }
+		      catch (ParseException e) {
+		         System.err.println("Encountered errors during parse.");
+		      }
+		}
+		return result;
+	}
 	
 	private Modifier modiftoModifier(ObjCModifier modif) {
 		Modifier mod = null;
@@ -25,29 +60,29 @@ public class Visitor implements IVisitor {
 	private IType typetoIType (ObjCType type) {
 		IType iType= null;
 		if(type != null){
-		switch (type){
-			case entier:
-				iType = TypeInt.INSTANCE;
-				break;
-			case reel:
-				iType = TypeDecimal.INSTANCE;
-				break;
-			case caractere:
-				iType = TypeChar.INSTANCE;
-				break;
-			case chaine:
-				iType = TypeString.INSTANCE;
-				break;
-			case booleen:
-				iType = TypeBool.INSTANCE;
-				break;
-			case vide: 
-				iType = TypeVoid.INSTANCE;
-				break;
-			default : 
-				iType = new TypeUnknown("Inconnu");
-				break;
-		}
+			switch (type){
+				case entier:
+					iType = TypeInt.INSTANCE;
+					break;
+				case reel:
+					iType = TypeDecimal.INSTANCE;
+					break;
+				case caractere:
+					iType = TypeChar.INSTANCE;
+					break;
+				case chaine:
+					iType = TypeString.INSTANCE;
+					break;
+				case booleen:
+					iType = TypeBool.INSTANCE;
+					break;
+				case vide: 
+					iType = TypeVoid.INSTANCE;
+					break;
+				default : 
+					iType = new TypeUnknown("Inconnu");
+					break;
+			}
 		}
 		return iType;
 	}
@@ -81,7 +116,7 @@ public class Visitor implements IVisitor {
 			th = (Statement) if1.getTh().accept(this);
 		}
 		Statement el = null;
-		if(if1.getTh()!=null){
+		if(if1.getEl()!=null){
 			el = (Statement) if1.getEl().accept(this);
 		}
 		return new If((Expression) if1.getExp().accept(this), th, el);
@@ -242,6 +277,8 @@ public class Visitor implements IVisitor {
 						typetoIType(((ObjCDeclaration)objCRacine.getFils().get(i)).getTypeSpecifier().getType()), (Expression) ((ObjCDeclaration)objCRacine.getFils().get(i)).getExp().accept(this)));
 			if(ObjCModifier.class.isInstance(objCRacine.getFils().get(i)))
 				cd.addMethod((Meth) ((ObjCMethode)objCRacine.getFils().get(i)).accept(this)); 
+			if(ObjCFunctionDefinition.class.isInstance(objCRacine.getFils().get(i)))
+				cd.addMethod((Meth) ((ObjCFunctionDefinition)objCRacine.getFils().get(i)).accept(this)); 
 		}
 		return cd;
 	}
