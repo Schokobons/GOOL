@@ -232,8 +232,6 @@ public class GOOLCompilerObjC {
 		ObjCTypeSpecifier c1 = new ObjCTypeSpecifier(ObjCType.entier);
 		ObjCIDENT c2 = new ObjCIDENT("a");
 		c2.setType(ObjCType.entier);
-		ObjCIDENT c4 = new ObjCIDENT("c");
-		c4.setType(ObjCType.entier);
 		ObjCConstante c3 = new ObjCConstante("5");
 		c3.setType(ObjCType.entier);
 		ObjCDeclaration decl1= new ObjCDeclaration(c1,c2,c3);
