@@ -576,8 +576,10 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.reel);
 	  else if(n.f0.choice.toString().equals("char"))
 		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.caractere);
-	  else
+	  else if(n.f0.choice.toString().contains("GreedyFixedNumType"))
 		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.entier);
+	  else if(n.f0.choice.toString().contains("id"))
+		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.objet);
 	  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
 	  noeud.addFils(ts);
     R nRes = null;
@@ -1183,6 +1185,14 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   }
 
   public R visit(final PostfixExpression n, final A argu) {
+	  if(n.f0.choice.toString() == "nil") {
+			gool.parser.objc.core.ObjCConstante co = new gool.parser.objc.core.ObjCConstante("nil");
+			gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+			noeud.addFils(co);
+		    R nRes = null;
+		    n.f0.accept(this, (A) co);
+		    return nRes;
+	  }
     R nRes = null;
     n.f0.accept(this, argu);
     return nRes;
@@ -1244,8 +1254,6 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 
   public R visit(final Constant n, final A argu) {
 	  gool.parser.objc.core.ObjCType type = null;
-	  if(gool.parser.objc.core.ObjCExpression.class.isInstance(argu))
-		  type = ((gool.parser.objc.core.ObjCExpression) (argu)).getType();
 	  gool.parser.objc.core.ObjCNoeud cs;
 	  if(type == null) {
 		  switch(((NodeToken)n.f0.choice).kind)

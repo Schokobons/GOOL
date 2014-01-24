@@ -1,16 +1,21 @@
-/*
+
 int main(int a) {
+	id unObjet = nil;
+	char* b;
 	if(a + 3 == 5 + 10) {
-		a = 10;
+		a = (10+5);
+	}
+	if(@"boo" == @"zee") {
+		b = @"dho";
 	}
 	if(2 + 3 == 5 + 10) {
-		a = 10;
+		a = 10+5;
 	}
 	return a;
 }
-*/
 
 
+/*
 @interface Personnage : NSObject
 {
     int vie;
@@ -24,7 +29,7 @@ int main(int a) {
 - (void) setMana:(int) unMana;
 
 @end
-
+*/
 
 /*
 #import "Voiture.h"

@@ -79,6 +79,9 @@ public class Visitor implements IVisitor {
 				case vide: 
 					iType = TypeVoid.INSTANCE;
 					break;
+				case objet:
+					iType = TypeObject.INSTANCE;
+					break;
 				default : 
 					iType = new TypeUnknown("Inconnu");
 					break;

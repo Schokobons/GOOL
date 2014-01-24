@@ -23,6 +23,8 @@ public class ObjCTypeSpecifier extends ObjCNoeud{
 		case chaine : System.out.println("chaine");break;
 		case caractere : System.out.println("caractere");break;
 		case reel : System.out.println("reel");break;
+		case inconnu : System.out.println("inconnu");break;
+		case objet : System.out.println("objet");break;
 		default : System.out.println("entier");break;
 		}
 	}

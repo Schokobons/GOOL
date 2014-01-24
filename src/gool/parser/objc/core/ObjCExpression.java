@@ -28,11 +28,13 @@ public abstract class ObjCExpression extends ObjCNoeud{
 			case caractere : System.out.print("caractere)");break;
 			case chaine : System.out.print("chaine)");break;
 			case booleen : System.out.print("booleen)");break;
+			case inconnu : System.out.print("inconnu)");
+			case objet : System.out.print("objet)");break;
 			default : System.out.print("vide)");break;
 			}
 		}
 		else {
-			System.out.print("inconnu)");
+			System.out.print("null)");
 		}
 	}
 	

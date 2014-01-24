@@ -25,6 +25,7 @@ public class Main {
          DepthFirstRetArguVisitor<String, ObjCNoeud> v1 = new DepthFirstRetArguVisitor<String, ObjCNoeud>();
          ObjCRacine root = new ObjCRacine();
          v1.visit(tu, root);
+         root.print(0);
          root.typageExpression();
          root.print(0);
          Visitor v = new Visitor();

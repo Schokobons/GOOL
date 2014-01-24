@@ -23,7 +23,7 @@ public class ObjCAssignement extends ObjCStatement {
 		}
 		else if(ObjCExpression.class.isInstance(n)) {
 			exp = (ObjCExpression) n;
-			if(ident != null && contexte != null)
+			if(ident != null && contexte != null && exp.getType() == null)
 				exp.setType(contexte.getType(ident));
 		}
 	}

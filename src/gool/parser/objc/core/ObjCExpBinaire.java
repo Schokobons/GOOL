@@ -25,7 +25,7 @@ public class ObjCExpBinaire extends ObjCExpression {
 		case inferieurouegal :
 		case superieur :
 		case inferieur :
-		case egal : setType(ObjCType.booleen);;break;
+		case egal : setType(ObjCType.booleen);break;
 		default : break;
 		}
 	}
