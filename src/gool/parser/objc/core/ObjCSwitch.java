@@ -35,7 +35,7 @@ public class ObjCSwitch extends ObjCStatement {
 		this.listecase = listecase;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitSwitch(this);
 	}
 }

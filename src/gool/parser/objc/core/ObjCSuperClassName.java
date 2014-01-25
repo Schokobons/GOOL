@@ -1,6 +1,6 @@
 package gool.parser.objc.core;
 
-import gool.recognizer.objc.Visitor;
+import gool.recognizer.objc.ObjCRecognizer;
 
 public class ObjCSuperClassName extends ObjCNoeud{
 	private String name;
@@ -23,7 +23,7 @@ public class ObjCSuperClassName extends ObjCNoeud{
 		this.name = name;
 	}
 
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return name;
 	}
 }

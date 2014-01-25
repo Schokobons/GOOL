@@ -40,7 +40,7 @@ public class ObjCReturn extends ObjCStatement{
 		this.exp = exp;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitReturn(this);
 	}
 }

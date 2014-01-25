@@ -1,6 +1,6 @@
 package DepotParser;
 import gool.ast.core.ClassDef;
-import gool.recognizer.objc.Visitor;
+import gool.recognizer.objc.ObjCRecognizer;
 
 import java.io.File;
 import java.io.FileNotFoundException;

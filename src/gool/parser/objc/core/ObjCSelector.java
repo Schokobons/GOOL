@@ -24,7 +24,7 @@ public class ObjCSelector extends ObjCNoeud{
 		this.nom = nom;
 	}
 
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return null;
 	}
 }

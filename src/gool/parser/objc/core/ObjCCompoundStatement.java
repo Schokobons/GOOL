@@ -70,7 +70,7 @@ public class ObjCCompoundStatement extends ObjCNoeud{
 		this.listestatement = listestatement;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitCompoundStatement(this);
 	}
 }

@@ -96,7 +96,7 @@ public class ObjCClassInterface extends ObjCNoeud {
 				listemethodes.get(i).print(etage + 1);
 	}
 
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitClassInterface(this);
 	}
 

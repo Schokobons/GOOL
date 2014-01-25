@@ -1,6 +1,6 @@
 package gool.parser.objc.core;
 
-import gool.recognizer.objc.Visitor;
+import gool.recognizer.objc.ObjCRecognizer;
 
 import java.util.ArrayList;
 
@@ -103,7 +103,7 @@ public class ObjCMethodDeclaration extends ObjCNoeud {
 		this.nom = nom;
 	}
 
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitMethodeDeclaration(this);
 	}
 

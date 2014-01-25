@@ -34,7 +34,7 @@ public class ObjCConstante extends ObjCExpression{
 		this.valeur = valeur;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitConstante(this);
 	}
 }

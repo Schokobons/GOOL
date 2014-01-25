@@ -24,7 +24,7 @@ public abstract class ObjCNoeud {
 			fils.get(i).print(etage);
 	}
 
-	public abstract Object accept(Visitor v);
+	public abstract Object accept(ObjCRecognizer v);
 	
 	public void addFils(ObjCNoeud n) {
 		if(n != null && n.contexte == null && contexte != null)

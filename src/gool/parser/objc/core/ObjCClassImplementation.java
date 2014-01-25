@@ -84,7 +84,7 @@ public class ObjCClassImplementation extends ObjCNoeud{
 		this.listemethodes = listemethodes;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitClassImplementation(this);
 	}
 }

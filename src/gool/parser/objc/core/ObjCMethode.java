@@ -3,7 +3,7 @@ package gool.parser.objc.core;
 
 import java.util.ArrayList;
 
-import gool.recognizer.objc.Visitor;
+import gool.recognizer.objc.ObjCRecognizer;
 
 public class ObjCMethode extends ObjCNoeud {
 	private ObjCModifier modifier;
@@ -93,7 +93,7 @@ public class ObjCMethode extends ObjCNoeud {
 		return block;
 	}
 
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitMethode(this);
 	}
 }

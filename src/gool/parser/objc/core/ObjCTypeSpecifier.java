@@ -72,7 +72,7 @@ public class ObjCTypeSpecifier extends ObjCNoeud{
 		this.name = name;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitTypeSpecifier(this);
 	}
 }

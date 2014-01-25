@@ -28,7 +28,7 @@ public class Main {
          root.print(0);
          root.typageExpression();
          root.print(0);
-         Visitor v = new Visitor();
+         ObjCRecognizer v = new ObjCRecognizer();
          v.visitRacine(root);
       }
       catch (ParseException e) {

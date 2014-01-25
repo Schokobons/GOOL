@@ -55,7 +55,7 @@ public class ObjCParameterDeclaration extends ObjCNoeud {
 		this.ident = ident;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitParameterDeclaration(this);
 	}
 }

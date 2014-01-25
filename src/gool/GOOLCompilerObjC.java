@@ -38,7 +38,7 @@ import gool.generator.python.PythonPlatform;
 import gool.generator.xml.XmlPlatform;
 import gool.generator.objc.ObjcPlatform;
 import gool.parser.java.JavaParser;
-import gool.recognizer.objc.Visitor;
+import gool.recognizer.objc.ObjCRecognizer;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -250,7 +250,7 @@ public class GOOLCompilerObjC {
 		classe.addMethod(m);
 		ArrayList<ClassDef> classDefs = new ArrayList ();
 		classDefs.add(classe);*/
-		return abstractGool2Target(gool.recognizer.objc.Visitor.parseGool(destPlatform, inputFiles));
+		return abstractGool2Target(gool.recognizer.objc.ObjCRecognizer.parseGool(destPlatform, inputFiles));
 	}
 
 	/**

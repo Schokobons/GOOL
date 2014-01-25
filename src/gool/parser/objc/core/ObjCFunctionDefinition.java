@@ -99,7 +99,7 @@ public class ObjCFunctionDefinition extends ObjCNoeud{
 		this.block = block;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitFunctionDefinition(this);
 	}
 }

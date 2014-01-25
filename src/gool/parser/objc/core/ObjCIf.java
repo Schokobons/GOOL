@@ -69,7 +69,7 @@ public class ObjCIf extends ObjCStatement{
 		this.el = el;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitIf(this);
 	}
 }

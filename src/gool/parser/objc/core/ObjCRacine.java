@@ -36,7 +36,7 @@ public class ObjCRacine extends ObjCNoeud{
 		return fils;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitRacine(this);
 	}
 }

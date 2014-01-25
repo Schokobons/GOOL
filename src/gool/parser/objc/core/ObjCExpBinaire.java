@@ -110,7 +110,7 @@ public class ObjCExpBinaire extends ObjCExpression {
 		this.expDroite = expDroite;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitExpBinaire(this);
 	}
 }

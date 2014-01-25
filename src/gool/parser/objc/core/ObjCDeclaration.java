@@ -75,7 +75,7 @@ public class ObjCDeclaration extends ObjCNoeud{
 		this.exp = exp;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitDeclaration(this);
 	}
 }

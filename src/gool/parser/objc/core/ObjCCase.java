@@ -10,7 +10,7 @@ public class ObjCCase extends ObjCStatement {
 	private ObjCExpression exp;
 	private ArrayList <ObjCStatement> listestatement;
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitCase(this);
 	}
 	
