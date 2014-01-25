@@ -43,4 +43,6 @@ public interface IVisitor {
 	public Object visitClassImplementation(ObjCClassImplementation classImplementation);
 	
 	public Object visitMessageSelector(ObjCMessageSelector objCMessageSelector);
+	
+	public Object visitMessageExpression(ObjCMessageExpression MessageExpression);
 }

@@ -33,6 +33,8 @@ public class ObjCMessageSelector extends ObjCExpression {
 	}
 	
 	public void print (int etage) {
+		for(int i = 0; i < etage; i++)
+			System.out.print("  ");
 		System.out.println("MessageSelector : " + methName.getNom());
 		if(arguments != null)
 			for(int i = 0; i < arguments.size(); i++)

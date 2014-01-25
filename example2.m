@@ -1,6 +1,6 @@
 
 int main(int a) {
-	dsq unObjet = nil;
+	int unObjet = 10;
 	[unObjet init];
 	[unObjet init: a];
 	[unObjet init: a s:a :a];

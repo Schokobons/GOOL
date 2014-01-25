@@ -956,8 +956,7 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   }
 
   public R visit(final AssignmentExpression n, final A argu) {
-	if(!gool.parser.objc.core.ObjCAssignement.class.isInstance(argu) && !gool.parser.objc.core.ObjCReturn.class.isInstance(argu) 
-			&& !gool.parser.objc.core.ObjCIf.class.isInstance(argu) && !gool.parser.objc.core.ObjCPrimaryExpression.class.isInstance(argu)) {
+	  if(NodeSequence.class.isInstance(n.f0.choice)) {
 		gool.parser.objc.core.ObjCAssignement as = new gool.parser.objc.core.ObjCAssignement(null, null);
 		gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
 		noeud.addFils(as);
@@ -1215,15 +1214,14 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   }
 
   public R visit(final MessageExpression n, final A argu) {
-	  System.out.println(n.f0.tokenImage);
-	  System.out.println(n.f1.f0.choice);
-	  System.out.println(n.f2.getClass());
-	  System.out.println(n.f3.tokenImage);
+	gool.parser.objc.core.ObjCMessageExpression me = new gool.parser.objc.core.ObjCMessageExpression(null, null);
+	gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+	noeud.addFils(me);
     R nRes = null;
-    n.f0.accept(this, argu);
-    n.f1.accept(this, argu);
-    n.f2.accept(this, argu);
-    n.f3.accept(this, argu);
+    n.f0.accept(this, (A) me);
+    n.f1.accept(this, (A) me);
+    n.f2.accept(this, (A) me);
+    n.f3.accept(this, (A) me);
     return nRes;
   }
 
