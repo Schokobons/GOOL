@@ -2,6 +2,8 @@
 int main(int a) {
 	dsq unObjet = nil;
 	[unObjet init];
+	[unObjet init: a];
+	[unObjet init: a s:a :a];
 	char* b;
 	if(a + 3 == 5 + 10) {
 		a = (10+5);

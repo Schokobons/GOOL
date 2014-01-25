@@ -366,4 +366,9 @@ public class ObjCRecognizer implements IVisitor {
 		return m;
 	}
 
+	public Object visitMessageSelector(ObjCMessageSelector objCMessageSelector) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

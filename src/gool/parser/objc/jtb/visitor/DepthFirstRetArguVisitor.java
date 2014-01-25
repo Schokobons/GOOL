@@ -1215,6 +1215,10 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   }
 
   public R visit(final MessageExpression n, final A argu) {
+	  System.out.println(n.f0.tokenImage);
+	  System.out.println(n.f1.f0.choice);
+	  System.out.println(n.f2.getClass());
+	  System.out.println(n.f3.tokenImage);
     R nRes = null;
     n.f0.accept(this, argu);
     n.f1.accept(this, argu);
@@ -1237,15 +1241,23 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 
   public R visit(final MessageSelector n, final A argu) {
 	  if(!NodeList.class.isInstance(n.f0.choice)) {
-		  System.out.println(n.f0.choice);
+			gool.parser.objc.core.ObjCMessageSelector ms = new gool.parser.objc.core.ObjCMessageSelector(new gool.parser.objc.core.ObjCIDENT(n.f0.choice.toString()), null);
+			gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+			noeud.addFils(ms);
+		    R nRes = null;
+		    n.f0.accept(this, (A) ms);
+		    return nRes;
 	  }
 	  else {
-		  for(int i = 0; i < ((NodeList) n.f0.choice).nodes.size(); i++)
-			  System.out.println(((NodeSequence)(((KeywordArgument)((NodeList) n.f0.choice).nodes.get(i)).f0.choice)).nodes.get(2).toString());
+			gool.parser.objc.core.ObjCMessageSelector ms = new gool.parser.objc.core.ObjCMessageSelector(new gool.parser.objc.core.ObjCIDENT(""), null);
+			gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+			noeud.addFils(ms);
+			for(int i = 0; i < ((NodeList) n.f0.choice).nodes.size(); i++)
+				ms.growName(((NodeSequence)(((KeywordArgument)((NodeList) n.f0.choice).nodes.get(i)).f0.choice)).nodes.get(0).toString());
+		    R nRes = null;
+		    n.f0.accept(this, (A) ms);
+		    return nRes;
 	  }
-    R nRes = null;
-    n.f0.accept(this, argu);
-    return nRes;
   }
 
   public R visit(final KeywordArgument n, final A argu) {
