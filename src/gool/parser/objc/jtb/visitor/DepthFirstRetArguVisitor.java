@@ -607,13 +607,24 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
     return nRes;
   }
 
-  public R visit(final PossibleUnknownType n, final A argu) {System.out.println();
+  public R visit(final PossibleUnknownType n, final A argu) {
     R nRes = null;
     n.f0.accept(this, argu);
     return nRes;
   }
 
   public R visit(final TypeSpecifierWithUnknownType n, final A argu) {
+	  if(NodeSequence.class.isInstance(n.f0.choice)) {
+		  NodeSequence ns = (NodeSequence) n.f0.choice;
+		  if(ns.nodes.size() > 1 && ((NodeChoice) ns.nodes.get(0)).choice.toString().equals("id")) {
+			  gool.parser.objc.core.ObjCTypeSpecifier ts = new gool.parser.objc.core.ObjCTypeSpecifier("");
+			  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+			  noeud.addFils(ts);
+			    R nRes = null;
+			    n.f0.accept(this, (A) ts);
+			    return nRes;
+		  }
+	  }
     R nRes = null;
     n.f0.accept(this, argu);
     return nRes;

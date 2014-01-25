@@ -42,7 +42,9 @@ public class ObjCMethode extends ObjCNoeud {
 			typeRetour = (ObjCTypeSpecifier) n;
 		}
 		else if(ObjCSelector.class.isInstance(n)) {
-			nom = (ObjCSelector) n;
+			if(nom == null)
+				nom = new ObjCSelector("");
+			nom.growSelector((ObjCSelector) n);
 		}
 		else if(ObjCParameterDeclaration.class.isInstance(n)) {
 			if(listeparam == null)

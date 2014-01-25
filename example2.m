@@ -1,7 +1,7 @@
-
+/*
 int main(int a) {
 	int unObjet = 10;
-	[unObjet init];
+	unObjet = [unObjet init];
 	[unObjet init: a];
 	[unObjet init: a s:a :a];
 	char* b;
@@ -16,7 +16,7 @@ int main(int a) {
 	}
 	return a;
 }
-
+*/
 
 /*
 @interface Personnage : NSObject
@@ -29,12 +29,13 @@ int main(int a) {
 - (int) vie;
 - (int) mana;
 - (void) setVie:(int) uneVie;
-- (void) setMana:(int) unMana;
+- (void) setVie:(int) uneVie :(int) unMana;
+- (void) setVie:(int) uneVie etMana: (int) mana;
 
 @end
 */
 
-/*
+
 #import "Voiture.h"
 
 @implementation Voiture
@@ -47,7 +48,7 @@ int b; BOOL c;
    int a;a=0;
 }
 @end
-*/
+
 
 /*
 #import "BankAccount.h"
