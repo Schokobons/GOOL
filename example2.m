@@ -1,6 +1,6 @@
 
 int main(int a) {
-	id unObjet = nil;
+	dsq unObjet = nil;
 	char* b;
 	if(a + 3 == 5 + 10) {
 		a = (10+5);
@@ -9,7 +9,7 @@ int main(int a) {
 		b = @"dho";
 	}
 	if(2 + 3 == 5 + 10) {
-		a = 10+5;
+		unObjet = 10+5;
 	}
 	return a;
 }

@@ -17,10 +17,10 @@ public class ObjCFunctionDefinition extends ObjCNoeud{
 		if(contexte == null)
 			contexte = new ObjCContexte();
 		if(typeSpecifier != null)
-			contexte.setTypeRetour(typeSpecifier.getType());
+			contexte.setTypeRetour(typeSpecifier);
 		if(listeparam != null)
 			for(int i = 0; i < listeparam.size(); i++) {
-				contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier().getType());
+				contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier());
 			}
 		if(n != null && n.contexte == null)
 			n.contexte = contexte.clone();

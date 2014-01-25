@@ -57,10 +57,10 @@ public class Visitor implements IVisitor {
 		return mod;
 	}
 	
-	private IType typetoIType (ObjCType type) {
+	private IType typetoIType (ObjCTypeSpecifier type) {
 		IType iType= null;
-		if(type != null){
-			switch (type){
+		if(type != null && type.getType() != null) {
+			switch (type.getType()){
 				case entier:
 					iType = TypeInt.INSTANCE;
 					break;
@@ -83,7 +83,7 @@ public class Visitor implements IVisitor {
 					iType = TypeObject.INSTANCE;
 					break;
 				default : 
-					iType = new TypeUnknown("Inconnu");
+					iType = new TypeUnknown(type.getName());
 					break;
 			}
 		}
@@ -110,7 +110,7 @@ public class Visitor implements IVisitor {
 	}
 
 	public Object visitObjCIDENT(ObjCIDENT objCIDENT) {
-		return new Identifier(typetoIType(objCIDENT.getType()),objCIDENT.getNom());
+		return new Identifier(typetoIType(objCIDENT.getTypeSpecifier()),objCIDENT.getNom());
 	}
 
 	public Object visitIf(ObjCIf if1) {
@@ -185,21 +185,20 @@ public class Visitor implements IVisitor {
 		
 		expG = (Expression) expBinaire.getExpGauche().accept(this);
 		expD = (Expression) expBinaire.getExpDroite().accept(this);
-				
 		
-		return new BinaryOperation(op,expG,expD,typetoIType(expBinaire.getType()),sym);
+		return new BinaryOperation(op,expG,expD,typetoIType(expBinaire.getTypeSpecifier()),sym);
 		
 	}
 
 	public Object visitDeclaration(ObjCDeclaration declaration) {
-		VarDeclaration vardec = new VarDeclaration(typetoIType(declaration.getTypeSpecifier().getType()), (String) declaration.getIdent().getNom());
+		VarDeclaration vardec = new VarDeclaration(typetoIType(declaration.getTypeSpecifier()), (String) declaration.getIdent().getNom());
 		if(declaration.getExp() != null)
 			vardec.setInitialValue((Expression) declaration.getExp().accept(this));
 		return vardec;
 	}
 
 	public Object visitConstante(ObjCConstante constante) {
-		return new Constant(typetoIType(constante.getType()),constante.getValeur());
+		return new Constant(typetoIType(constante.getTypeSpecifier()),constante.getValeur());
 	}
 
 	public Object visitCompoundStatement(ObjCCompoundStatement compoundStatement) {
@@ -238,7 +237,7 @@ public class Visitor implements IVisitor {
 	}
 
 	public Object visitFunctionDefinition(ObjCFunctionDefinition functionDefinition) {
-		Meth m = new Meth(typetoIType(functionDefinition.getTypeSpecifier().getType()),functionDefinition.getIdent().getNom());
+		Meth m = new Meth(typetoIType(functionDefinition.getTypeSpecifier()),functionDefinition.getIdent().getNom());
 		if(functionDefinition.getListeparam()!=null){
 			int i;
 			for (i = 0; i<functionDefinition.getListeparam().size(); i++) {
@@ -254,7 +253,7 @@ public class Visitor implements IVisitor {
 	}
 
 	public Object visitParameterDeclaration(ObjCParameterDeclaration parameterDeclaration) {
-		return new VarDeclaration(typetoIType(parameterDeclaration.getTypeSpecifier().getType()), (String) parameterDeclaration.getIdent().getNom());
+		return new VarDeclaration(typetoIType(parameterDeclaration.getTypeSpecifier()), (String) parameterDeclaration.getIdent().getNom());
 	}
 
 	public Object visitExpUnaire(ObjCExpUnaire objExpUnaire) {
@@ -263,7 +262,7 @@ public class Visitor implements IVisitor {
 		
 		Expression exp = (Expression) objExpUnaire.getExpression().accept(this);
 				
-		return new UnaryOperation(op,exp,typetoIType(objExpUnaire.getType()),sym);
+		return new UnaryOperation(op,exp,typetoIType(objExpUnaire.getTypeSpecifier()),sym);
 	}
 
 	public Object visitRacine(ObjCRacine objCRacine) {
@@ -278,10 +277,10 @@ public class Visitor implements IVisitor {
 			if(ObjCDeclaration.class.isInstance(objCRacine.getFils().get(i))) {
 				if(((ObjCDeclaration)objCRacine.getFils().get(i)).getExp() != null)
 					cd.addField(new Field(Modifier.PUBLIC, ((ObjCDeclaration)objCRacine.getFils().get(i)).getIdent().getNom(),
-						typetoIType(((ObjCDeclaration)objCRacine.getFils().get(i)).getTypeSpecifier().getType()), (Expression) ((ObjCDeclaration)objCRacine.getFils().get(i)).getExp().accept(this)));
+						typetoIType(((ObjCDeclaration)objCRacine.getFils().get(i)).getTypeSpecifier()), (Expression) ((ObjCDeclaration)objCRacine.getFils().get(i)).getExp().accept(this)));
 				else
 					cd.addField(new Field(Modifier.PUBLIC, ((ObjCDeclaration)objCRacine.getFils().get(i)).getIdent().getNom(),
-							typetoIType(((ObjCDeclaration)objCRacine.getFils().get(i)).getTypeSpecifier().getType())));
+							typetoIType(((ObjCDeclaration)objCRacine.getFils().get(i)).getTypeSpecifier())));
 			}
 			if(ObjCModifier.class.isInstance(objCRacine.getFils().get(i)))
 				cd.addMethod((Meth) ((ObjCMethode)objCRacine.getFils().get(i)).accept(this)); 
@@ -304,9 +303,9 @@ public class Visitor implements IVisitor {
 	public Object visitMethode(ObjCMethode methode) {
 		IType type;
 		if(methode.getTypeRetour() == null)
-			type = typetoIType(ObjCType.inconnu);
+			type = typetoIType(new ObjCTypeSpecifier(ObjCType.inconnu));
 		else
-			type = typetoIType((ObjCType) methode.getTypeRetour().accept(this));
+			type = typetoIType(methode.getTypeRetour());
 		Meth m = new Meth(type, modiftoModifier(methode.getModifier()), methode.getNom());
 		if(methode.getListeparam()!=null){
 			int i;
@@ -327,10 +326,10 @@ public class Visitor implements IVisitor {
 		for(int i = 0; i < classImplementation.getListedeclaration().size(); i++)
 			if(classImplementation.getListedeclaration().get(i).getExp() == null)
 				cd.addField(new Field(Modifier.PUBLIC, classImplementation.getListedeclaration().get(i).getIdent().getNom(),
-						typetoIType(classImplementation.getListedeclaration().get(i).getTypeSpecifier().getType())));
+						typetoIType(classImplementation.getListedeclaration().get(i).getTypeSpecifier())));
 			else
 				cd.addField(new Field(Modifier.PUBLIC, classImplementation.getListedeclaration().get(i).getIdent().getNom(),
-					typetoIType(classImplementation.getListedeclaration().get(i).getTypeSpecifier().getType()), (Expression) classImplementation.getListedeclaration().get(i).getExp().accept(this)));
+					typetoIType(classImplementation.getListedeclaration().get(i).getTypeSpecifier()), (Expression) classImplementation.getListedeclaration().get(i).getExp().accept(this)));
 		for(int i = 0; i < classImplementation.getListemethode().size(); i++)
 			cd.addMethod((Meth) classImplementation.getListemethode().get(i).accept(this)); 
 		return cd;
@@ -342,10 +341,10 @@ public class Visitor implements IVisitor {
 		for(int i = 0; i < ClassInterface.getListedeclaration().size(); i++)
 			if(ClassInterface.getListedeclaration().get(i).getExp() == null)
 				cd.addField(new Field(Modifier.PUBLIC, ClassInterface.getListedeclaration().get(i).getIdent().getNom(),
-						typetoIType(ClassInterface.getListedeclaration().get(i).getTypeSpecifier().getType())));
+						typetoIType(ClassInterface.getListedeclaration().get(i).getTypeSpecifier())));
 			else
 				cd.addField(new Field(Modifier.PUBLIC, ClassInterface.getListedeclaration().get(i).getIdent().getNom(),
-					typetoIType(ClassInterface.getListedeclaration().get(i).getTypeSpecifier().getType()), (Expression) ClassInterface.getListedeclaration().get(i).getExp().accept(this)));
+					typetoIType(ClassInterface.getListedeclaration().get(i).getTypeSpecifier()), (Expression) ClassInterface.getListedeclaration().get(i).getExp().accept(this)));
 		for(int i = 0; i < ClassInterface.getListemethodes().size(); i++)
 			cd.addMethod((Meth) ClassInterface.getListemethodes().get(i).accept(this)); 
 		return cd;
@@ -354,9 +353,9 @@ public class Visitor implements IVisitor {
 	public Object visitMethodeDeclaration( ObjCMethodDeclaration MethodDeclaration) {
 		IType type;
 		if(MethodDeclaration.getTypeRetour() == null)
-			type = typetoIType(ObjCType.inconnu);
+			type = typetoIType(new ObjCTypeSpecifier(ObjCType.inconnu));
 		else
-			type = typetoIType((ObjCType) MethodDeclaration.getTypeRetour().accept(this));
+			type = typetoIType(MethodDeclaration.getTypeRetour());
 		Meth m = new Meth(type, modiftoModifier(MethodDeclaration.getModifier()), MethodDeclaration.getName());
 		if(MethodDeclaration.getListeparam()!=null){
 			int i;

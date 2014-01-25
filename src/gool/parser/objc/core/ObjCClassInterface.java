@@ -16,7 +16,7 @@ public class ObjCClassInterface extends ObjCNoeud {
 			contexte = new ObjCContexte();
 		if(listedeclarations != null)
 			for(int i = 0; i < listedeclarations.size(); i++) {
-				contexte.add(listedeclarations.get(i).getIdent(), listedeclarations.get(i).getTypeSpecifier().getType());
+				contexte.add(listedeclarations.get(i).getIdent(), listedeclarations.get(i).getTypeSpecifier());
 			}
 		if(n != null && n.contexte == null)
 			n.contexte = contexte.clone();

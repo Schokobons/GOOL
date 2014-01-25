@@ -23,7 +23,7 @@ public class ObjCExpUnaire extends ObjCExpression {
 		case inferieurouegal :
 		case superieur :
 		case inferieur :
-		case egal : setType(ObjCType.booleen);;break;
+		case egal : setTypeSpecifier(new ObjCTypeSpecifier(ObjCType.booleen));;break;
 		default : break;
 		}
 	}
@@ -34,8 +34,8 @@ public class ObjCExpUnaire extends ObjCExpression {
 		ajoutFils(n);
 		if(ObjCExpression.class.isInstance(n)) {
 			expression = (ObjCExpression) n;
-			if(getType() != null)
-				expression.setType(getType());
+			if(getTypeSpecifier() != null)
+				expression.setTypeSpecifier(getTypeSpecifier());
 		}
 	}
 	

@@ -50,7 +50,7 @@ public abstract class ObjCNoeud {
 				if(changement)
 					typerExpression();
 				else {
-					changement = typerConstante(3);
+					changement = typerConstante(2);
 					if(changement)
 						typerExpression();
 				}
@@ -62,19 +62,19 @@ public abstract class ObjCNoeud {
 		boolean result = false;
 		if(ObjCExpression.class.isInstance(this))
 			if(ObjCConstante.class.isInstance(this))
-				if(((ObjCConstante) this).getType() == null) {
+				if(((ObjCConstante) this).getTypeSpecifier() == null) {
 					switch (type)
 					{
 					case 1 :
 						try {
 							float f = Float.parseFloat(((ObjCConstante)this).getValeur());
-							((ObjCConstante)this).setType(ObjCType.reel);
+							((ObjCConstante)this).setTypeSpecifier(new ObjCTypeSpecifier(ObjCType.reel));
 							return true;
 						}
 						catch(Exception e) { }
 						break;
 					default : 
-						((ObjCConstante)this).setType(ObjCType.chaine);
+						((ObjCConstante)this).setTypeSpecifier(new ObjCTypeSpecifier(ObjCType.chaine));
 						break;
 					}
 				}
@@ -88,26 +88,28 @@ public abstract class ObjCNoeud {
 	
 	public void typerExpression() {
 		if(ObjCExpression.class.isInstance(this))
-			if(((ObjCExpression) this).getType() == null)
-				((ObjCExpression) this).setType(rechercheTypeExpression(this));
+			if(((ObjCExpression) this).getTypeSpecifier() == null || ((ObjCExpression) this).getTypeSpecifier().getType() == null)
+				((ObjCExpression) this).setTypeSpecifier(rechercheTypeExpression(this));
 		for(int i = 0; i < fils.size(); i++)
-			fils.get(i).typageExpression();
+			fils.get(i).typerExpression();
 	}
 	
 	private int nbExpInconnu() {
 		int res = 0;
-		if(ObjCExpression.class.isInstance(this) && ((ObjCExpression)this).getType() == null)
+		if(ObjCExpression.class.isInstance(this) && ((ObjCExpression)this).getTypeSpecifier() != null && ((ObjCExpression)this).getTypeSpecifier().getType() == null)
+			res = 1;
+		if(ObjCExpression.class.isInstance(this) && ((ObjCExpression)this).getTypeSpecifier() == null)
 			res = 1;
 		for(int i = 0; i < fils.size(); i++)
 			res += fils.get(i).nbExpInconnu();
 		return res;
 	}
 	
-	private ObjCType rechercheTypeExpressionDansFils(ObjCNoeud n) {
+	private ObjCTypeSpecifier rechercheTypeExpressionDansFils(ObjCNoeud n) {
 		if(ObjCExpression.class.isInstance(n)) {
-			if(((ObjCExpression) n).getType() != null)
-				return ((ObjCExpression) n).getType();
-			ObjCType type = null;
+			if(((ObjCExpression) n).getTypeSpecifier() != null && ((ObjCExpression) n).getTypeSpecifier().getType() != null)
+				return ((ObjCExpression) n).getTypeSpecifier();
+			ObjCTypeSpecifier type = null;
 			int i = 0;
 			while(type == null && i < n.fils.size()) {
 				type = rechercheTypeExpressionDansFils(n.fils.get(i));
@@ -119,11 +121,11 @@ public abstract class ObjCNoeud {
 		return null;
 	}
 	
-	private ObjCType rechercheTypeExpression(ObjCNoeud n) {
+	private ObjCTypeSpecifier rechercheTypeExpression(ObjCNoeud n) {
 		if(ObjCExpression.class.isInstance(n)) {
-			if(((ObjCExpression) n).getType() != null)
-				return ((ObjCExpression) n).getType();
-			ObjCType type = null;
+			if(((ObjCExpression) this).getTypeSpecifier() != null && ((ObjCExpression) n).getTypeSpecifier().getType() != null)
+				return ((ObjCExpression) n).getTypeSpecifier();
+			ObjCTypeSpecifier type = null;
 			int i = 0;
 			while(type == null && i < n.fils.size()) {
 				type = rechercheTypeExpressionDansFils(n.fils.get(i));
@@ -131,15 +133,15 @@ public abstract class ObjCNoeud {
 			}
 			if(type != null)
 				return type;
-			if(n.pere != null && ObjCExpression.class.isInstance(n.pere) && ((ObjCExpression)n.pere).getType()!=null
-					&& !(ObjCExpBinaire.class.isInstance(n.pere) && (
+			if(n.pere != null && ObjCExpression.class.isInstance(n.pere) && ((ObjCExpression)n.pere).getTypeSpecifier() !=null
+					&& ((ObjCExpression)n.pere).getTypeSpecifier().getType() !=null && !(ObjCExpBinaire.class.isInstance(n.pere) && (
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.different) ||
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.egal) ||
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.superieur) ||
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.inferieur) ||
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.superieurouegal) ||
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.inferieurouegal) )))
-				return ((ObjCExpression)n.pere).getType();
+				return ((ObjCExpression)n.pere).getTypeSpecifier();
 			if(n.pere != null && ObjCExpBinaire.class.isInstance(n.pere)) {
 				ObjCOperation operation = ((ObjCExpBinaire)n.pere).getOperation();
 				if((operation.equals(ObjCOperation.diviser)) || operation.equals(ObjCOperation.et)

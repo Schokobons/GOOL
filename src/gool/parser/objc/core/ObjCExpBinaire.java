@@ -25,7 +25,7 @@ public class ObjCExpBinaire extends ObjCExpression {
 		case inferieurouegal :
 		case superieur :
 		case inferieur :
-		case egal : setType(ObjCType.booleen);break;
+		case egal : setTypeSpecifier(new ObjCTypeSpecifier(ObjCType.booleen));break;
 		default : break;
 		}
 	}
@@ -39,23 +39,23 @@ public class ObjCExpBinaire extends ObjCExpression {
 			exp = (ObjCExpression) n;
 			if(ObjCIDENT.class.isInstance(exp)) {
 				if(contexte != null)
-					((ObjCIDENT)n).setType(contexte.getType((ObjCIDENT) n));
+					((ObjCIDENT)n).setTypeSpecifier(contexte.getType((ObjCIDENT) n));
 			}
 			if(expGauche == null) {
 				expGauche = exp;
-				if(getType() != null && ((operation.equals(ObjCOperation.diviser)) || operation.equals(ObjCOperation.et)
+				if(getTypeSpecifier() != null && ((operation.equals(ObjCOperation.diviser)) || operation.equals(ObjCOperation.et)
 						 || operation.equals(ObjCOperation.moins) || operation.equals(ObjCOperation.multiplier)
 						 || operation.equals(ObjCOperation.non) || operation.equals(ObjCOperation.ou)
 						 || operation.equals(ObjCOperation.plus)))
-					expGauche.setType(getType());
+					expGauche.setTypeSpecifier(getTypeSpecifier());
 			}
 			else {
 				expDroite = exp;
-				if(getType() != null && ((operation.equals(ObjCOperation.diviser)) || operation.equals(ObjCOperation.et)
+				if(getTypeSpecifier() != null && ((operation.equals(ObjCOperation.diviser)) || operation.equals(ObjCOperation.et)
 						 || operation.equals(ObjCOperation.moins) || operation.equals(ObjCOperation.multiplier)
 						 || operation.equals(ObjCOperation.non) || operation.equals(ObjCOperation.ou)
 						 || operation.equals(ObjCOperation.plus)))
-					expDroite.setType(getType());
+					expDroite.setTypeSpecifier(getTypeSpecifier());
 			}
 		}
 	}

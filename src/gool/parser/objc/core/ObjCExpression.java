@@ -4,9 +4,9 @@ package gool.parser.objc.core;
 
 public abstract class ObjCExpression extends ObjCNoeud{
 
-	protected ObjCType type;
+	protected ObjCTypeSpecifier type;
 	
-	public void setType(ObjCType t) {
+	public void setTypeSpecifier(ObjCTypeSpecifier t) {
 		type = t;
 	}
 	
@@ -15,20 +15,20 @@ public abstract class ObjCExpression extends ObjCNoeud{
 			n.contexte = contexte.clone();
 		ajoutFils(n);
 		if(ObjCExpression.class.isInstance(n))
-			((ObjCExpression) (n)).setType(type);
+			((ObjCExpression) (n)).setTypeSpecifier(type);
 	}
 	
 	public void afficherType() {
 		System.out.print("(Type : ");
-		if(type != null) {
-			switch(type)
+		if(type != null && type.getType() != null) {
+			switch(type.getType())
 			{
 			case entier : System.out.print("entier)");break;
 			case reel : System.out.print("reel)");break;
 			case caractere : System.out.print("caractere)");break;
 			case chaine : System.out.print("chaine)");break;
 			case booleen : System.out.print("booleen)");break;
-			case inconnu : System.out.print("inconnu)");
+			case inconnu : System.out.print("inconnu : " + type.getName() + ")");break;
 			case objet : System.out.print("objet)");break;
 			default : System.out.print("vide)");break;
 			}
@@ -38,7 +38,7 @@ public abstract class ObjCExpression extends ObjCNoeud{
 		}
 	}
 	
-	public ObjCType getType() {
+	public ObjCTypeSpecifier getTypeSpecifier() {
 		return type;
 	}
 }

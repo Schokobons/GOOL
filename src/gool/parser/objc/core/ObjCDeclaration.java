@@ -25,12 +25,12 @@ public class ObjCDeclaration extends ObjCNoeud{
 		else if(ObjCIDENT.class.isInstance(n)) {
 			ident = (ObjCIDENT) n;
 			if(typeSpecifier != null)
-				ident.setType(typeSpecifier.getType());
+				ident.setTypeSpecifier(typeSpecifier);
 		}
 		else if(ObjCExpression.class.isInstance(n)) {
 			exp = (ObjCExpression) n;
 			if(typeSpecifier != null)
-				exp.setType(typeSpecifier.getType());
+				exp.setTypeSpecifier(typeSpecifier);
 		}
 	}
 	

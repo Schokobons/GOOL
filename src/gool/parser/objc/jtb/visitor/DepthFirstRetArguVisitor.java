@@ -578,6 +578,9 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.caractere);
 	  else if(n.f0.choice.toString().contains("GreedyFixedNumType"))
 		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.entier);
+	  else if(n.f0.choice.toString().contains("PossibleUnknownType"))
+		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.inconnu, 
+				  ((PossibleUnknownType)n.f0.choice).f0.tokenImage);
 	  else if(n.f0.choice.toString().contains("id"))
 		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.objet);
 	  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
@@ -605,7 +608,7 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
     return nRes;
   }
 
-  public R visit(final PossibleUnknownType n, final A argu) {
+  public R visit(final PossibleUnknownType n, final A argu) {System.out.println();
     R nRes = null;
     n.f0.accept(this, argu);
     return nRes;
@@ -1263,7 +1266,7 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 		  }
 	  }
 	  cs = new gool.parser.objc.core.ObjCConstante(n.f0.choice.toString());
-	  ((gool.parser.objc.core.ObjCConstante)cs).setType(type);
+	  ((gool.parser.objc.core.ObjCConstante)cs).setTypeSpecifier(new gool.parser.objc.core.ObjCTypeSpecifier(type));
 	  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
 	  noeud.addFils(cs);
     R nRes = null;

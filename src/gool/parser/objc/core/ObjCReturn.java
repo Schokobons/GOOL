@@ -20,7 +20,7 @@ public class ObjCReturn extends ObjCStatement{
 		if(ObjCExpression.class.isInstance(n)) {
 			exp = (ObjCExpression) n;
 			if(contexte != null)
-				exp.setType(contexte.getTypeRetour());
+				exp.setTypeSpecifier(contexte.getTypeRetour());
 		}
 	}
 	

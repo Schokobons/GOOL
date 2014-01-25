@@ -7,9 +7,15 @@ import gool.recognizer.objc.*;
 public class ObjCTypeSpecifier extends ObjCNoeud{
 
 	ObjCType type;
+	String name;
 	
 	public ObjCTypeSpecifier(ObjCType t) {
 		type = t;
+	}
+	
+	public ObjCTypeSpecifier(ObjCType t, String n) {
+		type = t;
+		name = n;
 	}
 	
 	public void print(int etage) {
@@ -35,6 +41,14 @@ public class ObjCTypeSpecifier extends ObjCNoeud{
 	
 	public ObjCType getType() {
 		return type;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public Object accept(Visitor v) {

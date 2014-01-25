@@ -25,7 +25,7 @@ public class ObjCParameterDeclaration extends ObjCNoeud {
 		else if(ObjCIDENT.class.isInstance(n)) {
 			ident = (ObjCIDENT) n;
 			if(typeSpecifier != null)
-				ident.setType(typeSpecifier.getType());
+				ident.setTypeSpecifier(typeSpecifier);
 		}
 	}
 	

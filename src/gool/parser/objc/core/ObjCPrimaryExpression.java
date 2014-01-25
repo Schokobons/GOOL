@@ -19,8 +19,8 @@ public class ObjCPrimaryExpression extends ObjCExpression {
 		ajoutFils(n);
 		if(ObjCExpression.class.isInstance(n)) {
 			expression = (ObjCExpression) n;
-			if(getType() != null)
-				expression.setType(getType());
+			if(getTypeSpecifier() != null)
+				expression.setTypeSpecifier(getTypeSpecifier());
 		}
 	}
 	

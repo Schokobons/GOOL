@@ -19,12 +19,12 @@ public class ObjCAssignement extends ObjCStatement {
 		if(ObjCIDENT.class.isInstance(n) && ident == null) {
 			ident = (ObjCIDENT) n;
 			if(contexte != null)
-				((ObjCIDENT)n).setType(contexte.getType((ObjCIDENT) n));
+				((ObjCIDENT)n).setTypeSpecifier(contexte.getType((ObjCIDENT) n));
 		}
 		else if(ObjCExpression.class.isInstance(n)) {
 			exp = (ObjCExpression) n;
-			if(ident != null && contexte != null && exp.getType() == null)
-				exp.setType(contexte.getType(ident));
+			if(ident != null && contexte != null && exp.getTypeSpecifier() == null)
+				exp.setTypeSpecifier(contexte.getType(ident));
 		}
 	}
 	
