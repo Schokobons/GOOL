@@ -1,20 +1,40 @@
 package gool.parser.objc.core;
 
+import gool.ast.type.TypeInt;
 import gool.recognizer.objc.*;
 
 
 
 public class ObjCTypeSpecifier extends ObjCNoeud{
 
-	ObjCType type;
+	ObjCType type;//reel, caractere, chaine, booleen, vide, inconnu, objet; 
 	String name;
 	
-	public ObjCTypeSpecifier(ObjCType t) {
+	public static final ObjCTypeSpecifier INSTANCEentier = new ObjCTypeSpecifier(ObjCType.entier);
+	public static final ObjCTypeSpecifier INSTANCEreel = new ObjCTypeSpecifier(ObjCType.reel);
+	public static final ObjCTypeSpecifier INSTANCEcaractere = new ObjCTypeSpecifier(ObjCType.caractere);
+	public static final ObjCTypeSpecifier INSTANCEchaine = new ObjCTypeSpecifier(ObjCType.chaine);
+	public static final ObjCTypeSpecifier INSTANCEbooleen = new ObjCTypeSpecifier(ObjCType.booleen);
+	public static final ObjCTypeSpecifier INSTANCEvide = new ObjCTypeSpecifier(ObjCType.vide);
+	public static final ObjCTypeSpecifier INSTANCEobjet = new ObjCTypeSpecifier(ObjCType.objet);
+	
+	private ObjCTypeSpecifier(ObjCType t) {
 		type = t;
 	}
 	
-	public ObjCTypeSpecifier(ObjCType t, String n) {
-		type = t;
+	/**
+	 * This constructor in used only for an ObjCType null, for the other types you have to get the instance.
+	 * @param n
+	 */
+	public ObjCTypeSpecifier() {
+	}
+	
+	/**
+	 * This constructor is used only for ObjCType.inconnu, for the other types you have to get the instance.
+	 * @param n
+	 */
+	public ObjCTypeSpecifier(String n) {
+		type = ObjCType.inconnu;
 		name = n;
 	}
 	
@@ -36,7 +56,8 @@ public class ObjCTypeSpecifier extends ObjCNoeud{
 	}
 	
 	public void setType(ObjCType t) {
-		type = t;
+		if(type == null)
+			type = t;
 	}
 	
 	public ObjCType getType() {

@@ -303,7 +303,7 @@ public class Visitor implements IVisitor {
 	public Object visitMethode(ObjCMethode methode) {
 		IType type;
 		if(methode.getTypeRetour() == null)
-			type = typetoIType(new ObjCTypeSpecifier(ObjCType.inconnu));
+			type = typetoIType(ObjCTypeSpecifier.INSTANCEvide);
 		else
 			type = typetoIType(methode.getTypeRetour());
 		Meth m = new Meth(type, modiftoModifier(methode.getModifier()), methode.getNom());
@@ -353,7 +353,7 @@ public class Visitor implements IVisitor {
 	public Object visitMethodeDeclaration( ObjCMethodDeclaration MethodDeclaration) {
 		IType type;
 		if(MethodDeclaration.getTypeRetour() == null)
-			type = typetoIType(new ObjCTypeSpecifier(ObjCType.inconnu));
+			type = typetoIType(ObjCTypeSpecifier.INSTANCEvide);
 		else
 			type = typetoIType(MethodDeclaration.getTypeRetour());
 		Meth m = new Meth(type, modiftoModifier(MethodDeclaration.getModifier()), MethodDeclaration.getName());

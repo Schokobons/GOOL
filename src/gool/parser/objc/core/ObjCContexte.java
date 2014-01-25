@@ -16,7 +16,7 @@ public class ObjCContexte {
 		identifiants.add("FALSE");
 		identifiants.add("NO");
 		for(int i = 0; i < 6; i++)
-			types.add(new ObjCTypeSpecifier(ObjCType.booleen));
+			types.add(ObjCTypeSpecifier.INSTANCEbooleen);
 	}
 	
 	public boolean add(ObjCIDENT objc, ObjCTypeSpecifier t) {

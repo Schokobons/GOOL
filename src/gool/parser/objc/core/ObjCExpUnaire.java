@@ -23,7 +23,7 @@ public class ObjCExpUnaire extends ObjCExpression {
 		case inferieurouegal :
 		case superieur :
 		case inferieur :
-		case egal : setTypeSpecifier(new ObjCTypeSpecifier(ObjCType.booleen));;break;
+		case egal : setTypeSpecifier(ObjCTypeSpecifier.INSTANCEbooleen);;break;
 		default : break;
 		}
 	}

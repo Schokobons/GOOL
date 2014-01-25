@@ -569,20 +569,19 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   public R visit(final TypeSpecifier n, final A argu) {
 	  gool.parser.objc.core.ObjCTypeSpecifier ts = null;
 	  if(n.f0.choice.toString().equals("void"))
-		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.vide);
+		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEvide;
 	  else if(n.f0.choice.toString().equals("BOOL"))
-		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.booleen);
+		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEbooleen;
 	  else if(n.f0.choice.toString().equals("float"))
-		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.reel);
+		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEreel;
 	  else if(n.f0.choice.toString().equals("char"))
-		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.caractere);
+		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEcaractere;
 	  else if(n.f0.choice.toString().contains("GreedyFixedNumType"))
-		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.entier);
+		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEentier;
 	  else if(n.f0.choice.toString().contains("PossibleUnknownType"))
-		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.inconnu, 
-				  ((PossibleUnknownType)n.f0.choice).f0.tokenImage);
+		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(((PossibleUnknownType)n.f0.choice).f0.tokenImage);
 	  else if(n.f0.choice.toString().contains("id"))
-		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(gool.parser.objc.core.ObjCType.objet);
+		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEobjet;
 	  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
 	  noeud.addFils(ts);
     R nRes = null;
@@ -1257,16 +1256,13 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 
   public R visit(final Constant n, final A argu) {
 	  gool.parser.objc.core.ObjCType type = null;
-	  gool.parser.objc.core.ObjCNoeud cs;
-	  if(type == null) {
-		  switch(((NodeToken)n.f0.choice).kind)
-		  {
-		  case 122 : type = gool.parser.objc.core.ObjCType.chaine;break;
-		  case 121 : type = gool.parser.objc.core.ObjCType.caractere;break;
-		  }
+	  gool.parser.objc.core.ObjCNoeud cs = new gool.parser.objc.core.ObjCConstante(n.f0.choice.toString());
+	  switch(((NodeToken)n.f0.choice).kind)
+	  {
+	  case 122 : ((gool.parser.objc.core.ObjCConstante)cs).setTypeSpecifier(gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEchaine);break;
+	  case 121 : ((gool.parser.objc.core.ObjCConstante)cs).setTypeSpecifier(gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEcaractere);break;
+	  default : ((gool.parser.objc.core.ObjCConstante)cs).setTypeSpecifier(new gool.parser.objc.core.ObjCTypeSpecifier());break;
 	  }
-	  cs = new gool.parser.objc.core.ObjCConstante(n.f0.choice.toString());
-	  ((gool.parser.objc.core.ObjCConstante)cs).setTypeSpecifier(new gool.parser.objc.core.ObjCTypeSpecifier(type));
 	  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
 	  noeud.addFils(cs);
     R nRes = null;

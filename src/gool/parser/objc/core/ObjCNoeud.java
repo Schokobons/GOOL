@@ -68,13 +68,13 @@ public abstract class ObjCNoeud {
 					case 1 :
 						try {
 							float f = Float.parseFloat(((ObjCConstante)this).getValeur());
-							((ObjCConstante)this).setTypeSpecifier(new ObjCTypeSpecifier(ObjCType.reel));
+							((ObjCConstante)this).setTypeSpecifier(ObjCTypeSpecifier.INSTANCEreel);
 							return true;
 						}
 						catch(Exception e) { }
 						break;
 					default : 
-						((ObjCConstante)this).setTypeSpecifier(new ObjCTypeSpecifier(ObjCType.chaine));
+						((ObjCConstante)this).setTypeSpecifier(ObjCTypeSpecifier.INSTANCEchaine);
 						break;
 					}
 				}
