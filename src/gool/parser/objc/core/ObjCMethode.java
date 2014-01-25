@@ -3,7 +3,6 @@ package gool.parser.objc.core;
 
 import java.util.ArrayList;
 
-import gool.parser.objc.jtb.core.CompoundStatement;
 import gool.recognizer.objc.Visitor;
 
 public class ObjCMethode extends ObjCNoeud {

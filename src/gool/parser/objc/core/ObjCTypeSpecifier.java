@@ -1,13 +1,12 @@
 package gool.parser.objc.core;
 
-import gool.ast.type.TypeInt;
 import gool.recognizer.objc.*;
 
 
 
 public class ObjCTypeSpecifier extends ObjCNoeud{
 
-	ObjCType type;//reel, caractere, chaine, booleen, vide, inconnu, objet; 
+	ObjCType type;
 	String name;
 	
 	public static final ObjCTypeSpecifier INSTANCEentier = new ObjCTypeSpecifier(ObjCType.entier);

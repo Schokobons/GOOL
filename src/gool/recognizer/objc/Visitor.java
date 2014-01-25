@@ -29,7 +29,7 @@ public class Visitor implements IVisitor {
 			ObjCParser parser = new ObjCParser(new java.io.FileInputStream(courant));
 		      try {
 		    	 TranslationUnit tu = parser.TranslationUnit();
-		         System.out.println("Java program parsed successfully.");//TODO
+		         System.out.println("Java program parsed successfully. A supprimer plus tard dans Visitor.java");//TODO
 		         DepthFirstRetArguVisitor<String, ObjCNoeud> v1 = new DepthFirstRetArguVisitor<String, ObjCNoeud>();
 		         ObjCRacine root = new ObjCRacine();
 		         v1.visit(tu, root);

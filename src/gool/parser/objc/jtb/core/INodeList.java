@@ -2,9 +2,6 @@
 package gool.parser.objc.jtb.core;
 
 import gool.parser.objc.jtb.visitor.IRetArguVisitor;
-import gool.parser.objc.jtb.visitor.IRetVisitor;
-import gool.parser.objc.jtb.visitor.IVoidArguVisitor;
-import gool.parser.objc.jtb.visitor.IVoidVisitor;
 
 public interface INodeList extends INode {
 
@@ -17,11 +14,4 @@ public interface INodeList extends INode {
   public int size();
 
   public <R, A> R accept(final IRetArguVisitor<R, A> vis, final A argu);
-
-  public <R> R accept(final IRetVisitor<R> vis);
-
-  public <A> void accept(final IVoidArguVisitor<A> vis, final A argu);
-
-  public void accept(final IVoidVisitor vis);
-
 }

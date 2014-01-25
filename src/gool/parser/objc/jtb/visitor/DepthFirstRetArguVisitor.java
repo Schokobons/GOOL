@@ -11,7 +11,7 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 
 
   public R visit(final NodeChoice n, final A argu) {
-    final R nRes = n.choice.accept(this, argu);
+    final R nRes = (R) n.choice.accept(this, argu);
     return nRes;
   }
 
@@ -19,7 +19,7 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
     R nRes = null;
     for (final Iterator<INode> e = n.elements(); e.hasNext();) {
       @SuppressWarnings("unused")
-      final R sRes = e.next().accept(this, argu);
+      final R sRes = (R) e.next().accept(this, argu);
     }
     return nRes;
   }
@@ -29,7 +29,7 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
       R nRes = null;
       for (final Iterator<INode> e = n.elements(); e.hasNext();) {
         @SuppressWarnings("unused")
-        R sRes = e.next().accept(this, argu);
+        R sRes = (R) e.next().accept(this, argu);
         }
       return nRes;
     } else
@@ -38,7 +38,7 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 
   public R visit(final NodeOptional n, final A argu) {
     if (n.present()) {
-      final R nRes = n.node.accept(this, argu);
+      final R nRes = (R) n.node.accept(this, argu);
       return nRes;
     } else
     return null;
@@ -48,7 +48,7 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
     R nRes = null;
     for (final Iterator<INode> e = n.elements(); e.hasNext();) {
       @SuppressWarnings("unused")
-      R subRet = e.next().accept(this, argu);
+      R subRet = (R) e.next().accept(this, argu);
     }
     return nRes;
   }

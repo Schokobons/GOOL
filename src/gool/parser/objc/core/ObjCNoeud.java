@@ -68,7 +68,7 @@ public abstract class ObjCNoeud {
 					{
 					case 1 :
 						try {
-							float f = Float.parseFloat(((ObjCConstante)this).getValeur());
+							Float.parseFloat(((ObjCConstante)this).getValeur());
 							((ObjCConstante)this).setTypeSpecifier(ObjCTypeSpecifier.INSTANCEreel);
 							return true;
 						}
