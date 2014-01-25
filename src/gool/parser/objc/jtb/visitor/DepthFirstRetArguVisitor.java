@@ -1236,6 +1236,13 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   }
 
   public R visit(final MessageSelector n, final A argu) {
+	  if(!NodeList.class.isInstance(n.f0.choice)) {
+		  System.out.println(n.f0.choice);
+	  }
+	  else {
+		  for(int i = 0; i < ((NodeList) n.f0.choice).nodes.size(); i++)
+			  System.out.println(((NodeSequence)(((KeywordArgument)((NodeList) n.f0.choice).nodes.get(i)).f0.choice)).nodes.get(2).toString());
+	  }
     R nRes = null;
     n.f0.accept(this, argu);
     return nRes;
