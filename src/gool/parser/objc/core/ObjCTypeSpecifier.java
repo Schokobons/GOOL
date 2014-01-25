@@ -17,6 +17,7 @@ public class ObjCTypeSpecifier extends ObjCNoeud{
 	public static final ObjCTypeSpecifier INSTANCEbooleen = new ObjCTypeSpecifier(ObjCType.booleen);
 	public static final ObjCTypeSpecifier INSTANCEvide = new ObjCTypeSpecifier(ObjCType.vide);
 	public static final ObjCTypeSpecifier INSTANCEobjet = new ObjCTypeSpecifier(ObjCType.objet);
+	public static final ObjCTypeSpecifier INSTANCEnull = new ObjCTypeSpecifier();
 	
 	private ObjCTypeSpecifier(ObjCType t) {
 		type = t;
@@ -26,7 +27,7 @@ public class ObjCTypeSpecifier extends ObjCNoeud{
 	 * This constructor in used only for an ObjCType null, for the other types you have to get the instance.
 	 * @param n
 	 */
-	public ObjCTypeSpecifier() {
+	private ObjCTypeSpecifier() {
 	}
 	
 	/**

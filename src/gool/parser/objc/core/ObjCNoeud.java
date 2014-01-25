@@ -8,6 +8,7 @@ public abstract class ObjCNoeud {
 	private ObjCNoeud pere;
 	protected ArrayList<ObjCNoeud> fils = new ArrayList<ObjCNoeud>();
 	public ObjCContexte contexte;
+	protected boolean ContexteModifie = false;
 
 	public void ajoutFils(ObjCNoeud n) {
 		fils.add(n);
@@ -27,7 +28,7 @@ public abstract class ObjCNoeud {
 	
 	public void addFils(ObjCNoeud n) {
 		if(n != null && n.contexte == null && contexte != null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		fils.add(n);
 	}
 	

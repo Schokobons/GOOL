@@ -14,7 +14,7 @@ public class ObjCAssignement extends ObjCStatement {
 	
 	public void addFils(ObjCNoeud n) {
 		if(n != null && n.contexte == null && contexte != null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCIDENT.class.isInstance(n) && ident == null) {
 			ident = (ObjCIDENT) n;

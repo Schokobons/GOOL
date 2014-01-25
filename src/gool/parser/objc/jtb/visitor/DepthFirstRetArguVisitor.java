@@ -1261,7 +1261,7 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 	  {
 	  case 122 : ((gool.parser.objc.core.ObjCConstante)cs).setTypeSpecifier(gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEchaine);break;
 	  case 121 : ((gool.parser.objc.core.ObjCConstante)cs).setTypeSpecifier(gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEcaractere);break;
-	  default : ((gool.parser.objc.core.ObjCConstante)cs).setTypeSpecifier(new gool.parser.objc.core.ObjCTypeSpecifier());break;
+	  default : ((gool.parser.objc.core.ObjCConstante)cs).setTypeSpecifier(gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEnull);break;
 	  }
 	  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
 	  noeud.addFils(cs);

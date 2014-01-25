@@ -21,10 +21,14 @@ public class ObjCCompoundStatement extends ObjCNoeud{
 			contexte = new ObjCContexte();
 		if(declarationliste != null)
 			for(int i = 0; i < declarationliste.size(); i++) {
+				if(!ContexteModifie) {
+					ContexteModifie = true;
+					contexte = contexte.clone();
+				}
 				contexte.add(declarationliste.get(i).getIdent(), declarationliste.get(i).getTypeSpecifier());
 			}
 		if(n != null && n.contexte == null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCDeclaration.class.isInstance(n)) {
 			if(declarationliste == null)

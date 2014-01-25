@@ -28,11 +28,16 @@ public class ObjCMethode extends ObjCNoeud {
 			contexte.setTypeRetour(typeRetour);
 		if(listeparam != null)
 			for(int i = 0; i < listeparam.size(); i++) {
-				if(listeparam.get(i).getTypeSpecifier() != null)
+				if(listeparam.get(i).getTypeSpecifier() != null) {
+					if(!ContexteModifie) {
+						ContexteModifie = true;
+						contexte = contexte.clone();
+					}
 					contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier());
+				}
 			}
 		if(n != null && n.contexte == null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCTypeSpecifier.class.isInstance(n)) {
 			typeRetour = (ObjCTypeSpecifier) n;

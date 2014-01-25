@@ -12,7 +12,7 @@ public abstract class ObjCExpression extends ObjCNoeud{
 	
 	public void addFils(ObjCNoeud n) {
 		if(n != null && n.contexte == null && contexte != null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCExpression.class.isInstance(n))
 			((ObjCExpression) (n)).setTypeSpecifier(type);
