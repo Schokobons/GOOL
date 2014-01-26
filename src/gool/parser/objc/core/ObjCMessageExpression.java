@@ -20,8 +20,9 @@ public class ObjCMessageExpression extends ObjCExpression {
 		ajoutFils(n);
 		if(ObjCIDENT.class.isInstance(n)) {
 			objet = (ObjCIDENT) n;
-			if(getTypeSpecifier() == null && objet.getTypeSpecifier() != null)
-				setTypeSpecifier(objet.getTypeSpecifier());
+			if(((ObjCIDENT) n).getTypeSpecifier() == null) {
+				((ObjCIDENT) n).setTypeSpecifier(contexte.getType((ObjCIDENT) n));
+			}
 		}
 		else if(ObjCMessageSelector.class.isInstance(n)) {
 			messageSelector = (ObjCMessageSelector) n;

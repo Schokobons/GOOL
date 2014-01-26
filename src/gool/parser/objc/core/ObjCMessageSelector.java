@@ -29,6 +29,9 @@ public class ObjCMessageSelector extends ObjCExpression {
 			if(arguments == null)
 				arguments = new ArrayList<ObjCExpression>();
 			arguments.add((ObjCExpression) n);
+			if(ObjCIDENT.class.isInstance(n) && ((ObjCIDENT) n).getTypeSpecifier() == null) {
+				((ObjCIDENT) n).setTypeSpecifier(contexte.getType((ObjCIDENT) n));
+			}
 		}
 	}
 	

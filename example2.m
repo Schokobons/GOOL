@@ -1,12 +1,12 @@
 
 int main(int a) {
 	id unObjet = nil;
+	char b;
 	NSLog(@"Voici une chaine de caractères en Objective-C.");
-	++unObjet;
+	unObjet++;
 	unObjet = [unObjet init];
 	[unObjet init: 10];
 	[unObjet init: a s:a :a];
-	char* b;
 	if(a + 3 == 5 + 10) {
 		a = (10+5);
 	}

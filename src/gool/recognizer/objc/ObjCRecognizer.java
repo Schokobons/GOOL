@@ -380,7 +380,7 @@ public class ObjCRecognizer implements IVisitor {
 		MethCall mc = new MethCall(type,(Identifier) MessageExpression.getObjet().accept(this), MessageExpression.getMessageSelector().getMethName(), null);
 		if(MessageExpression.getMessageSelector().getArguments() != null)
 			for(int i = 0; i < MessageExpression.getMessageSelector().getArguments().size(); i++)
-				mc.addParameter((Identifier) MessageExpression.getMessageSelector().getArguments().get(i).accept(this));
+				mc.addParameter((Expression) MessageExpression.getMessageSelector().getArguments().get(i).accept(this));
 		return mc;
 	}
 

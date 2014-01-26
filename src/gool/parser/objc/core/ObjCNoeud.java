@@ -112,12 +112,19 @@ public abstract class ObjCNoeud {
 				return ((ObjCExpression) n).getTypeSpecifier();
 			ObjCTypeSpecifier type = null;
 			int i = 0;
-			while(type == null && i < n.fils.size()) {
-				type = rechercheTypeExpressionDansFils(n.fils.get(i));
-				i++;
-			}
-			if(type != null)
-				return type;
+			if(n != null && ObjCExpression.class.isInstance(n) && !ObjCMessageExpression.class.isInstance(n) 
+					&& !ObjCMessageSelector.class.isInstance(n) && !(ObjCExpBinaire.class.isInstance(n) && (
+							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.different) ||
+							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.egal) ||
+							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.superieur) ||
+							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.inferieur) ||
+							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.superieurouegal) ||
+							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.inferieurouegal) )))
+				while(type == null && i < n.fils.size()) {
+					type = rechercheTypeExpressionDansFils(n.fils.get(i));
+					i++;
+				}
+			return type;
 		}
 		return null;
 	}
@@ -135,6 +142,7 @@ public abstract class ObjCNoeud {
 			if(type != null)
 				return type;
 			if(n.pere != null && ObjCExpression.class.isInstance(n.pere) && ((ObjCExpression)n.pere).getTypeSpecifier() !=null
+					&& !ObjCMessageExpression.class.isInstance(n.pere) && !ObjCMessageSelector.class.isInstance(n.pere)
 					&& ((ObjCExpression)n.pere).getTypeSpecifier().getType() !=null && !(ObjCExpBinaire.class.isInstance(n.pere) && (
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.different) ||
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.egal) ||
