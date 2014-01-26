@@ -367,13 +367,21 @@ public class ObjCRecognizer implements IVisitor {
 	}
 
 	public Object visitMessageSelector(ObjCMessageSelector MessageSelector) {
-		// TODO Auto-generated method stub
+		//Unused, everything is in visitMessageExpression.
 		return null;
 	}
 
-	public Object visitMessageExpression(ObjCMessageExpression MessageExpression) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object visitMessageExpression(ObjCMessageExpression MessageExpression) { //TODO See MethCall for add libraries.
+		IType type;
+		if(MessageExpression.getTypeSpecifier() == null || MessageExpression.getTypeSpecifier().getType() == null)
+			type = typetoIType(ObjCTypeSpecifier.INSTANCEvide);
+		else
+			type = typetoIType(MessageExpression.getTypeSpecifier());
+		MethCall mc = new MethCall(type,(Identifier) MessageExpression.getObjet().accept(this), MessageExpression.getMessageSelector().getMethName(), null);
+		if(MessageExpression.getMessageSelector().getArguments() != null)
+			for(int i = 0; i < MessageExpression.getMessageSelector().getArguments().size(); i++)
+				mc.addParameter((Identifier) MessageExpression.getMessageSelector().getArguments().get(i).accept(this));
+		return mc;
 	}
 
 }

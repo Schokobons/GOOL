@@ -1,6 +1,8 @@
-/*
+
 int main(int a) {
-	int unObjet = 10;
+	NSLog(@"Voici une chaine de caractères en Objective-C.");
+	id unObjet = nil;
+	unObjet++;
 	unObjet = [unObjet init];
 	[unObjet init: a];
 	[unObjet init: a s:a :a];
@@ -16,7 +18,7 @@ int main(int a) {
 	}
 	return a;
 }
-*/
+
 
 /*
 @interface Personnage : NSObject
@@ -35,7 +37,7 @@ int main(int a) {
 @end
 */
 
-
+/*
 #import "Voiture.h"
 
 @implementation Voiture
@@ -48,7 +50,7 @@ int b; BOOL c;
    int a;a=0;
 }
 @end
-
+*/
 
 /*
 #import "BankAccount.h"

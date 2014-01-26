@@ -567,26 +567,31 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   }
 
   public R visit(final TypeSpecifier n, final A argu) {
-	  gool.parser.objc.core.ObjCTypeSpecifier ts = null;
-	  if(n.f0.choice.toString().equals("void"))
-		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEvide;
-	  else if(n.f0.choice.toString().equals("BOOL"))
-		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEbooleen;
-	  else if(n.f0.choice.toString().equals("float"))
-		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEreel;
-	  else if(n.f0.choice.toString().equals("char"))
-		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEcaractere;
-	  else if(n.f0.choice.toString().contains("GreedyFixedNumType"))
-		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEentier;
-	  else if(n.f0.choice.toString().contains("PossibleUnknownType"))
-		  ts = new gool.parser.objc.core.ObjCTypeSpecifier(((PossibleUnknownType)n.f0.choice).f0.tokenImage);
-	  else if(n.f0.choice.toString().contains("id"))
-		  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEobjet;
-	  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
-	  noeud.addFils(ts);
-    R nRes = null;
-    n.f0.accept(this, (A) ts);
-    return nRes;
+	  if(!PossibleCocoaType.class.isInstance(n.f0.choice)) {
+		  gool.parser.objc.core.ObjCTypeSpecifier ts = null;
+		  if(n.f0.choice.toString().equals("void"))
+			  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEvide;
+		  else if(n.f0.choice.toString().equals("BOOL"))
+			  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEbooleen;
+		  else if(n.f0.choice.toString().equals("float"))
+			  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEreel;
+		  else if(n.f0.choice.toString().equals("char"))
+			  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEcaractere;
+		  else if(n.f0.choice.toString().contains("GreedyFixedNumType"))
+			  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEentier;
+		  else if(n.f0.choice.toString().contains("PossibleUnknownType"))
+			  ts = new gool.parser.objc.core.ObjCTypeSpecifier(((PossibleUnknownType)n.f0.choice).f0.tokenImage);
+		  else if(n.f0.choice.toString().contains("id"))
+			  ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEobjet;
+		  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+		  noeud.addFils(ts);
+		  R nRes = null;
+		  n.f0.accept(this, (A) ts);
+		  return nRes;
+  	  }
+  	  R nRes = null;
+  	  n.f0.accept(this, argu);
+  	  return nRes;
   }
 
   public R visit(final GreedyFixedNumType n, final A argu) {
@@ -596,6 +601,14 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   }
 
   public R visit(final PossibleCocoaType n, final A argu) {
+	  if(n.f0.tokenImage.equals("NSString")) {
+		  gool.parser.objc.core.ObjCTypeSpecifier ts = gool.parser.objc.core.ObjCTypeSpecifier.INSTANCEchaine;
+		  gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+		  noeud.addFils(ts);
+		  R nRes = null;
+		  n.f0.accept(this, argu);
+		  return nRes;
+	  }
     R nRes = null;
     n.f0.accept(this, argu);
     return nRes;
@@ -1197,6 +1210,44 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
   }
 
   public R visit(final PostfixExpression n, final A argu) {
+	  if(NodeSequence.class.isInstance(n.f0.choice)) {
+		  NodeSequence nS = (NodeSequence) n.f0.choice;
+		  if(nS.nodes.size() > 1 && NodeListOptional.class.isInstance(nS.nodes.get(1))) {
+			  PrimaryExpression pE = (PrimaryExpression) nS.nodes.get(0);
+			  if(ObjCIDENT.class.isInstance(pE.f0.choice))
+				  System.out.println(((ObjCIDENT) pE.f0.choice).f0.choice);
+			  NodeListOptional nLO = (NodeListOptional) nS.nodes.get(1);
+			  if(nLO.nodes.size() > 0 && NodeChoice.class.isInstance(nLO.nodes.get(0))) {
+				  NodeChoice nC = (NodeChoice) nLO.nodes.get(0);
+				  if(NodeToken.class.isInstance(nC.choice)) {
+					  System.out.println("TODO : Gerer le postfix : " + nC.choice.toString());//TODO It is for ++ or -- etc...
+				  }
+				  else if(NodeSequence.class.isInstance(nC.choice)) {
+					  NodeSequence nS2 = (NodeSequence) nC.choice;
+					  System.out.println("NodeSequence : ");
+					  for(int i = 0; i < nS2.nodes.size(); i++) {
+						  if(NodeOptional.class.isInstance(nS2.nodes.get(i))) {
+							  NodeOptional nO = (NodeOptional) nS2.nodes.get(i);
+							  if(nO.node != null)
+								  System.out.println("NodeOptional : " + nO.node.getClass());
+						  }
+					  }
+				  }
+			  }
+		  }
+		  System.out.println("NS :");
+		  PrimaryExpression PE = (PrimaryExpression) nS.nodes.get(0);
+		  NodeListOptional NLO = (NodeListOptional) nS.nodes.get(1);
+		  System.out.println("    PE : " + PE.f0.choice);
+		  if(NLO != null) {
+			  System.out.println("    NLO : "+NLO.size());
+			  for(int i = 0; i < NLO.nodes.size(); i++)
+				  if(NodeChoice.class.isInstance(NLO.nodes.get(i)))
+					  System.out.println(((NodeChoice) NLO.nodes.get(i)).choice);
+				  else
+					  System.out.println("    " + NLO.nodes.get(i));
+		  }
+	  }
 	  if(n.f0.choice.toString() == "nil") {
 			gool.parser.objc.core.ObjCConstante co = new gool.parser.objc.core.ObjCConstante("nil");
 			gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);

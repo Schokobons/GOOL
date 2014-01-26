@@ -30,7 +30,7 @@ public class ObjCMessageExpression extends ObjCExpression {
 	
 	public void print(int etage) {
 		for(int i = 0; i < etage; i++)
-			System.out.print("  ");
+			System.out.print("  ");afficherType();
 		System.out.println("MessageExpression");
 		if(objet != null)
 			objet.print(etage + 1);
