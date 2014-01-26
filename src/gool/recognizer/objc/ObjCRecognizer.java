@@ -384,4 +384,8 @@ public class ObjCRecognizer implements IVisitor {
 		return mc;
 	}
 
+	public Object visitPostfixExpression(ObjCPostfixExpression PostfixExpression) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

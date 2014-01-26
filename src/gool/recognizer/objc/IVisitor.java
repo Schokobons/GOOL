@@ -45,4 +45,6 @@ public interface IVisitor {
 	public Object visitMessageSelector(ObjCMessageSelector objCMessageSelector);
 	
 	public Object visitMessageExpression(ObjCMessageExpression MessageExpression);
+	
+	public Object visitPostfixExpression(ObjCPostfixExpression PostfixExpression);
 }
