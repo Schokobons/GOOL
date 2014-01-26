@@ -7,9 +7,9 @@ import gool.recognizer.objc.ObjCRecognizer;
 public class ObjCMessageSelector extends ObjCExpression {
 	
 	private ObjCIDENT methName;
-	private ArrayList<ObjCIDENT> arguments;
+	private ArrayList<ObjCExpression> arguments;
 	
-	public ObjCMessageSelector (ObjCIDENT methName, ArrayList<ObjCIDENT> arguments) {
+	public ObjCMessageSelector (ObjCIDENT methName, ArrayList<ObjCExpression> arguments) {
 		this.methName = methName;
 		this.arguments = arguments;
 	}
@@ -25,10 +25,10 @@ public class ObjCMessageSelector extends ObjCExpression {
 		if(n != null && n.contexte == null)
 			n.contexte = contexte;
 		ajoutFils(n);
-		if(ObjCIDENT.class.isInstance(n)) {
+		if(ObjCExpression.class.isInstance(n)) {
 			if(arguments == null)
-				arguments = new ArrayList<ObjCIDENT>();
-			arguments.add((ObjCIDENT) n);
+				arguments = new ArrayList<ObjCExpression>();
+			arguments.add((ObjCExpression) n);
 		}
 	}
 	
@@ -50,7 +50,7 @@ public class ObjCMessageSelector extends ObjCExpression {
 		return methName.getNom();
 	}
 	
-	public ArrayList<ObjCIDENT> getArguments() {
+	public ArrayList<ObjCExpression> getArguments() {
 		return arguments;
 	}
 }

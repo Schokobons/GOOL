@@ -1214,38 +1214,28 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 		  NodeSequence nS = (NodeSequence) n.f0.choice;
 		  if(nS.nodes.size() > 1 && NodeListOptional.class.isInstance(nS.nodes.get(1))) {
 			  PrimaryExpression pE = (PrimaryExpression) nS.nodes.get(0);
-			  if(ObjCIDENT.class.isInstance(pE.f0.choice))
-				  System.out.println(((ObjCIDENT) pE.f0.choice).f0.choice);
+			  if(ObjCIDENT.class.isInstance(pE.f0.choice)) {
+				  if(((ObjCIDENT)pE.f0.choice).f0.choice.toString().equals("NSLog")) {
+						gool.parser.objc.core.ObjCPostfixExpression pe = new gool.parser.objc.core.ObjCPostfixExpression("NSLog", null);
+						gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+						noeud.addFils(pe);
+					    R nRes = null;
+					    n.f0.accept(this, (A) pe);
+					    return nRes;
+				  }
+			  }
 			  NodeListOptional nLO = (NodeListOptional) nS.nodes.get(1);
 			  if(nLO.nodes.size() > 0 && NodeChoice.class.isInstance(nLO.nodes.get(0))) {
 				  NodeChoice nC = (NodeChoice) nLO.nodes.get(0);
 				  if(NodeToken.class.isInstance(nC.choice)) {
-					  System.out.println("TODO : Gerer le postfix : " + nC.choice.toString());//TODO It is for ++ or -- etc...
-				  }
-				  else if(NodeSequence.class.isInstance(nC.choice)) {
-					  NodeSequence nS2 = (NodeSequence) nC.choice;
-					  System.out.println("NodeSequence : ");
-					  for(int i = 0; i < nS2.nodes.size(); i++) {
-						  if(NodeOptional.class.isInstance(nS2.nodes.get(i))) {
-							  NodeOptional nO = (NodeOptional) nS2.nodes.get(i);
-							  if(nO.node != null)
-								  System.out.println("NodeOptional : " + nO.node.getClass());
-						  }
-					  }
+						gool.parser.objc.core.ObjCPostfixExpression pe = new gool.parser.objc.core.ObjCPostfixExpression(nC.choice.toString(), null);
+						gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+						noeud.addFils(pe);
+					    R nRes = null;
+					    n.f0.accept(this, (A) pe);
+					    return nRes;
 				  }
 			  }
-		  }
-		  System.out.println("NS :");
-		  PrimaryExpression PE = (PrimaryExpression) nS.nodes.get(0);
-		  NodeListOptional NLO = (NodeListOptional) nS.nodes.get(1);
-		  System.out.println("    PE : " + PE.f0.choice);
-		  if(NLO != null) {
-			  System.out.println("    NLO : "+NLO.size());
-			  for(int i = 0; i < NLO.nodes.size(); i++)
-				  if(NodeChoice.class.isInstance(NLO.nodes.get(i)))
-					  System.out.println(((NodeChoice) NLO.nodes.get(i)).choice);
-				  else
-					  System.out.println("    " + NLO.nodes.get(i));
 		  }
 	  }
 	  if(n.f0.choice.toString() == "nil") {

@@ -1,8 +1,8 @@
 
 int main(int a) {
-	//NSLog(@"Voici une chaine de caractères en Objective-C.");
 	id unObjet = nil;
-	//unObjet++;
+	NSLog(@"Voici une chaine de caractères en Objective-C.");
+	++unObjet;
 	unObjet = [unObjet init];
 	[unObjet init: 10];
 	[unObjet init: a s:a :a];
