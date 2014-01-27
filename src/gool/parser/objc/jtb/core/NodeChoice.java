@@ -2,9 +2,6 @@
 package gool.parser.objc.jtb.core;
 
 import gool.parser.objc.jtb.visitor.IRetArguVisitor;
-import gool.parser.objc.jtb.visitor.IRetVisitor;
-import gool.parser.objc.jtb.visitor.IVoidArguVisitor;
-import gool.parser.objc.jtb.visitor.IVoidVisitor;
 
 public class NodeChoice implements INode {
 
@@ -29,17 +26,4 @@ public class NodeChoice implements INode {
   public <R, A> R accept(final IRetArguVisitor<R, A> vis, final A argu) {
     return choice.accept(vis, argu);
   }
-
-  public <R> R accept(final IRetVisitor<R> vis) {
-    return choice.accept(vis);
-  }
-
-  public <A> void accept(final IVoidArguVisitor<A> vis, final A argu) {
-    choice.accept(vis, argu);
-  }
-
-  public void accept(final IVoidVisitor vis) {
-    choice.accept(vis);
-  }
-
 }

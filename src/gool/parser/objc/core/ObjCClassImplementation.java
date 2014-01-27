@@ -17,10 +17,14 @@ public class ObjCClassImplementation extends ObjCNoeud{
 			contexte = new ObjCContexte();
 		if(listedeclarations != null)
 			for(int i = 0; i < listedeclarations.size(); i++) {
-				contexte.add(listedeclarations.get(i).getIdent(), listedeclarations.get(i).getTypeSpecifier().getType());
+				if(!ContexteModifie) {
+					ContexteModifie = true;
+					contexte = contexte.clone();
+				}
+				contexte.add(listedeclarations.get(i).getIdent(), listedeclarations.get(i).getTypeSpecifier());
 			}
 		if(n != null && n.contexte == null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCIDENT.class.isInstance(n)) {
 			nom = (ObjCIDENT) n;
@@ -80,7 +84,7 @@ public class ObjCClassImplementation extends ObjCNoeud{
 		this.listemethodes = listemethodes;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitClassImplementation(this);
 	}
 }

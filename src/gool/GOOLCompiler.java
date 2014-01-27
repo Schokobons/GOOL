@@ -50,7 +50,7 @@ import java.util.Map;
 import logger.Log;
 
 public class GOOLCompiler {
-
+// test ajout commentaire
 	/**
 	 * The main - gets the folder to open from Settings - opens the files -
 	 * creates an instance of this class - triggers it upon the files, with
@@ -81,14 +81,14 @@ public class GOOLCompiler {
 					JavaPlatform.getInstance(filesNonChange), files);
 			concreteJavaToConcretePlatform(
 					CSharpPlatform.getInstance(filesNonChange), files);
-			concreteJavaToConcretePlatform(
-					CppPlatform.getInstance(filesNonChange), files);
+			//concreteJavaToConcretePlatform(
+			//		CppPlatform.getInstance(filesNonChange), files);
 			concreteJavaToConcretePlatform(
 					PythonPlatform.getInstance(filesNonChange), files);
 			concreteJavaToConcretePlatform(
 					XmlPlatform.getInstance(filesNonChange), files);
 			// TODO: same for android & Objc
-			concreteJavaToConcretePlatform(AndroidPlatform.getInstance(), files);
+			//concreteJavaToConcretePlatform(AndroidPlatform.getInstance(), files);
 			concreteJavaToConcretePlatform(ObjcPlatform.getInstance(), files);
 
 		} catch (Exception e) {

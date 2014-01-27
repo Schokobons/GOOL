@@ -26,7 +26,7 @@ public class ObjCIDENT extends ObjCExpression{
 		this.nom = nom;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitObjCIDENT(this);
 	}
 }

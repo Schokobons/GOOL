@@ -9,9 +9,9 @@ public class ObjCConstante extends ObjCExpression{
 	
 	private String valeur;
 	
-	public void setType(ObjCType t) {
+	public void setTypeSpecifier(ObjCTypeSpecifier t) {
 		type = t;
-		if(valeur != null && t == ObjCType.reel && !valeur.contains(".")) {
+		if(valeur != null && t != null && t.getType() != null && t.getType().equals(ObjCType.reel) && !valeur.contains(".")) {
 			valeur = valeur + ".0";
 		}
 	}
@@ -34,7 +34,7 @@ public class ObjCConstante extends ObjCExpression{
 		this.valeur = valeur;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitConstante(this);
 	}
 }

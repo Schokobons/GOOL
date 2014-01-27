@@ -17,7 +17,7 @@ public class ObjCDeclaration extends ObjCNoeud{
 	
 	public void addFils(ObjCNoeud n) {
 		if(n != null && n.contexte == null && contexte != null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCTypeSpecifier.class.isInstance(n)) {
 			typeSpecifier = (ObjCTypeSpecifier) n;
@@ -25,12 +25,12 @@ public class ObjCDeclaration extends ObjCNoeud{
 		else if(ObjCIDENT.class.isInstance(n)) {
 			ident = (ObjCIDENT) n;
 			if(typeSpecifier != null)
-				ident.setType(typeSpecifier.getType());
+				ident.setTypeSpecifier(typeSpecifier);
 		}
 		else if(ObjCExpression.class.isInstance(n)) {
 			exp = (ObjCExpression) n;
 			if(typeSpecifier != null)
-				exp.setType(typeSpecifier.getType());
+				exp.setTypeSpecifier(typeSpecifier);
 		}
 	}
 	
@@ -75,7 +75,7 @@ public class ObjCDeclaration extends ObjCNoeud{
 		this.exp = exp;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitDeclaration(this);
 	}
 }

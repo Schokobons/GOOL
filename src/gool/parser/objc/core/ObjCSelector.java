@@ -23,8 +23,12 @@ public class ObjCSelector extends ObjCNoeud{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	public void growSelector(ObjCSelector selector) {
+		nom = nom + selector.nom;
+	}
 
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return null;
 	}
 }

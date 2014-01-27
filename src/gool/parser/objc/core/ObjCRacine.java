@@ -15,7 +15,7 @@ public class ObjCRacine extends ObjCNoeud{
 	
 	public void addFils(ObjCNoeud n) {
 		if(n != null && n.contexte == null && contexte != null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		fils.add(n);
 		if(ObjCClassImplementation.class.isInstance(n))
 			classImplementation = (ObjCClassImplementation) n;
@@ -36,7 +36,7 @@ public class ObjCRacine extends ObjCNoeud{
 		return fils;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitRacine(this);
 	}
 }

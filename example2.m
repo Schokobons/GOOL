@@ -1,14 +1,24 @@
-/*
+
 int main(int a) {
+	id unObjet = nil;
+	char b;
+	NSLog(@"Voici une chaine de caractères en Objective-C.");
+	unObjet++;
+	unObjet = [unObjet init];
+	[unObjet init];
+	[unObjet init: a s:a :a];
 	if(a + 3 == 5 + 10) {
-		a = 10;
+		a = (10+5);
+	}
+	if(@"boo" == @"zee") {
+		b = @"dho";
 	}
 	if(2 + 3 == 5 + 10) {
-		a = 10;
+		unObjet = 10+5;
 	}
 	return a;
 }
-*/
+
 
 /*
 @interface Personnage : NSObject
@@ -17,16 +27,17 @@ int main(int a) {
     int mana;
 }
 
-- (id) init;
++ (id) init;
 - (int) vie;
 - (int) mana;
 - (void) setVie:(int) uneVie;
-- (void) setMana:(int) unMana;
+- (void) setVie:(int) uneVie :(int) unMana;
+- (void) setVie:(int) uneVie etMana: (int) mana;
 
 @end
 */
 
-
+/*
 #import "Voiture.h"
 
 @implementation Voiture
@@ -39,7 +50,7 @@ int b; BOOL c;
    int a;a=0;
 }
 @end
-
+*/
 
 /*
 #import "BankAccount.h"

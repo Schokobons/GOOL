@@ -17,13 +17,17 @@ public class ObjCFunctionDefinition extends ObjCNoeud{
 		if(contexte == null)
 			contexte = new ObjCContexte();
 		if(typeSpecifier != null)
-			contexte.setTypeRetour(typeSpecifier.getType());
+			contexte.setTypeRetour(typeSpecifier);
 		if(listeparam != null)
 			for(int i = 0; i < listeparam.size(); i++) {
-				contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier().getType());
+				if(!ContexteModifie) {
+					ContexteModifie = true;
+					contexte = contexte.clone();
+				}
+				contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier());
 			}
 		if(n != null && n.contexte == null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCTypeSpecifier.class.isInstance(n)) {
 			typeSpecifier = (ObjCTypeSpecifier) n;
@@ -95,7 +99,7 @@ public class ObjCFunctionDefinition extends ObjCNoeud{
 		this.block = block;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitFunctionDefinition(this);
 	}
 }

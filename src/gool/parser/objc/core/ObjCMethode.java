@@ -3,8 +3,7 @@ package gool.parser.objc.core;
 
 import java.util.ArrayList;
 
-import gool.parser.objc.jtb.core.CompoundStatement;
-import gool.recognizer.objc.Visitor;
+import gool.recognizer.objc.ObjCRecognizer;
 
 public class ObjCMethode extends ObjCNoeud {
 	private ObjCModifier modifier;
@@ -25,20 +24,27 @@ public class ObjCMethode extends ObjCNoeud {
 		if(contexte == null)
 			contexte = new ObjCContexte();
 		if(typeRetour != null)
-			contexte.setTypeRetour(typeRetour.getType());
+			contexte.setTypeRetour(typeRetour);
 		if(listeparam != null)
 			for(int i = 0; i < listeparam.size(); i++) {
-				if(listeparam.get(i).getTypeSpecifier() != null)
-					contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier().getType());
+				if(listeparam.get(i).getTypeSpecifier() != null) {
+					if(!ContexteModifie) {
+						ContexteModifie = true;
+						contexte = contexte.clone();
+					}
+					contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier());
+				}
 			}
 		if(n != null && n.contexte == null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCTypeSpecifier.class.isInstance(n)) {
 			typeRetour = (ObjCTypeSpecifier) n;
 		}
 		else if(ObjCSelector.class.isInstance(n)) {
-			nom = (ObjCSelector) n;
+			if(nom == null)
+				nom = new ObjCSelector("");
+			nom.growSelector((ObjCSelector) n);
 		}
 		else if(ObjCParameterDeclaration.class.isInstance(n)) {
 			if(listeparam == null)
@@ -89,7 +95,7 @@ public class ObjCMethode extends ObjCNoeud {
 		return block;
 	}
 
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitMethode(this);
 	}
 }

@@ -17,7 +17,7 @@ public class ObjCParameterDeclaration extends ObjCNoeud {
 	
 	public void addFils(ObjCNoeud n) {
 		if(n != null && n.contexte == null && contexte != null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCTypeSpecifier.class.isInstance(n)) {
 			typeSpecifier = (ObjCTypeSpecifier) n;
@@ -25,7 +25,7 @@ public class ObjCParameterDeclaration extends ObjCNoeud {
 		else if(ObjCIDENT.class.isInstance(n)) {
 			ident = (ObjCIDENT) n;
 			if(typeSpecifier != null)
-				ident.setType(typeSpecifier.getType());
+				ident.setTypeSpecifier(typeSpecifier);
 		}
 	}
 	
@@ -55,7 +55,7 @@ public class ObjCParameterDeclaration extends ObjCNoeud {
 		this.ident = ident;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitParameterDeclaration(this);
 	}
 }

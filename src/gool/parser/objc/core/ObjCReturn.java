@@ -15,12 +15,12 @@ public class ObjCReturn extends ObjCStatement{
 	
 	public void addFils(ObjCNoeud n) {
 		if(n != null && n.contexte == null && contexte != null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCExpression.class.isInstance(n)) {
 			exp = (ObjCExpression) n;
 			if(contexte != null)
-				exp.setType(contexte.getTypeRetour());
+				exp.setTypeSpecifier(contexte.getTypeRetour());
 		}
 	}
 	
@@ -40,7 +40,7 @@ public class ObjCReturn extends ObjCStatement{
 		this.exp = exp;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitReturn(this);
 	}
 }

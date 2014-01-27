@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class ObjCContexte {
 	private ArrayList<String> identifiants;
-	private ArrayList<ObjCType> types;
+	private ArrayList<ObjCTypeSpecifier> types;
 	
 	public ObjCContexte() {
 		identifiants = new ArrayList<String>();
-		types = new ArrayList<ObjCType>();
+		types = new ArrayList<ObjCTypeSpecifier>();
 		identifiants.add("true");
 		identifiants.add("TRUE");
 		identifiants.add("YES");
@@ -16,10 +16,10 @@ public class ObjCContexte {
 		identifiants.add("FALSE");
 		identifiants.add("NO");
 		for(int i = 0; i < 6; i++)
-			types.add(ObjCType.booleen);
+			types.add(ObjCTypeSpecifier.INSTANCEbooleen);
 	}
 	
-	public boolean add(ObjCIDENT objc, ObjCType t) {
+	public boolean add(ObjCIDENT objc, ObjCTypeSpecifier t) {
 		boolean trouve = false;
 		for(int i = 0; i < identifiants.size(); i++) {
 			if(identifiants.get(i).equals(objc.getNom()))
@@ -32,8 +32,8 @@ public class ObjCContexte {
 		return !trouve;
 	}
 	
-	public ObjCType getType(ObjCIDENT objc) {
-		ObjCType retour = null;
+	public ObjCTypeSpecifier getType(ObjCIDENT objc) {
+		ObjCTypeSpecifier retour = null;
 		for(int i = 0; i < types.size(); i++)
 			if(identifiants.get(i).equals(objc.getNom()))
 				retour = types.get(i);
@@ -49,7 +49,7 @@ public class ObjCContexte {
 		return nouveau;
 	}
 	
-	public void setTypeRetour(ObjCType t) {
+	public void setTypeRetour(ObjCTypeSpecifier t) {
 		int position = identifiants.size();
 		for(int i = 0; i < identifiants.size(); i++) {
 			if(identifiants.get(i).equals("return"))
@@ -63,8 +63,8 @@ public class ObjCContexte {
 		}
 	}
 	
-	public ObjCType getTypeRetour() {
-		ObjCType retour = null;
+	public ObjCTypeSpecifier getTypeRetour() {
+		ObjCTypeSpecifier retour = null;
 		for(int i = 0; i < types.size(); i++)
 			if(identifiants.get(i).equals("return"))
 				retour = types.get(i);
@@ -74,17 +74,19 @@ public class ObjCContexte {
 	public void print() {
 		System.out.println("     -----Contexte-----     ");
 		for(int i = 0; i < identifiants.size(); i++) {
-			System.out.print(identifiants.get(i));
-			switch(types.get(i))
+			System.out.print("(" + identifiants.get(i) + " = ");
+			switch(types.get(i).getType())
 			{
-			case entier : System.out.println(" : entier");break;
-			case reel : System.out.println(" : reel");break;
-			case caractere : System.out.println(" : caractere");break;
-			case chaine : System.out.println(" : chaine");break;
-			case booleen : System.out.println(" : booleen");break;
-			case vide : System.out.println(" : vide");break;
-			default : System.out.println(" : ?");break;
+			case entier : System.out.print("entier)");break;
+			case reel : System.out.print("reel)");break;
+			case caractere : System.out.print("caractere)");break;
+			case chaine : System.out.print("chaine)");break;
+			case booleen : System.out.print("booleen)");break;
+			case inconnu : System.out.print("inconnu : " + types.get(i).getName() + ")");break;
+			case objet : System.out.print("objet)");break;
+			default : System.out.print("vide)");break;
 			}
+			System.out.println();
 		}
 		System.out.println();
 	}

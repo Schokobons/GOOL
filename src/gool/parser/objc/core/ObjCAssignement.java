@@ -14,17 +14,17 @@ public class ObjCAssignement extends ObjCStatement {
 	
 	public void addFils(ObjCNoeud n) {
 		if(n != null && n.contexte == null && contexte != null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCIDENT.class.isInstance(n) && ident == null) {
 			ident = (ObjCIDENT) n;
 			if(contexte != null)
-				((ObjCIDENT)n).setType(contexte.getType((ObjCIDENT) n));
+				((ObjCIDENT)n).setTypeSpecifier(contexte.getType((ObjCIDENT) n));
 		}
 		else if(ObjCExpression.class.isInstance(n)) {
 			exp = (ObjCExpression) n;
-			if(ident != null && contexte != null)
-				exp.setType(contexte.getType(ident));
+			if(ident != null && contexte != null && exp.getTypeSpecifier() == null)
+				exp.setTypeSpecifier(contexte.getType(ident));
 		}
 	}
 	
@@ -54,7 +54,7 @@ public class ObjCAssignement extends ObjCStatement {
 		this.exp = exp;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitAssignement(this);
 	}
 }

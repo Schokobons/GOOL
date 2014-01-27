@@ -25,37 +25,37 @@ public class ObjCExpBinaire extends ObjCExpression {
 		case inferieurouegal :
 		case superieur :
 		case inferieur :
-		case egal : setType(ObjCType.booleen);;break;
+		case egal : setTypeSpecifier(ObjCTypeSpecifier.INSTANCEbooleen);break;
 		default : break;
 		}
 	}
 	
 	public void addFils(ObjCNoeud n) {
 		if(n != null && n.contexte == null && contexte != null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCExpression.class.isInstance(n)) {
 			ObjCExpression exp;
 			exp = (ObjCExpression) n;
 			if(ObjCIDENT.class.isInstance(exp)) {
 				if(contexte != null)
-					((ObjCIDENT)n).setType(contexte.getType((ObjCIDENT) n));
+					((ObjCIDENT)n).setTypeSpecifier(contexte.getType((ObjCIDENT) n));
 			}
 			if(expGauche == null) {
 				expGauche = exp;
-				if(getType() != null && ((operation.equals(ObjCOperation.diviser)) || operation.equals(ObjCOperation.et)
+				if(getTypeSpecifier() != null && ((operation.equals(ObjCOperation.diviser)) || operation.equals(ObjCOperation.et)
 						 || operation.equals(ObjCOperation.moins) || operation.equals(ObjCOperation.multiplier)
 						 || operation.equals(ObjCOperation.non) || operation.equals(ObjCOperation.ou)
 						 || operation.equals(ObjCOperation.plus)))
-					expGauche.setType(getType());
+					expGauche.setTypeSpecifier(getTypeSpecifier());
 			}
 			else {
 				expDroite = exp;
-				if(getType() != null && ((operation.equals(ObjCOperation.diviser)) || operation.equals(ObjCOperation.et)
+				if(getTypeSpecifier() != null && ((operation.equals(ObjCOperation.diviser)) || operation.equals(ObjCOperation.et)
 						 || operation.equals(ObjCOperation.moins) || operation.equals(ObjCOperation.multiplier)
 						 || operation.equals(ObjCOperation.non) || operation.equals(ObjCOperation.ou)
 						 || operation.equals(ObjCOperation.plus)))
-					expDroite.setType(getType());
+					expDroite.setTypeSpecifier(getTypeSpecifier());
 			}
 		}
 	}
@@ -110,7 +110,7 @@ public class ObjCExpBinaire extends ObjCExpression {
 		this.expDroite = expDroite;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitExpBinaire(this);
 	}
 }

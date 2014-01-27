@@ -38,7 +38,7 @@ import gool.generator.python.PythonPlatform;
 import gool.generator.xml.XmlPlatform;
 import gool.generator.objc.ObjcPlatform;
 import gool.parser.java.JavaParser;
-import gool.recognizer.objc.Visitor;
+import gool.recognizer.objc.ObjCRecognizer;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -83,29 +83,15 @@ public class GOOLCompilerObjC {
 
 			Collection<File> filesNonChange = getFilesInFolderNonExe(folder,
 					extToNCopy);
-			/*concreteJavaToConcretePlatform(
-					JavaPlatform.getInstance(filesNonChange), files);
-			concreteJavaToConcretePlatform(
-					CSharpPlatform.getInstance(filesNonChange), files);
-			concreteJavaToConcretePlatform(
-					CppPlatform.getInstance(filesNonChange), files);
-			concreteJavaToConcretePlatform(
-					PythonPlatform.getInstance(filesNonChange), files);
-			concreteJavaToConcretePlatform(
-					XmlPlatform.getInstance(filesNonChange), files);
-			
-			// TODO: same for android & Objc
-			concreteJavaToConcretePlatform(AndroidPlatform.getInstance(), files);
-			concreteJavaToConcretePlatform(ObjcPlatform.getInstance(), files);*/
 
 			concreteObjCToConcretePlatform(
 					JavaPlatform.getInstance(filesNonChange), files);
 			concreteObjCToConcretePlatform(
 					CSharpPlatform.getInstance(filesNonChange), files);
-			concreteObjCToConcretePlatform(
+			/*concreteObjCToConcretePlatform(
 					CppPlatform.getInstance(filesNonChange), files);
 			concreteObjCToConcretePlatform(
-					PythonPlatform.getInstance(filesNonChange), files);
+					PythonPlatform.getInstance(filesNonChange), files);*/
 			concreteObjCToConcretePlatform(
 					XmlPlatform.getInstance(filesNonChange), files);
 		} catch (Exception e) {
@@ -242,8 +228,13 @@ public class GOOLCompilerObjC {
 			throws Exception {
 		/*Collection<ClassDef> classDefs = concreteObjCToAbstractGool(
 				destPlatform, inputFiles);*/
-		ArrayList<ObjCDeclaration> decls = new ArrayList();
-		ObjCDeclaration decl1= new ObjCDeclaration(new ObjCTypeSpecifier(ObjCType.entier),new ObjCIDENT("a"),new ObjCConstante("5"));
+		/*ArrayList<ObjCDeclaration> decls = new ArrayList();
+		ObjCTypeSpecifier c1 = new ObjCTypeSpecifier(ObjCType.entier);
+		ObjCIDENT c2 = new ObjCIDENT("a");
+		c2.setType(ObjCType.entier);
+		ObjCConstante c3 = new ObjCConstante("5");
+		c3.setType(ObjCType.entier);
+		ObjCDeclaration decl1= new ObjCDeclaration(c1,c2,c3);
 		ObjCDeclaration decl2= new ObjCDeclaration(new ObjCTypeSpecifier(ObjCType.entier),new ObjCIDENT("b"),new ObjCConstante("3"));
 		decls.add(decl1);
 		decls.add(decl2);
@@ -255,11 +246,11 @@ public class GOOLCompilerObjC {
 		
 		Visitor v = new Visitor();
 		Meth m = (Meth) f.accept(v);
-		ClassDef classe = new ClassDef("ClasseTest");
+		ClassDef classe = new ClassDef("ClasseTest",destPlatform);
 		classe.addMethod(m);
 		ArrayList<ClassDef> classDefs = new ArrayList ();
-		classDefs.add(classe);
-		return abstractGool2Target(classDefs);
+		classDefs.add(classe);*/
+		return abstractGool2Target(gool.recognizer.objc.ObjCRecognizer.parseGool(destPlatform, inputFiles));
 	}
 
 	/**

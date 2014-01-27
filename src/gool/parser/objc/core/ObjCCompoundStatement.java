@@ -9,11 +9,11 @@ import gool.recognizer.objc.*;
 public class ObjCCompoundStatement extends ObjCNoeud{
 
 	private ArrayList <ObjCDeclaration> declarationliste;
-	private ArrayList <ObjCStatement> listestatement;
+	private ArrayList <ObjCNoeud> listeStatementExpression;
 	
-	public ObjCCompoundStatement(ArrayList <ObjCDeclaration> dl,ArrayList <ObjCStatement> ls){
+	public ObjCCompoundStatement(ArrayList <ObjCDeclaration> dl,ArrayList <ObjCNoeud> ls){
 		this.declarationliste=dl;
-		this.listestatement=ls;
+		this.listeStatementExpression=ls;
 	}
 	
 	public void addFils(ObjCNoeud n) {
@@ -21,10 +21,14 @@ public class ObjCCompoundStatement extends ObjCNoeud{
 			contexte = new ObjCContexte();
 		if(declarationliste != null)
 			for(int i = 0; i < declarationliste.size(); i++) {
-				contexte.add(declarationliste.get(i).getIdent(), declarationliste.get(i).getTypeSpecifier().getType());
+				if(!ContexteModifie) {
+					ContexteModifie = true;
+					contexte = contexte.clone();
+				}
+				contexte.add(declarationliste.get(i).getIdent(), declarationliste.get(i).getTypeSpecifier());
 			}
 		if(n != null && n.contexte == null)
-			n.contexte = contexte.clone();
+			n.contexte = contexte;
 		ajoutFils(n);
 		if(ObjCDeclaration.class.isInstance(n)) {
 			if(declarationliste == null)
@@ -32,9 +36,14 @@ public class ObjCCompoundStatement extends ObjCNoeud{
 			declarationliste.add((ObjCDeclaration) n);
 		}
 		else if(ObjCStatement.class.isInstance(n)) {
-			if(listestatement == null)
-				listestatement = new ArrayList<ObjCStatement>();
-			listestatement.add((ObjCStatement) n);
+			if(listeStatementExpression == null)
+				listeStatementExpression = new ArrayList<ObjCNoeud>();
+			listeStatementExpression.add((ObjCStatement) n);
+		}
+		else if(ObjCExpression.class.isInstance(n)) {
+			if(listeStatementExpression == null)
+				listeStatementExpression = new ArrayList<ObjCNoeud>();
+			listeStatementExpression.add((ObjCExpression) n);
 		}
 	}
 	
@@ -45,9 +54,9 @@ public class ObjCCompoundStatement extends ObjCNoeud{
 		if(declarationliste != null)
 			for(int i = 0; i < declarationliste.size(); i++)
 				declarationliste.get(i).print(etage + 1);
-		if(listestatement != null)
-			for(int i = 0; i < listestatement.size(); i++)
-				listestatement.get(i).print(etage + 1);
+		if(listeStatementExpression != null)
+			for(int i = 0; i < listeStatementExpression.size(); i++)
+				listeStatementExpression.get(i).print(etage + 1);
 	}
 
 	public ArrayList <ObjCDeclaration> getDeclarationliste() {
@@ -58,15 +67,15 @@ public class ObjCCompoundStatement extends ObjCNoeud{
 		this.declarationliste = declarationliste;
 	}
 
-	public ArrayList <ObjCStatement> getListestatement() {
-		return listestatement;
+	public ArrayList <ObjCNoeud> getListestatement() {
+		return listeStatementExpression;
 	}
 
-	public void setListestatement(ArrayList <ObjCStatement> listestatement) {
-		this.listestatement = listestatement;
+	public void setListestatement(ArrayList <ObjCNoeud> listestatement) {
+		this.listeStatementExpression = listestatement;
 	}
 	
-	public Object accept(Visitor v) {
+	public Object accept(ObjCRecognizer v) {
 		return v.visitCompoundStatement(this);
 	}
 }
