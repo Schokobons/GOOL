@@ -9,6 +9,9 @@ public class ObjCMessageSelector extends ObjCExpression {
 	private ObjCIDENT methName;
 	private ArrayList<ObjCExpression> arguments;
 	
+	public void setTypeSpecifier(ObjCTypeSpecifier t) {
+	}
+	
 	public ObjCMessageSelector (ObjCIDENT methName, ArrayList<ObjCExpression> arguments) {
 		this.methName = methName;
 		this.arguments = arguments;
@@ -37,7 +40,7 @@ public class ObjCMessageSelector extends ObjCExpression {
 	
 	public void print (int etage) {
 		for(int i = 0; i < etage; i++)
-			System.out.print("  ");
+			System.out.print("  ");afficherType();
 		System.out.println("MessageSelector : " + methName.getNom());
 		if(arguments != null)
 			for(int i = 0; i < arguments.size(); i++)

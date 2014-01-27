@@ -9,9 +9,9 @@ public class ObjCConstante extends ObjCExpression{
 	
 	private String valeur;
 	
-	public void setType(ObjCTypeSpecifier t) {
+	public void setTypeSpecifier(ObjCTypeSpecifier t) {
 		type = t;
-		if(valeur != null && t != null && t.getType().equals(ObjCType.reel) && !valeur.contains(".")) {
+		if(valeur != null && t != null && t.getType() != null && t.getType().equals(ObjCType.reel) && !valeur.contains(".")) {
 			valeur = valeur + ".0";
 		}
 	}

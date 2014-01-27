@@ -74,7 +74,7 @@ public class ObjCContexte {
 	public void print() {
 		System.out.println("     -----Contexte-----     ");
 		for(int i = 0; i < identifiants.size(); i++) {
-			System.out.print(identifiants.get(i));
+			System.out.print("(" + identifiants.get(i) + " = ");
 			switch(types.get(i).getType())
 			{
 			case entier : System.out.print("entier)");break;
@@ -86,6 +86,7 @@ public class ObjCContexte {
 			case objet : System.out.print("objet)");break;
 			default : System.out.print("vide)");break;
 			}
+			System.out.println();
 		}
 		System.out.println();
 	}

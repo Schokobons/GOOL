@@ -4,7 +4,7 @@ import gool.recognizer.objc.ObjCRecognizer;
 
 public class ObjCMessageExpression extends ObjCExpression {
 	
-	ObjCIDENT objet;
+	ObjCExpression objet;
 	ObjCMessageSelector messageSelector;
 	
 	public ObjCMessageExpression(ObjCIDENT objet, ObjCMessageSelector messageSelector) {
@@ -18,14 +18,14 @@ public class ObjCMessageExpression extends ObjCExpression {
 		if(n != null && n.contexte == null)
 			n.contexte = contexte;
 		ajoutFils(n);
-		if(ObjCIDENT.class.isInstance(n)) {
-			objet = (ObjCIDENT) n;
-			if(((ObjCIDENT) n).getTypeSpecifier() == null) {
+		if(ObjCMessageSelector.class.isInstance(n)) {
+			messageSelector = (ObjCMessageSelector) n;
+		}
+		else if(ObjCExpression.class.isInstance(n)) {
+			objet = (ObjCExpression) n;
+			if(ObjCIDENT.class.isInstance(n) && ((ObjCIDENT) n).getTypeSpecifier() == null) {
 				((ObjCIDENT) n).setTypeSpecifier(contexte.getType((ObjCIDENT) n));
 			}
-		}
-		else if(ObjCMessageSelector.class.isInstance(n)) {
-			messageSelector = (ObjCMessageSelector) n;
 		}
 	}
 	
@@ -39,7 +39,7 @@ public class ObjCMessageExpression extends ObjCExpression {
 			messageSelector.print(etage + 1);
 	}
 	
-	public ObjCIDENT getObjet() {
+	public ObjCExpression getObjet() {
 		return objet;
 	}
 	

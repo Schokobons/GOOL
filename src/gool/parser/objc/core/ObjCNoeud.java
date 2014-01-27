@@ -57,6 +57,97 @@ public abstract class ObjCNoeud {
 				}
 			}
 		}
+		typerMethode(this);
+	}
+	
+	/*
+		We have to finish it (the programme find methodes and their return Type but doesn't care about the object where the methode is call.
+	 */
+	public void typerMethode(ObjCNoeud n) {
+		ArrayList<ObjCTypeSpecifier> typeAppel = new ArrayList<ObjCTypeSpecifier>(); //TODO This tab is unused, but it should be ><
+		ArrayList<ObjCTypeSpecifier> typeRetour = new ArrayList<ObjCTypeSpecifier>();
+		ArrayList<ArrayList<ObjCTypeSpecifier>> typeParam = new ArrayList<ArrayList<ObjCTypeSpecifier>>();
+		ArrayList<String> nom = new ArrayList<String>();
+		remplirMethodeTab(n, typeAppel, typeRetour, typeParam, nom);
+		utiliserMethodeTab(n, typeAppel, typeRetour, typeParam, nom);
+	}
+	
+	public void utiliserMethodeTab(ObjCNoeud n, ArrayList<ObjCTypeSpecifier> typeAppel, ArrayList<ObjCTypeSpecifier> typeRetour, ArrayList<ArrayList<ObjCTypeSpecifier>> typeParam, ArrayList<String> nom) {
+		if(ObjCMessageExpression.class.isInstance(n) && ((ObjCMessageExpression) n).getTypeSpecifier() == null) {
+			ObjCMessageExpression mE = (ObjCMessageExpression) n;
+			ArrayList<ObjCTypeSpecifier> paramCourant = new ArrayList<ObjCTypeSpecifier>();
+			boolean typeKnown = true;
+			if(mE.getMessageSelector().getArguments() != null) {
+				for(int i = 0; i < mE.getMessageSelector().getArguments().size(); i++) {
+					if(mE.getMessageSelector().getArguments().get(i).getTypeSpecifier() != null)
+						paramCourant.add(mE.getMessageSelector().getArguments().get(i).getTypeSpecifier());
+					else
+						typeKnown = false;
+				}
+			}
+			if(typeKnown) {
+				String nomCourant = mE.getMessageSelector().getMethName();
+				int trouve = -1;
+				int i = 0;
+				while(trouve == -1 && i < typeRetour.size()) {
+					if(nom.get(i).equals(nomCourant) && typeParam.get(i).size() == paramCourant.size()) {
+						boolean pareil = true;
+						for(int j = 0; j < typeParam.get(i).size(); j++) {
+							if(!paramCourant.get(j).getType().equals(typeParam.get(i).get(j).getType())) {
+								pareil = false;
+							}
+						}
+						if(pareil)
+							trouve = i;
+					}
+					i++;
+				}
+				if(trouve != -1) {
+					mE.setTypeSpecifier(typeRetour.get(trouve));
+				}
+			}
+		}
+		for(int i = 0; i < n.fils.size(); i++)
+			utiliserMethodeTab(n.fils.get(i), typeAppel, typeRetour, typeParam, nom);
+	}
+	
+	public void remplirMethodeTab(ObjCNoeud n, ArrayList<ObjCTypeSpecifier> typeAppel, ArrayList<ObjCTypeSpecifier> typeRetour, ArrayList<ArrayList<ObjCTypeSpecifier>> typeParam, ArrayList<String> nom) {
+		if(ObjCMethodDeclaration.class.isInstance(n)) {
+			ObjCMethodDeclaration mD = (ObjCMethodDeclaration) n;
+			if(mD.getTypeRetour() != null && mD.getName() != null) {
+				typeRetour.add(mD.getTypeRetour());
+				nom.add(mD.getName());
+				ArrayList<ObjCTypeSpecifier> param = new ArrayList<ObjCTypeSpecifier>();
+				if(mD.getListeparam() != null) {
+					for(int i = 0; i < mD.getListeparam().size(); i++) {
+						param.add(mD.getListeparam().get(i).getTypeSpecifier());
+					}
+				}
+				typeParam.add(param);
+			}
+		}
+		else {
+			if(ObjCMessageExpression.class.isInstance(n) && ((ObjCMessageExpression) n).getTypeSpecifier() != null && ((ObjCMessageExpression) n).getMessageSelector() != null) {
+				ObjCMessageExpression mE = (ObjCMessageExpression) n;
+				ArrayList<ObjCTypeSpecifier> param = new ArrayList<ObjCTypeSpecifier>();
+				boolean typeKnown = true;
+				if(mE.getMessageSelector().getArguments() != null) {
+					for(int i = 0; i < mE.getMessageSelector().getArguments().size(); i++) {
+						if(mE.getMessageSelector().getArguments().get(i).getTypeSpecifier() != null)
+							param.add(mE.getMessageSelector().getArguments().get(i).getTypeSpecifier());
+						else
+							typeKnown = false;
+					}
+				}
+				if(typeKnown) {
+					typeRetour.add(mE.getTypeSpecifier());
+					nom.add(mE.getMessageSelector().getMethName());
+					typeParam.add(param);
+				}
+			}
+			for(int i = 0; i < n.fils.size(); i++)
+				remplirMethodeTab(n.fils.get(i), typeAppel, typeRetour, typeParam, nom);
+		}
 	}
 	
 	public boolean typerConstante(int type) {
@@ -111,7 +202,6 @@ public abstract class ObjCNoeud {
 			if(((ObjCExpression) n).getTypeSpecifier() != null && ((ObjCExpression) n).getTypeSpecifier().getType() != null)
 				return ((ObjCExpression) n).getTypeSpecifier();
 			ObjCTypeSpecifier type = null;
-			int i = 0;
 			if(n != null && ObjCExpression.class.isInstance(n) && !ObjCMessageExpression.class.isInstance(n) 
 					&& !ObjCMessageSelector.class.isInstance(n) && !(ObjCExpBinaire.class.isInstance(n) && (
 							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.different) ||
@@ -119,11 +209,13 @@ public abstract class ObjCNoeud {
 							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.superieur) ||
 							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.inferieur) ||
 							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.superieurouegal) ||
-							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.inferieurouegal) )))
+							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.inferieurouegal) ))) {
+				int i = 0;
 				while(type == null && i < n.fils.size()) {
 					type = rechercheTypeExpressionDansFils(n.fils.get(i));
 					i++;
 				}
+			}
 			return type;
 		}
 		return null;
@@ -134,14 +226,11 @@ public abstract class ObjCNoeud {
 			if(((ObjCExpression) this).getTypeSpecifier() != null && ((ObjCExpression) n).getTypeSpecifier().getType() != null)
 				return ((ObjCExpression) n).getTypeSpecifier();
 			ObjCTypeSpecifier type = null;
-			int i = 0;
-			while(type == null && i < n.fils.size()) {
-				type = rechercheTypeExpressionDansFils(n.fils.get(i));
-				i++;
-			}
+			type = rechercheTypeExpressionDansFils(n);
 			if(type != null)
 				return type;
 			if(n.pere != null && ObjCExpression.class.isInstance(n.pere) && ((ObjCExpression)n.pere).getTypeSpecifier() !=null
+					&& !ObjCMessageExpression.class.isInstance(n)
 					&& !ObjCMessageExpression.class.isInstance(n.pere) && !ObjCMessageSelector.class.isInstance(n.pere)
 					&& ((ObjCExpression)n.pere).getTypeSpecifier().getType() !=null && !(ObjCExpBinaire.class.isInstance(n.pere) && (
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.different) ||

@@ -5,7 +5,7 @@ int main(int a) {
 	NSLog(@"Voici une chaine de caractères en Objective-C.");
 	unObjet++;
 	unObjet = [unObjet init];
-	[unObjet init: 10];
+	[unObjet init];
 	[unObjet init: a s:a :a];
 	if(a + 3 == 5 + 10) {
 		a = (10+5);
