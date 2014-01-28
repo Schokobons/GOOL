@@ -40,6 +40,10 @@ public abstract class ObjCNoeud {
 			fils.get(i).print(etage + 1);
 	}
 	
+	/*
+	This is Step 3 
+	this search in the tree in order to find the type of meth and constants without declarations.
+	 */
 	public void typageExpression() {
 		int inconnuPrecedent = 0;
 		while(nbExpInconnu() != 0 && nbExpInconnu() != inconnuPrecedent) {
@@ -63,7 +67,7 @@ public abstract class ObjCNoeud {
 	/*
 		We have to finish it (the programme find methodes and their return Type but doesn't care about the object where the methode is call.
 	 */
-	public void typerMethode(ObjCNoeud n) {
+	private void typerMethode(ObjCNoeud n) {
 		ArrayList<ObjCTypeSpecifier> typeAppel = new ArrayList<ObjCTypeSpecifier>(); //TODO This tab is unused, but it should be ><
 		ArrayList<ObjCTypeSpecifier> typeRetour = new ArrayList<ObjCTypeSpecifier>();
 		ArrayList<ArrayList<ObjCTypeSpecifier>> typeParam = new ArrayList<ArrayList<ObjCTypeSpecifier>>();
@@ -72,7 +76,7 @@ public abstract class ObjCNoeud {
 		utiliserMethodeTab(n, typeAppel, typeRetour, typeParam, nom);
 	}
 	
-	public void utiliserMethodeTab(ObjCNoeud n, ArrayList<ObjCTypeSpecifier> typeAppel, ArrayList<ObjCTypeSpecifier> typeRetour, ArrayList<ArrayList<ObjCTypeSpecifier>> typeParam, ArrayList<String> nom) {
+	private void utiliserMethodeTab(ObjCNoeud n, ArrayList<ObjCTypeSpecifier> typeAppel, ArrayList<ObjCTypeSpecifier> typeRetour, ArrayList<ArrayList<ObjCTypeSpecifier>> typeParam, ArrayList<String> nom) {
 		if(ObjCMessageExpression.class.isInstance(n) && ((ObjCMessageExpression) n).getTypeSpecifier() == null) {
 			ObjCMessageExpression mE = (ObjCMessageExpression) n;
 			ArrayList<ObjCTypeSpecifier> paramCourant = new ArrayList<ObjCTypeSpecifier>();
@@ -111,16 +115,16 @@ public abstract class ObjCNoeud {
 			utiliserMethodeTab(n.fils.get(i), typeAppel, typeRetour, typeParam, nom);
 	}
 	
-	public void remplirMethodeTab(ObjCNoeud n, ArrayList<ObjCTypeSpecifier> typeAppel, ArrayList<ObjCTypeSpecifier> typeRetour, ArrayList<ArrayList<ObjCTypeSpecifier>> typeParam, ArrayList<String> nom) {
+	private void remplirMethodeTab(ObjCNoeud n, ArrayList<ObjCTypeSpecifier> typeAppel, ArrayList<ObjCTypeSpecifier> typeRetour, ArrayList<ArrayList<ObjCTypeSpecifier>> typeParam, ArrayList<String> nom) {
 		if(ObjCMethodDeclaration.class.isInstance(n)) {
 			ObjCMethodDeclaration mD = (ObjCMethodDeclaration) n;
 			if(mD.getTypeRetour() != null && mD.getName() != null) {
 				typeRetour.add(mD.getTypeRetour());
 				nom.add(mD.getName());
 				ArrayList<ObjCTypeSpecifier> param = new ArrayList<ObjCTypeSpecifier>();
-				if(mD.getListeparam() != null) {
-					for(int i = 0; i < mD.getListeparam().size(); i++) {
-						param.add(mD.getListeparam().get(i).getTypeSpecifier());
+				if(mD.getListeParam() != null) {
+					for(int i = 0; i < mD.getListeParam().size(); i++) {
+						param.add(mD.getListeParam().get(i).getTypeSpecifier());
 					}
 				}
 				typeParam.add(param);
@@ -150,7 +154,7 @@ public abstract class ObjCNoeud {
 		}
 	}
 	
-	public boolean typerConstante(int type) {
+	private boolean typerConstante(int type) {
 		boolean result = false;
 		if(ObjCExpression.class.isInstance(this))
 			if(ObjCConstante.class.isInstance(this))
@@ -178,7 +182,7 @@ public abstract class ObjCNoeud {
 		return result;
 	}
 	
-	public void typerExpression() {
+	private void typerExpression() {
 		if(ObjCExpression.class.isInstance(this))
 			if(((ObjCExpression) this).getTypeSpecifier() == null || ((ObjCExpression) this).getTypeSpecifier().getType() == null)
 				((ObjCExpression) this).setTypeSpecifier(rechercheTypeExpression(this));

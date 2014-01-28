@@ -1,7 +1,5 @@
 package gool.parser.objc.core;
 
-
-
 public abstract class ObjCExpression extends ObjCNoeud{
 
 	protected ObjCTypeSpecifier type;

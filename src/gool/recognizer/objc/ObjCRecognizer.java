@@ -173,10 +173,10 @@ public class ObjCRecognizer implements IVisitor {
 		Expression exp = (Expression) case1.getExp().accept(this);
 
 		List<Statement> stats = null;
-		if (case1.getListestatement() != null) {
+		if (case1.getListeStatement() != null) {
 			stats = new ArrayList<Statement>();
-			for (int i = 0; i < case1.getListestatement().size(); i++) {
-				stats.add((Statement) case1.getListestatement().get(i).accept(this));
+			for (int i = 0; i < case1.getListeStatement().size(); i++) {
+				stats.add((Statement) case1.getListeStatement().get(i).accept(this));
 			}
 		}
 		return new Case(exp, stats);
@@ -189,10 +189,10 @@ public class ObjCRecognizer implements IVisitor {
 	public Object visitFunctionDefinition(
 			ObjCFunctionDefinition functionDefinition) {
 		Meth m = new Meth(typetoIType(functionDefinition.getTypeSpecifier()),functionDefinition.getIdent().getNom());
-		if (functionDefinition.getListeparam() != null) {
+		if (functionDefinition.getListeParam() != null) {
 			int i;
-			for (i = 0; i < functionDefinition.getListeparam().size(); i++) {
-				m.addParameter((VarDeclaration) functionDefinition.getListeparam().get(i).accept(this));
+			for (i = 0; i < functionDefinition.getListeParam().size(); i++) {
+				m.addParameter((VarDeclaration) functionDefinition.getListeParam().get(i).accept(this));
 			}
 		}
 
@@ -258,10 +258,10 @@ public class ObjCRecognizer implements IVisitor {
 		else
 			type = typetoIType(methode.getTypeRetour());
 		Meth m = new Meth(type, modiftoModifier(methode.getModifier()),methode.getNom());
-		if (methode.getListeparam() != null) {
+		if (methode.getListeParam() != null) {
 			int i;
-			for (i = 0; i < methode.getListeparam().size(); i++) {
-				m.addParameter((VarDeclaration) methode.getListeparam().get(i).accept(this));
+			for (i = 0; i < methode.getListeParam().size(); i++) {
+				m.addParameter((VarDeclaration) methode.getListeParam().get(i).accept(this));
 			}
 		}
 
@@ -316,10 +316,10 @@ public class ObjCRecognizer implements IVisitor {
 			type = typetoIType(MethodDeclaration.getTypeRetour());
 		Meth m = new Meth(type,
 				modiftoModifier(MethodDeclaration.getModifier()),MethodDeclaration.getName());
-		if (MethodDeclaration.getListeparam() != null) {
+		if (MethodDeclaration.getListeParam() != null) {
 			int i;
-			for (i = 0; i < MethodDeclaration.getListeparam().size(); i++) {
-				m.addParameter((VarDeclaration) MethodDeclaration.getListeparam().get(i).accept(this));
+			for (i = 0; i < MethodDeclaration.getListeParam().size(); i++) {
+				m.addParameter((VarDeclaration) MethodDeclaration.getListeParam().get(i).accept(this));
 			}
 		}
 		return m;

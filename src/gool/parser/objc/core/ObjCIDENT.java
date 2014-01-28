@@ -2,9 +2,6 @@ package gool.parser.objc.core;
 
 import gool.recognizer.objc.*;
 
-
-
-
 public class ObjCIDENT extends ObjCExpression{
 
 	private String nom;

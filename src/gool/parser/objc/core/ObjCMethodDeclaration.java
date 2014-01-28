@@ -7,14 +7,14 @@ import java.util.ArrayList;
 public class ObjCMethodDeclaration extends ObjCNoeud {
 	private ObjCModifier modifier;
 	private ObjCTypeSpecifier typeRetour;
-	private ArrayList <ObjCParameterDeclaration> listeparam;
+	private ArrayList <ObjCParameterDeclaration> listeParam;
 	private ObjCSelector nom;
 	
 	public ObjCMethodDeclaration(ObjCModifier modifier, ObjCTypeSpecifier typeRetour, ObjCSelector nom, ArrayList <ObjCParameterDeclaration> listeparam) {
 		this.modifier = modifier;
 		this.typeRetour = typeRetour;
 		this.nom = nom;
-		this.listeparam = listeparam;
+		this.listeParam = listeparam;
 	}
 	
 	public void addFils(ObjCNoeud n) {
@@ -22,14 +22,14 @@ public class ObjCMethodDeclaration extends ObjCNoeud {
 			contexte = new ObjCContexte();
 		if(typeRetour != null)
 			contexte.setTypeRetour(typeRetour);
-		if(listeparam != null)
-			for(int i = 0; i < listeparam.size(); i++) {
-				if(listeparam.get(i).getTypeSpecifier() != null) {
+		if(listeParam != null)
+			for(int i = 0; i < listeParam.size(); i++) {
+				if(listeParam.get(i).getTypeSpecifier() != null) {
 					if(!ContexteModifie) {
 						ContexteModifie = true;
 						contexte = contexte.clone();
 					}
-					contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier());
+					contexte.add(listeParam.get(i).getIdent(), listeParam.get(i).getTypeSpecifier());
 				}
 			}
 		if(n != null && n.contexte == null)
@@ -44,9 +44,9 @@ public class ObjCMethodDeclaration extends ObjCNoeud {
 			nom.growSelector((ObjCSelector) n);
 		}
 		else if(ObjCParameterDeclaration.class.isInstance(n)) {
-			if(listeparam == null)
-				listeparam = new ArrayList<ObjCParameterDeclaration>();
-			listeparam.add((ObjCParameterDeclaration) n);
+			if(listeParam == null)
+				listeParam = new ArrayList<ObjCParameterDeclaration>();
+			listeParam.add((ObjCParameterDeclaration) n);
 		}
 	}
 	
@@ -62,9 +62,9 @@ public class ObjCMethodDeclaration extends ObjCNoeud {
 			typeRetour.print(etage + 1);
 		if(nom != null)
 			nom.print(etage + 1);
-		if(listeparam != null)
-			for(int i = 0; i < listeparam.size(); i++)
-			listeparam.get(i).print(etage + 1);
+		if(listeParam != null)
+			for(int i = 0; i < listeParam.size(); i++)
+			listeParam.get(i).print(etage + 1);
 	}
 	
 	public ObjCModifier getModifier() {
@@ -83,12 +83,12 @@ public class ObjCMethodDeclaration extends ObjCNoeud {
 		this.typeRetour = typeRetour;
 	}
 
-	public ArrayList<ObjCParameterDeclaration> getListeparam() {
-		return listeparam;
+	public ArrayList<ObjCParameterDeclaration> getListeParam() {
+		return listeParam;
 	}
 
-	public void setListeparam(ArrayList<ObjCParameterDeclaration> listeparam) {
-		this.listeparam = listeparam;
+	public void setListeParam(ArrayList<ObjCParameterDeclaration> listeparam) {
+		this.listeParam = listeparam;
 	}
 
 	public ObjCSelector getNom() {

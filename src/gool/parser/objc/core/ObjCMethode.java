@@ -1,6 +1,5 @@
 package gool.parser.objc.core;
 
-
 import java.util.ArrayList;
 
 import gool.recognizer.objc.ObjCRecognizer;
@@ -8,7 +7,7 @@ import gool.recognizer.objc.ObjCRecognizer;
 public class ObjCMethode extends ObjCNoeud {
 	private ObjCModifier modifier;
 	private ObjCTypeSpecifier typeRetour;
-	private ArrayList <ObjCParameterDeclaration> listeparam;
+	private ArrayList <ObjCParameterDeclaration> listeParam;
 	private ObjCSelector nom;
 	private ObjCCompoundStatement block;
 	
@@ -16,7 +15,7 @@ public class ObjCMethode extends ObjCNoeud {
 		this.modifier = modifier;
 		this.typeRetour = typeRetour;
 		this.nom = nom;
-		this.listeparam = listeparam;
+		this.listeParam = listeparam;
 		this.block = block;
 	}
 	
@@ -25,14 +24,14 @@ public class ObjCMethode extends ObjCNoeud {
 			contexte = new ObjCContexte();
 		if(typeRetour != null)
 			contexte.setTypeRetour(typeRetour);
-		if(listeparam != null)
-			for(int i = 0; i < listeparam.size(); i++) {
-				if(listeparam.get(i).getTypeSpecifier() != null) {
+		if(listeParam != null)
+			for(int i = 0; i < listeParam.size(); i++) {
+				if(listeParam.get(i).getTypeSpecifier() != null) {
 					if(!ContexteModifie) {
 						ContexteModifie = true;
 						contexte = contexte.clone();
 					}
-					contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier());
+					contexte.add(listeParam.get(i).getIdent(), listeParam.get(i).getTypeSpecifier());
 				}
 			}
 		if(n != null && n.contexte == null)
@@ -47,9 +46,9 @@ public class ObjCMethode extends ObjCNoeud {
 			nom.growSelector((ObjCSelector) n);
 		}
 		else if(ObjCParameterDeclaration.class.isInstance(n)) {
-			if(listeparam == null)
-				listeparam = new ArrayList<ObjCParameterDeclaration>();
-			listeparam.add((ObjCParameterDeclaration) n);
+			if(listeParam == null)
+				listeParam = new ArrayList<ObjCParameterDeclaration>();
+			listeParam.add((ObjCParameterDeclaration) n);
 		}
 		else if(ObjCCompoundStatement.class.isInstance(n)) {
 			block = (ObjCCompoundStatement) n;
@@ -68,9 +67,9 @@ public class ObjCMethode extends ObjCNoeud {
 			typeRetour.print(etage + 1);
 		if(nom != null)
 			nom.print(etage + 1);
-		if(listeparam != null)
-			for(int i = 0; i < listeparam.size(); i++)
-			listeparam.get(i).print(etage + 1);
+		if(listeParam != null)
+			for(int i = 0; i < listeParam.size(); i++)
+			listeParam.get(i).print(etage + 1);
 		if(block != null)
 			block.print(etage + 1);
 	}
@@ -87,8 +86,8 @@ public class ObjCMethode extends ObjCNoeud {
 		return nom.getNom();
 	}
 	
-	public ArrayList<ObjCParameterDeclaration> getListeparam() {
-		return listeparam;
+	public ArrayList<ObjCParameterDeclaration> getListeParam() {
+		return listeParam;
 	}
 	
 	public ObjCCompoundStatement getBlock() {

@@ -2,9 +2,6 @@ package gool.parser.objc.core;
 
 import gool.recognizer.objc.*;
 
-
-
-
 public class ObjCExpBinaire extends ObjCExpression {
 	
 	private ObjCOperation operation;

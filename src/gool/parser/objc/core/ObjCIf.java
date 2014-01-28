@@ -2,9 +2,6 @@ package gool.parser.objc.core;
 
 import gool.recognizer.objc.*;
 
-
-
-
 public class ObjCIf extends ObjCStatement{
 
 	private ObjCExpression exp;
