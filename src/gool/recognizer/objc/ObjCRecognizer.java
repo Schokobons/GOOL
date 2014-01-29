@@ -215,7 +215,7 @@ public class ObjCRecognizer implements IVisitor {
 		{
 		case non : op = Operator.NOT; sym = "!"; break;
 		case preIncrement : op = Operator.PREFIX_INCREMENT; sym = "++"; break;
-		case preDecrement : op = Operator.PREFIX_DECREMENT; sym = "++"; break;
+		case preDecrement : op = Operator.PREFIX_DECREMENT; sym = "--"; break;
 		}
 		Expression exp = (Expression) expUnaire.getExpression().accept(this);
 		return new UnaryOperation(op, exp,typetoIType(expUnaire.getTypeSpecifier()), sym);
