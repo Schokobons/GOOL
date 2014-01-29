@@ -1,4 +1,14 @@
 
+int maint(void) {
+	int a = 10;
+	int i;
+	for(i = 0; i < 10; i++) {
+		a = a + 10;
+	}
+}
+
+
+/*
 int main(int a) {
 	id unObjet = nil;
 	char b;
@@ -18,7 +28,7 @@ int main(int a) {
 	}
 	return a;
 }
-
+*/
 
 /*
 @interface Personnage : NSObject
