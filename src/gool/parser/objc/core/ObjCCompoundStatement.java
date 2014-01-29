@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import gool.recognizer.objc.*;
 
-
-
 public class ObjCCompoundStatement extends ObjCNoeud{
 
 	private ArrayList <ObjCDeclaration> declarationliste;

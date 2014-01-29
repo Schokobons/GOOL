@@ -2,10 +2,7 @@ package gool.parser.objc.core;
 
 import gool.recognizer.objc.*;
 
-
-
-
-public class ObjCIf extends ObjCStatement{
+public class ObjCIf extends ObjCStatement {
 
 	private ObjCExpression exp;
 	private ObjCCompoundStatement th; //then
@@ -15,7 +12,6 @@ public class ObjCIf extends ObjCStatement{
 		this.el=e;
 		this.exp=ex;
 		this.th=t;
-		
 	}
 	
 	public void addFils(ObjCNoeud n) {

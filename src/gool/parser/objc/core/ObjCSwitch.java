@@ -9,11 +9,11 @@ import gool.recognizer.objc.*;
 public class ObjCSwitch extends ObjCStatement {
 	
 	private ObjCExpression exp;
-	private ArrayList <ObjCCase> listecase;
+	private ArrayList <ObjCCase> listeCase;
 	
 	public ObjCSwitch (ObjCExpression e, ArrayList <ObjCCase> lc){
 		this.exp=e;
-		this.listecase=lc;
+		this.listeCase=lc;
 	}
 
 	public ObjCExpression getExp() {
@@ -27,12 +27,12 @@ public class ObjCSwitch extends ObjCStatement {
 
 
 	public ArrayList <ObjCCase> getListecase() {
-		return listecase;
+		return listeCase;
 	}
 
 
-	public void setListecase(ArrayList <ObjCCase> listecase) {
-		this.listecase = listecase;
+	public void setListeCase(ArrayList <ObjCCase> listecase) {
+		this.listeCase = listecase;
 	}
 	
 	public Object accept(ObjCRecognizer v) {

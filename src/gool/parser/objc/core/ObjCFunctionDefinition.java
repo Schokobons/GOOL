@@ -4,13 +4,11 @@ import java.util.ArrayList;
 
 import gool.recognizer.objc.*;
 
-
-
 public class ObjCFunctionDefinition extends ObjCNoeud{
 	
 	private ObjCTypeSpecifier typeSpecifier;
 	private ObjCIDENT ident;
-	private ArrayList <ObjCParameterDeclaration> listeparam;
+	private ArrayList <ObjCParameterDeclaration> listeParam;
 	private ObjCCompoundStatement block;
 	
 	public void addFils(ObjCNoeud n) {
@@ -18,13 +16,13 @@ public class ObjCFunctionDefinition extends ObjCNoeud{
 			contexte = new ObjCContexte();
 		if(typeSpecifier != null)
 			contexte.setTypeRetour(typeSpecifier);
-		if(listeparam != null)
-			for(int i = 0; i < listeparam.size(); i++) {
+		if(listeParam != null)
+			for(int i = 0; i < listeParam.size(); i++) {
 				if(!ContexteModifie) {
 					ContexteModifie = true;
 					contexte = contexte.clone();
 				}
-				contexte.add(listeparam.get(i).getIdent(), listeparam.get(i).getTypeSpecifier());
+				contexte.add(listeParam.get(i).getIdent(), listeParam.get(i).getTypeSpecifier());
 			}
 		if(n != null && n.contexte == null)
 			n.contexte = contexte;
@@ -36,9 +34,9 @@ public class ObjCFunctionDefinition extends ObjCNoeud{
 			ident = (ObjCIDENT) n;
 		}
 		else if(ObjCParameterDeclaration.class.isInstance(n)) {
-			if(listeparam == null)
-				listeparam = new ArrayList<ObjCParameterDeclaration>();
-			listeparam.add((ObjCParameterDeclaration) n);
+			if(listeParam == null)
+				listeParam = new ArrayList<ObjCParameterDeclaration>();
+			listeParam.add((ObjCParameterDeclaration) n);
 		}
 		else if(ObjCCompoundStatement.class.isInstance(n)) {
 			block = (ObjCCompoundStatement) n;
@@ -53,9 +51,9 @@ public class ObjCFunctionDefinition extends ObjCNoeud{
 			typeSpecifier.print(etage + 1);
 		if(ident != null)
 			ident.print(etage + 1);
-		if(listeparam != null)
-			for(int i = 0; i < listeparam.size(); i++)
-			listeparam.get(i).print(etage + 1);
+		if(listeParam != null)
+			for(int i = 0; i < listeParam.size(); i++)
+			listeParam.get(i).print(etage + 1);
 		if(block != null)
 			block.print(etage + 1);
 	}
@@ -63,7 +61,7 @@ public class ObjCFunctionDefinition extends ObjCNoeud{
 	public ObjCFunctionDefinition(ObjCTypeSpecifier t, ObjCIDENT id, ArrayList <ObjCParameterDeclaration> lp, ObjCCompoundStatement b){
 		this.ident=id;
 		this.typeSpecifier=t;
-		this.listeparam=lp;
+		this.listeParam=lp;
 		this.setBlock(b);
 	}
 
@@ -83,12 +81,12 @@ public class ObjCFunctionDefinition extends ObjCNoeud{
 		this.ident = ident;
 	}
 
-	public ArrayList <ObjCParameterDeclaration> getListeparam() {
-		return listeparam;
+	public ArrayList <ObjCParameterDeclaration> getListeParam() {
+		return listeParam;
 	}
 
-	public void setListeparam(ArrayList <ObjCParameterDeclaration> listeparam) {
-		this.listeparam = listeparam;
+	public void setListeParam(ArrayList <ObjCParameterDeclaration> listeparam) {
+		this.listeParam = listeparam;
 	}
 
 	public ObjCCompoundStatement getBlock() {

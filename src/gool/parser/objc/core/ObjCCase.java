@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 import gool.recognizer.objc.*;
 
-
 public class ObjCCase extends ObjCStatement {
 	
 	private ObjCExpression exp;
-	private ArrayList <ObjCStatement> listestatement;
+	private ArrayList <ObjCStatement> listeStatement;
 	
 	public Object accept(ObjCRecognizer v) {
 		return v.visitCase(this);
@@ -16,7 +15,7 @@ public class ObjCCase extends ObjCStatement {
 	
 	public ObjCCase(ObjCExpression exp, ArrayList <ObjCStatement> ls){
 		this.exp = exp;
-		this.listestatement=ls;
+		this.listeStatement=ls;
 	}
 
 	public ObjCExpression getExp() {
@@ -27,11 +26,11 @@ public class ObjCCase extends ObjCStatement {
 		this.exp = exp;
 	}
 
-	public ArrayList <ObjCStatement> getListestatement() {
-		return listestatement;
+	public ArrayList <ObjCStatement> getListeStatement() {
+		return listeStatement;
 	}
 
-	public void setListestatement(ArrayList <ObjCStatement> listestatement) {
-		this.listestatement = listestatement;
+	public void setListeStatement(ArrayList <ObjCStatement> listestatement) {
+		this.listeStatement = listestatement;
 	}
 }

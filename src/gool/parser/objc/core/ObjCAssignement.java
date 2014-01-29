@@ -18,13 +18,15 @@ public class ObjCAssignement extends ObjCStatement {
 		ajoutFils(n);
 		if(ObjCIDENT.class.isInstance(n) && ident == null) {
 			ident = (ObjCIDENT) n;
-			if(contexte != null)
+			if(contexte != null) {
 				((ObjCIDENT)n).setTypeSpecifier(contexte.getType((ObjCIDENT) n));
+			}
 		}
 		else if(ObjCExpression.class.isInstance(n)) {
 			exp = (ObjCExpression) n;
-			if(ident != null && contexte != null && exp.getTypeSpecifier() == null)
+			if(ident != null && contexte != null && (exp.getTypeSpecifier() == null || exp.getTypeSpecifier().getType() == null)) {
 				exp.setTypeSpecifier(contexte.getType(ident));
+			}
 		}
 	}
 	

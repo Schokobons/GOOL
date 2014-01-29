@@ -1,9 +1,33 @@
 
+int main(void) {
+	int a = 10;
+	int i = 0;
+	while(i < 10)
+	{
+		i++;
+		a = a + 10;
+	}
+	return 0;
+}
+
+
+/*
+int main(void) {
+	int a = 10;
+	int i;
+	for(i = 0; i < 10; i++) {
+		a = a + 10;
+	}
+	return 0;
+}
+*/
+
+/*
 int main(int a) {
 	id unObjet = nil;
 	char b;
 	NSLog(@"Voici une chaine de caractères en Objective-C.");
-	unObjet++;
+	--unObjet;
 	unObjet = [unObjet init];
 	[unObjet init];
 	[unObjet init: a s:a :a];
@@ -18,7 +42,7 @@ int main(int a) {
 	}
 	return a;
 }
-
+*/
 
 /*
 @interface Personnage : NSObject

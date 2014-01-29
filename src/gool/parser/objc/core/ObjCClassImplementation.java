@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import gool.recognizer.objc.*;
 
-
-
 public class ObjCClassImplementation extends ObjCNoeud{
 
 	private ObjCIDENT nom;

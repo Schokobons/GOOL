@@ -2,7 +2,6 @@ package gool.parser.objc.core;
 
 import gool.recognizer.objc.*;
 
-
 public class ObjCDeclaration extends ObjCNoeud{
 	
 	private ObjCTypeSpecifier typeSpecifier;
