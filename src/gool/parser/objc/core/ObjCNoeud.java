@@ -213,7 +213,8 @@ public abstract class ObjCNoeud {
 							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.superieur) ||
 							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.inferieur) ||
 							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.superieurouegal) ||
-							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.inferieurouegal) ))) {
+							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.inferieurouegal) ))
+							&& !(ObjCPostfixExpression.class.isInstance(n))) {
 				int i = 0;
 				while(type == null && i < n.fils.size()) {
 					type = rechercheTypeExpressionDansFils(n.fils.get(i));
@@ -242,7 +243,8 @@ public abstract class ObjCNoeud {
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.superieur) ||
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.inferieur) ||
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.superieurouegal) ||
-							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.inferieurouegal) )))
+							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.inferieurouegal) ))
+							&& !(ObjCPostfixExpression.class.isInstance(n.pere)))
 				return ((ObjCExpression)n.pere).getTypeSpecifier();
 			if(n.pere != null && ObjCExpBinaire.class.isInstance(n.pere)) {
 				ObjCOperation operation = ((ObjCExpBinaire)n.pere).getOperation();

@@ -86,14 +86,15 @@ public class GOOLCompilerObjC {
 
 			concreteObjCToConcretePlatform(
 					JavaPlatform.getInstance(filesNonChange), files);
-			concreteObjCToConcretePlatform(
-					CSharpPlatform.getInstance(filesNonChange), files);
 			/*concreteObjCToConcretePlatform(
+					CSharpPlatform.getInstance(filesNonChange), files);
+			concreteObjCToConcretePlatform(
 					CppPlatform.getInstance(filesNonChange), files);
 			concreteObjCToConcretePlatform(
-					PythonPlatform.getInstance(filesNonChange), files);*/
+					PythonPlatform.getInstance(filesNonChange), files);
 			concreteObjCToConcretePlatform(
 					XmlPlatform.getInstance(filesNonChange), files);
+			concreteObjCToConcretePlatform(ObjcPlatform.getInstance(), files);*/
 		} catch (Exception e) {
 			Log.e(e);
 		}

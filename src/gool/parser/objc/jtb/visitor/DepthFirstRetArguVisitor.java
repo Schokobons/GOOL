@@ -1267,6 +1267,14 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 						n.f0.accept(this, (A) pe);
 						return nRes;
 					}
+					else if(NodeSequence.class.isInstance(nC.choice) && ObjCIDENT.class.isInstance(pE.f0.choice)) {
+						gool.parser.objc.core.ObjCPostfixExpression pe = new gool.parser.objc.core.ObjCPostfixExpression(((ObjCIDENT) pE.f0.choice).f0.choice.toString(), null);
+						gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+						noeud.addFils(pe);
+						R nRes = null;
+						n.f0.accept(this, (A) pe);
+						return nRes;
+					}
 				}
 			}
 		}

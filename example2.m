@@ -1,6 +1,7 @@
-
+/*
+#import "exemple.h"
 int main(void) {
-	int a = 10;
+	float a = pow(2, 3);
 	int i = 0;
 	while(i < 10)
 	{
@@ -9,7 +10,7 @@ int main(void) {
 	}
 	return 0;
 }
-
+*/
 
 /*
 int main(void) {
@@ -44,7 +45,7 @@ int main(int a) {
 }
 */
 
-/*
+
 @interface Personnage : NSObject
 {
     int vie;
@@ -59,7 +60,7 @@ int main(int a) {
 - (void) setVie:(int) uneVie etMana: (int) mana;
 
 @end
-*/
+
 
 /*
 #import "Voiture.h"

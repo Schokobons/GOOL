@@ -1,12 +1,15 @@
 package gool.parser.objc;
 
 import gool.parser.objc.core.ObjCNoeud;
+import gool.parser.objc.core.ObjCOperation;
 import gool.parser.objc.core.ObjCRacine;
 import gool.parser.objc.jtb.core.*;
 import gool.parser.objc.jtb.visitor.*;
 import gool.recognizer.objc.*;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 
 public class Main {
@@ -20,7 +23,7 @@ public class Main {
 		e1.printStackTrace();
 	}
       try {
-    	  TranslationUnit tu = parser.TranslationUnit();
+    	 TranslationUnit tu = parser.TranslationUnit();
          System.err.println("Java program parsed successfully.");
          DepthFirstRetArguVisitor<String, ObjCNoeud> v1 = new DepthFirstRetArguVisitor<String, ObjCNoeud>();
          ObjCRacine root = new ObjCRacine();

@@ -8,15 +8,18 @@ import gool.parser.objc.core.*;
 import gool.parser.objc.jtb.core.TranslationUnit;
 import gool.parser.objc.jtb.visitor.DepthFirstRetArguVisitor;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.sun.mirror.declaration.ParameterDeclaration;
-
 import gool.parser.objc.*;
+import gool.recognizer.common.RecognizerMatcher;
 
 public class ObjCRecognizer implements IVisitor {
 
@@ -37,11 +40,19 @@ public class ObjCRecognizer implements IVisitor {
 	public static Collection<ClassDef> parseGool(Platform defaultPlatform,
 			Collection<? extends File> inputFiles) throws Exception {
 		Collection<ClassDef> result = new ArrayList<ClassDef>();
+		RecognizerMatcher.init("objc");
 		Iterator<? extends File> it = inputFiles.iterator();
 		while (it.hasNext()) {
 			File courant = it.next();
 			ObjCParser parser = new ObjCParser(new java.io.FileInputStream(courant));
 			try {
+				List<Dependency> dependencies = new ArrayList<Dependency>();
+				ArrayList<String> dependances = findDependencies(courant);
+				for(int i = 0; i < dependances.size(); i++) {
+					if (!RecognizerMatcher.matchImport(dependances.get(i))) {
+						dependencies.add(new UnrecognizedDependency(dependances.get(i)));
+					}
+				}
 				TranslationUnit tu = parser.TranslationUnit(); //Step 1
 				DepthFirstRetArguVisitor<String, ObjCNoeud> v1 = new DepthFirstRetArguVisitor<String, ObjCNoeud>();
 				ObjCRacine root = new ObjCRacine();
@@ -50,10 +61,47 @@ public class ObjCRecognizer implements IVisitor {
 				ObjCRecognizer v = new ObjCRecognizer();
 				ClassDef classe = (ClassDef) v.visitRacine(root); // Step 4
 				classe.setPlatform(defaultPlatform);
+				if(dependencies.size() > 0)
+					classe.addDependencies(dependencies);
 				result.add(classe);
 			} catch (ParseException e) {
 				System.err.println("Encountered errors during parse.");
 			}
+		}
+		return result;
+	}
+	
+	public static ArrayList<String> findDependencies(File file) {
+		ArrayList<String> result = new ArrayList<String>();
+		try {
+			InputStream input = new FileInputStream(file);
+			InputStreamReader inputReader = new InputStreamReader(input);
+			BufferedReader bf = new BufferedReader(inputReader);
+			String ligne;
+			boolean fin = false;
+			while((ligne = bf.readLine()) != null && !fin) {
+				int i = 0;
+				while(i < ligne.length() && ligne.charAt(i) == ' ') {
+					i++;
+				}
+				if(i < ligne.length()) {
+					if(ligne.charAt(i) == '#') {
+						if(ligne.contains("#import")) {
+							int pos = ligne.indexOf('\"');
+							int arrivee = pos+1;
+							if(pos != -1) {
+								while(arrivee < ligne.length() && ligne.charAt(arrivee) != '\"')
+									arrivee++;
+								result.add(new String(ligne.substring(pos + 1, arrivee)));
+							}
+						}
+					}
+					else if(ligne.charAt(i) == '/')
+						fin = true;
+				}
+			}
+		} catch (Exception e){
+			System.out.println(e.toString());
 		}
 		return result;
 	}
@@ -314,6 +362,8 @@ public class ObjCRecognizer implements IVisitor {
 						(Expression) ClassInterface.getListedeclaration().get(i).getExp().accept(this)));
 		for (int i = 0; i < ClassInterface.getListemethodes().size(); i++)
 			cd.addMethod((Meth) ClassInterface.getListemethodes().get(i).accept(this));
+		if(ClassInterface.getSuperClass() != null)
+			cd.setParentClass(new TypeUnknown(ClassInterface.getSuperClass().getName()));
 		return cd;
 	}
 
@@ -385,7 +435,27 @@ public class ObjCRecognizer implements IVisitor {
 			}
 			return sopc;
 		}
-		return null;
+		else {
+			String signature = (postfixExpression.getnom() + "(");
+			for(int i = 1; i < postfixExpression.getArguments().size(); i++) {
+				signature += postfixExpression.getArguments().get(i).getTypeSpecifier().getType();
+				if(i < postfixExpression.getArguments().size()-1)
+					signature += ",";
+			}
+			if(postfixExpression.getTypeSpecifier() != null && postfixExpression.getTypeSpecifier().getType() != null)
+				signature += "):" + postfixExpression.getTypeSpecifier().getType();
+			else
+				signature += ")";
+			String goolMethod = RecognizerMatcher.matchMethod(signature);
+			MethCall mc = new MethCall(typetoIType(postfixExpression.getTypeSpecifier()), postfixExpression.getnom());
+			for (int i = 1; i < postfixExpression.getArguments().size(); i++)
+				mc.addParameter((Expression) postfixExpression.getArguments().get(i).accept(this));
+			if(goolMethod != null) {
+				mc.setGoolLibraryMethod(goolMethod);
+				System.out.println("Wesh");
+			}
+			return mc;
+		}
 	}
 
 	public Object visitPrimaryExpression(ObjCPrimaryExpression primaryExpression) {
