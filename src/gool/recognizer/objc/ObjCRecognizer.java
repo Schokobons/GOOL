@@ -380,7 +380,7 @@ public class ObjCRecognizer implements IVisitor {
 		else if(postfixExpression.getnom().equals("NSLog")) {
 			SystemOutPrintCall sopc = new SystemOutPrintCall();
 			if(postfixExpression.getArguments() != null && postfixExpression.getArguments().size() > 0) {
-				for (int i = 0; i < postfixExpression.getArguments().size(); i++)
+				for (int i = 1; i < postfixExpression.getArguments().size(); i++)
 					sopc.addParameter((Expression) postfixExpression.getArguments().get(i).accept(this));
 			}
 			return sopc;

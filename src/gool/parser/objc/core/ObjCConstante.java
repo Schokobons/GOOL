@@ -11,6 +11,11 @@ public class ObjCConstante extends ObjCExpression{
 		if(valeur != null && t != null && t.getType() != null && t.getType().equals(ObjCType.reel) && !valeur.contains(".")) {
 			valeur = valeur + ".0";
 		}
+		if(valeur != null && t != null && t.getType() != null && t.getType().equals(ObjCType.chaine) && valeur.length() > 2) {
+			if(valeur.charAt(0) == '@' && valeur.charAt(1) == '\"' && valeur.charAt(valeur.length() - 1) == '\"') {
+				valeur = valeur.substring(2, valeur.length() - 1);
+			}
+		}
 	}
 		
 	public void print(int etage) {
