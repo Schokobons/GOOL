@@ -1,13 +1,26 @@
 
 int main(void) {
 	int a = 10;
+	int i = 0;
+	while(i < 10)
+	{
+		i++;
+		a = a + 10;
+	}
+	return 0;
+}
+
+
+/*
+int main(void) {
+	int a = 10;
 	int i;
 	for(i = 0; i < 10; i++) {
 		a = a + 10;
 	}
 	return 0;
 }
-
+*/
 
 /*
 int main(int a) {
