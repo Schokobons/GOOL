@@ -216,6 +216,8 @@ public class ObjCRecognizer implements IVisitor {
 	public Object visitRacine(ObjCRacine objCRacine) {
 		if (objCRacine.getClassImplementation() != null)
 			return objCRacine.getClassImplementation().accept(this);
+		if (objCRacine.getClassInterface() != null)
+			return objCRacine.getClassInterface().accept(this);
 		// On genere un nom aleatoire
 		String nom = "Random";
 		for (int i = 0; i < 5; i++)
@@ -238,12 +240,6 @@ public class ObjCRecognizer implements IVisitor {
 				cd.addMethod((Meth) ((ObjCFunctionDefinition) objCRacine.getFils().get(i)).accept(this));
 		}
 		return cd;
-	}
-
-	public Object visitPrimaryExpression(
-			ObjCPrimaryExpression objCPrimaryExpression) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public Object visitTypeSpecifier(ObjCTypeSpecifier objCTypeSpecifier) {
@@ -330,19 +326,26 @@ public class ObjCRecognizer implements IVisitor {
 		return null;
 	}
 
-	public Object visitMessageExpression(ObjCMessageExpression MessageExpression) { 
+	public Object visitMessageExpression(ObjCMessageExpression MessageExpression) {
 		// TODO See MethCall for add libraries.
 		IType type;
 		if (MessageExpression.getTypeSpecifier() == null || MessageExpression.getTypeSpecifier().getType() == null)
 			type = typetoIType(ObjCTypeSpecifier.INSTANCEvide);
 		else
-			type = typetoIType(MessageExpression.getTypeSpecifier());
-		MethCall mc = new MethCall(type, (Identifier) MessageExpression
-				.getObjet().accept(this), MessageExpression.getMessageSelector().getMethName(), null);
+			type = typetoIType(MessageExpression.getTypeSpecifier());	
+		MethCall mc = new MethCall(type, new FieldAccess(typetoIType(MessageExpression.getObjet().getTypeSpecifier()),
+				(Expression) MessageExpression.getObjet().accept(this), MessageExpression.getMessageSelector().getMethName())
+				, MessageExpression.getMessageSelector().getMethName(), null);
 		if (MessageExpression.getMessageSelector().getArguments() != null)
 			for (int i = 0; i < MessageExpression.getMessageSelector().getArguments().size(); i++)
 				mc.addParameter((Expression) MessageExpression.getMessageSelector().getArguments().get(i).accept(this));
 		return mc;
+	}
+
+	public Object visitPrimaryExpression(
+			ObjCPrimaryExpression objCPrimaryExpression) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public Object visitPostfixExpression(ObjCPostfixExpression PostfixExpression) {

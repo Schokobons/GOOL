@@ -8,6 +8,7 @@ import gool.recognizer.objc.*;
 public class ObjCRacine extends ObjCNoeud{
 	
 	private ObjCClassImplementation classImplementation;
+	private ObjCClassInterface classInterface;
 
 	public ObjCRacine() {
 		contexte = new ObjCContexte();
@@ -19,6 +20,8 @@ public class ObjCRacine extends ObjCNoeud{
 		fils.add(n);
 		if(ObjCClassImplementation.class.isInstance(n))
 			classImplementation = (ObjCClassImplementation) n;
+		if(ObjCClassInterface.class.isInstance(n))
+			classInterface = (ObjCClassInterface) n;
 	}
 	
 	public void print(int etage) {
@@ -30,6 +33,10 @@ public class ObjCRacine extends ObjCNoeud{
 	
 	public ObjCClassImplementation getClassImplementation() {
 		return classImplementation;
+	}
+	
+	public ObjCClassInterface getClassInterface() {
+		return classInterface;
 	}
 	
 	public ArrayList<ObjCNoeud> getFils() {
