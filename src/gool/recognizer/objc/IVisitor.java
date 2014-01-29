@@ -44,4 +44,6 @@ public interface IVisitor {
 	public Object visitPostfixExpression(ObjCPostfixExpression PostfixExpression);
 	
 	public Object visitFor(ObjCFor For);
+	
+	public Object visitWhile(ObjCWhile While);
 }

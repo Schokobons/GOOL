@@ -948,6 +948,14 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 	public R visit(final IterationStatement n, final A argu) {
 		if(NodeSequence.class.isInstance(n.f0.choice)) {
 			NodeSequence nS = (NodeSequence) n.f0.choice;
+			if(nS.nodes.size() > 0 && NodeToken.class.isInstance(nS.nodes.get(0)) && ((NodeToken) nS.nodes.get(0)).tokenImage.equals("while")) {
+				gool.parser.objc.core.ObjCWhile wh = new gool.parser.objc.core.ObjCWhile(null, null);
+				gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+				noeud.addFils(wh);
+				R nRes = null;
+				n.f0.accept(this, (A) wh);
+				return nRes;
+			}
 			if(nS.nodes.size() > 0 && NodeToken.class.isInstance(nS.nodes.get(0)) && ((NodeToken) nS.nodes.get(0)).tokenImage.equals("for")) {
 				gool.parser.objc.core.ObjCFor fo = new gool.parser.objc.core.ObjCFor(null, null, null, null);
 				gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);

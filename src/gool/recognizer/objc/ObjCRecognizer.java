@@ -359,6 +359,10 @@ public class ObjCRecognizer implements IVisitor {
 				(Statement) For.getModification().accept(this), (Statement) For.getCompoundStatment().accept(this));
 	}
 
+	public Object visitWhile(ObjCWhile While) {
+		return new While((Expression) While.getCondition().accept(this), (Statement) While.getCompoundStatment().accept(this));
+	}
+
 	public Object visitPostfixExpression(ObjCPostfixExpression postfixExpression) {
 		if(postfixExpression.getnom().equals("++") && postfixExpression.getArguments() != null && postfixExpression.getArguments().size() > 0) {
 			Operator op = Operator.POSTFIX_INCREMENT;
