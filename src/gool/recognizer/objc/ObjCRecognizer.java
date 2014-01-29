@@ -1,6 +1,7 @@
 package gool.recognizer.objc;
 
 import gool.ast.core.*;
+import gool.ast.system.SystemOutPrintCall;
 import gool.ast.type.*;
 import gool.generator.common.Platform;
 import gool.parser.objc.core.*;
@@ -376,13 +377,18 @@ public class ObjCRecognizer implements IVisitor {
 				Expression exp = (Expression) postfixExpression.getArguments().get(0).accept(this);
 				return new UnaryOperation(op, exp,typetoIType(postfixExpression.getTypeSpecifier()), sym);
 			}
-		// TODO NSLog
+		else if(postfixExpression.getnom().equals("NSLog")) {
+			SystemOutPrintCall sopc = new SystemOutPrintCall();
+			if(postfixExpression.getArguments() != null && postfixExpression.getArguments().size() > 0) {
+				for (int i = 0; i < postfixExpression.getArguments().size(); i++)
+					sopc.addParameter((Expression) postfixExpression.getArguments().get(i).accept(this));
+			}
+			return sopc;
+		}
 		return null;
 	}
 
-	public Object visitPrimaryExpression(
-			ObjCPrimaryExpression primaryExpression) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object visitPrimaryExpression(ObjCPrimaryExpression primaryExpression) {
+		return primaryExpression.accept(this);
 	}
 }
