@@ -13,6 +13,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import com.sun.mirror.declaration.ParameterDeclaration;
+
 import gool.parser.objc.*;
 
 public class ObjCRecognizer implements IVisitor {
@@ -203,6 +205,8 @@ public class ObjCRecognizer implements IVisitor {
 	}
 
 	public Object visitParameterDeclaration(ObjCParameterDeclaration parameterDeclaration) {
+		if(parameterDeclaration.getIdent() == null) 
+			return new VarDeclaration(typetoIType(parameterDeclaration.getTypeSpecifier()),"");
 		return new VarDeclaration(typetoIType(parameterDeclaration.getTypeSpecifier()),(String) parameterDeclaration.getIdent().getNom());
 	}
 
@@ -350,10 +354,9 @@ public class ObjCRecognizer implements IVisitor {
 		return mc;
 	}
 
-	public Object visitPrimaryExpression(
-			ObjCPrimaryExpression primaryExpression) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object visitFor(ObjCFor For) {
+		return new For((Statement) For.getAssignement().accept(this), (Expression) For.getCondition().accept(this),
+				(Statement) For.getModification().accept(this), (Statement) For.getCompoundStatment().accept(this));
 	}
 
 	public Object visitPostfixExpression(ObjCPostfixExpression postfixExpression) {
@@ -370,6 +373,12 @@ public class ObjCRecognizer implements IVisitor {
 				return new UnaryOperation(op, exp,typetoIType(postfixExpression.getTypeSpecifier()), sym);
 			}
 		// TODO NSLog
+		return null;
+	}
+
+	public Object visitPrimaryExpression(
+			ObjCPrimaryExpression primaryExpression) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

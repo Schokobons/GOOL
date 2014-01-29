@@ -20,6 +20,8 @@ public class ObjCContexte {
 	}
 	
 	public boolean add(ObjCIDENT objc, ObjCTypeSpecifier t) {
+		if(objc == null)
+			return false;
 		boolean trouve = false;
 		for(int i = 0; i < identifiants.size(); i++) {
 			if(identifiants.get(i).equals(objc.getNom()))

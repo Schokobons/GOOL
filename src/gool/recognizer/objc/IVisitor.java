@@ -42,4 +42,6 @@ public interface IVisitor {
 	public Object visitMessageExpression(ObjCMessageExpression MessageExpression);
 
 	public Object visitPostfixExpression(ObjCPostfixExpression PostfixExpression);
+	
+	public Object visitFor(ObjCFor For);
 }
