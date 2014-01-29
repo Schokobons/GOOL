@@ -3,7 +3,7 @@ int main(int a) {
 	id unObjet = nil;
 	char b;
 	NSLog(@"Voici une chaine de caractères en Objective-C.");
-	unObjet++;
+	--unObjet;
 	unObjet = [unObjet init];
 	[unObjet init];
 	[unObjet init: a s:a :a];

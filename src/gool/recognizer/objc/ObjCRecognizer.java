@@ -206,11 +206,19 @@ public class ObjCRecognizer implements IVisitor {
 		return new VarDeclaration(typetoIType(parameterDeclaration.getTypeSpecifier()),(String) parameterDeclaration.getIdent().getNom());
 	}
 
-	public Object visitExpUnaire(ObjCExpUnaire objExpUnaire) {
-		Operator op = Operator.NOT;
-		String sym = "!";
-		Expression exp = (Expression) objExpUnaire.getExpression().accept(this);
-		return new UnaryOperation(op, exp,typetoIType(objExpUnaire.getTypeSpecifier()), sym);
+	public Object visitExpUnaire(ObjCExpUnaire expUnaire) {
+		if(expUnaire == null || expUnaire.getOperation() == null || expUnaire.getExpression() == null)
+			return null;
+		Operator op = null;
+		String sym = null;
+		switch(expUnaire.getOperation())
+		{
+		case non : op = Operator.NOT; sym = "!"; break;
+		case preIncrement : op = Operator.PREFIX_INCREMENT; sym = "++"; break;
+		case preDecrement : op = Operator.PREFIX_DECREMENT; sym = "++"; break;
+		}
+		Expression exp = (Expression) expUnaire.getExpression().accept(this);
+		return new UnaryOperation(op, exp,typetoIType(expUnaire.getTypeSpecifier()), sym);
 	}
 
 	public Object visitRacine(ObjCRacine objCRacine) {
@@ -343,13 +351,25 @@ public class ObjCRecognizer implements IVisitor {
 	}
 
 	public Object visitPrimaryExpression(
-			ObjCPrimaryExpression objCPrimaryExpression) {
+			ObjCPrimaryExpression primaryExpression) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Object visitPostfixExpression(ObjCPostfixExpression PostfixExpression) {
-		// TODO Auto-generated method stub
+	public Object visitPostfixExpression(ObjCPostfixExpression postfixExpression) {
+		if(postfixExpression.getnom().equals("++") && postfixExpression.getArguments() != null && postfixExpression.getArguments().size() > 0) {
+			Operator op = Operator.POSTFIX_INCREMENT;
+			String sym = "++";
+			Expression exp = (Expression) postfixExpression.getArguments().get(0).accept(this);
+			return new UnaryOperation(op, exp,typetoIType(postfixExpression.getTypeSpecifier()), sym);
+		}
+		else if(postfixExpression.getnom().equals("--") && postfixExpression.getArguments() != null && postfixExpression.getArguments().size() > 0) {
+				Operator op = Operator.POSTFIX_DECREMENT;
+				String sym = "--";
+				Expression exp = (Expression) postfixExpression.getArguments().get(0).accept(this);
+				return new UnaryOperation(op, exp,typetoIType(postfixExpression.getTypeSpecifier()), sym);
+			}
+		// TODO NSLog
 		return null;
 	}
 }

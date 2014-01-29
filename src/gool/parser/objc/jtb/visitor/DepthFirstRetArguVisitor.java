@@ -1184,6 +1184,25 @@ public class DepthFirstRetArguVisitor<R, A> implements IRetArguVisitor<R, A> {
 	}
 
 	public R visit(final UnaryExpression n, final A argu) {
+		if (NodeSequence.class.isInstance(n.f0.choice) && NodeToken.class.isInstance(((NodeSequence) n.f0.choice).nodes.get(0))) {
+			NodeToken nt = (NodeToken) ((NodeSequence)n.f0.choice).nodes.get(0);
+			if(nt.tokenImage.equals("++")) {
+				gool.parser.objc.core.ObjCExpUnaire eu = new gool.parser.objc.core.ObjCExpUnaire(gool.parser.objc.core.ObjCOperation.preIncrement, null);
+				gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+				noeud.addFils(eu);
+				R nRes = null;
+				n.f0.accept(this, (A) eu);
+				return nRes;
+			}
+			else if(nt.tokenImage.equals("--")) {
+				gool.parser.objc.core.ObjCExpUnaire eu = new gool.parser.objc.core.ObjCExpUnaire(gool.parser.objc.core.ObjCOperation.preDecrement, null);
+				gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
+				noeud.addFils(eu);
+				R nRes = null;
+				n.f0.accept(this, (A) eu);
+				return nRes;
+			}
+		}
 		if (NodeSequence.class.isInstance(n.f0.choice) && UnaryOperator.class.isInstance(((NodeSequence) n.f0.choice).nodes.get(0))) {
 			gool.parser.objc.core.ObjCExpUnaire eu = new gool.parser.objc.core.ObjCExpUnaire(gool.parser.objc.core.ObjCOperation.non, null);
 			gool.parser.objc.core.ObjCNoeud noeud = (gool.parser.objc.core.ObjCNoeud) (argu);
