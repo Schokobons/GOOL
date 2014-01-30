@@ -61,8 +61,9 @@ public class ObjCRecognizer implements IVisitor {
 				ObjCRecognizer v = new ObjCRecognizer();
 				ClassDef classe = (ClassDef) v.visitRacine(root); // Step 4
 				classe.setPlatform(defaultPlatform);
-				if(dependencies.size() > 0)
+				if(dependencies.size() > 0) {
 					classe.addDependencies(dependencies);
+				}
 				result.add(classe);
 			} catch (ParseException e) {
 				System.err.println("Encountered errors during parse.");
@@ -87,16 +88,22 @@ public class ObjCRecognizer implements IVisitor {
 				if(i < ligne.length()) {
 					if(ligne.charAt(i) == '#') {
 						if(ligne.contains("#import")) {
-							int pos = ligne.indexOf('\"');
+							char c = '\"';
+							char c2 = '\"';
+							if(ligne.contains("<")) {
+								c = '<';
+								c2 = '>';
+							}
+							int pos = ligne.indexOf(c);
 							int arrivee = pos+1;
 							if(pos != -1) {
-								while(arrivee < ligne.length() && ligne.charAt(arrivee) != '\"')
+								while(arrivee < ligne.length() && ligne.charAt(arrivee) != c2)
 									arrivee++;
 								result.add(new String(ligne.substring(pos + 1, arrivee)));
 							}
 						}
 					}
-					else if(ligne.charAt(i) == '/')
+					else if(ligne.charAt(i) != '/')
 						fin = true;
 				}
 			}
@@ -332,36 +339,44 @@ public class ObjCRecognizer implements IVisitor {
 	public Object visitClassImplementation(
 			ObjCClassImplementation classImplementation) {
 		ClassDef cd = new ClassDef(classImplementation.getNom().getNom());
-		for (int i = 0; i < classImplementation.getListedeclaration().size(); i++)
-			if (classImplementation.getListedeclaration().get(i).getExp() == null)
-				cd.addField(new Field(Modifier.PUBLIC, classImplementation
-						.getListedeclaration().get(i).getIdent().getNom(),
-						typetoIType(classImplementation.getListedeclaration().get(i).getTypeSpecifier())));
-			else
-				cd.addField(new Field(Modifier.PUBLIC, classImplementation
-						.getListedeclaration().get(i).getIdent().getNom(),
-						typetoIType(classImplementation.getListedeclaration().get(i).getTypeSpecifier()),
-						(Expression) classImplementation.getListedeclaration().get(i).getExp().accept(this)));
-		for (int i = 0; i < classImplementation.getListemethode().size(); i++)
-			cd.addMethod((Meth) classImplementation.getListemethode().get(i).accept(this));
+		if(classImplementation.getListedeclaration() != null) {
+			for (int i = 0; i < classImplementation.getListedeclaration().size(); i++)
+				if (classImplementation.getListedeclaration().get(i).getExp() == null)
+					cd.addField(new Field(Modifier.PUBLIC, classImplementation
+							.getListedeclaration().get(i).getIdent().getNom(),
+							typetoIType(classImplementation.getListedeclaration().get(i).getTypeSpecifier())));
+				else
+					cd.addField(new Field(Modifier.PUBLIC, classImplementation
+							.getListedeclaration().get(i).getIdent().getNom(),
+							typetoIType(classImplementation.getListedeclaration().get(i).getTypeSpecifier()),
+							(Expression) classImplementation.getListedeclaration().get(i).getExp().accept(this)));
+		}
+		if(classImplementation.getListemethode() != null) {
+			for (int i = 0; i < classImplementation.getListemethode().size(); i++)
+				cd.addMethod((Meth) classImplementation.getListemethode().get(i).accept(this));
+		}
 		return cd;
 	}
 
 	public Object visitClassInterface(ObjCClassInterface ClassInterface) {
 		ClassDef cd = new ClassDef(ClassInterface.getNom().getNom());
 		cd.setIsInterface(true);
-		for (int i = 0; i < ClassInterface.getListedeclaration().size(); i++)
-			if (ClassInterface.getListedeclaration().get(i).getExp() == null)
-				cd.addField(new Field(Modifier.PUBLIC, ClassInterface
-						.getListedeclaration().get(i).getIdent().getNom(),
-						typetoIType(ClassInterface.getListedeclaration().get(i).getTypeSpecifier())));
-			else
-				cd.addField(new Field(Modifier.PUBLIC, ClassInterface
-						.getListedeclaration().get(i).getIdent().getNom(),
-						typetoIType(ClassInterface.getListedeclaration().get(i).getTypeSpecifier()),
-						(Expression) ClassInterface.getListedeclaration().get(i).getExp().accept(this)));
-		for (int i = 0; i < ClassInterface.getListemethodes().size(); i++)
-			cd.addMethod((Meth) ClassInterface.getListemethodes().get(i).accept(this));
+		if(ClassInterface.getListedeclaration() != null) {
+			for (int i = 0; i < ClassInterface.getListedeclaration().size(); i++)
+				if (ClassInterface.getListedeclaration().get(i).getExp() == null)
+					cd.addField(new Field(Modifier.PUBLIC, ClassInterface
+							.getListedeclaration().get(i).getIdent().getNom(),
+							typetoIType(ClassInterface.getListedeclaration().get(i).getTypeSpecifier())));
+				else
+					cd.addField(new Field(Modifier.PUBLIC, ClassInterface
+							.getListedeclaration().get(i).getIdent().getNom(),
+							typetoIType(ClassInterface.getListedeclaration().get(i).getTypeSpecifier()),
+							(Expression) ClassInterface.getListedeclaration().get(i).getExp().accept(this)));
+		}
+		if(ClassInterface.getListemethodes() != null) {
+			for (int i = 0; i < ClassInterface.getListemethodes().size(); i++)
+				cd.addMethod((Meth) ClassInterface.getListemethodes().get(i).accept(this));
+		}
 		if(ClassInterface.getSuperClass() != null)
 			cd.setParentClass(new TypeUnknown(ClassInterface.getSuperClass().getName()));
 		return cd;
@@ -459,6 +474,6 @@ public class ObjCRecognizer implements IVisitor {
 	}
 
 	public Object visitPrimaryExpression(ObjCPrimaryExpression primaryExpression) {
-		return primaryExpression.accept(this);
+		return primaryExpression.getExpression().accept(this);
 	}
 }
