@@ -42,16 +42,16 @@ public abstract class ObjCNoeud {
 	
 	/*
 	This is Step 3 
-	this search in the tree in order to find the type of meth and constants without declarations.
+	this search in the tree in order to find the type of method and constants without declarations.
 	 */
 	public void typageExpression() {
 		int inconnuPrecedent = 0;
-		while(nbExpInconnu() != 0 && nbExpInconnu() != inconnuPrecedent) {
+		while(nbExpInconnu() != 0 && nbExpInconnu() != inconnuPrecedent) { //while there is still null type and we still can change something
 			inconnuPrecedent = nbExpInconnu();
-			typerExpression();
-			if(inconnuPrecedent == nbExpInconnu()) {
+			typerExpression(); //We search to "guess" some types with other types.
+			if(inconnuPrecedent == nbExpInconnu()) { //If we didn't find anything
 				boolean changement;
-				changement = typerConstante(1);
+				changement = typerConstante(1); //We try to change some Constant with null type and turn them in real
 				if(changement)
 					typerExpression();
 				else {
@@ -61,11 +61,11 @@ public abstract class ObjCNoeud {
 				}
 			}
 		}
-		typerMethode(this);
+		typerMethode(this); //We try to "guess" some method return types
 	}
 	
 	/*
-		We have to finish it (the programme find methodes and their return Type but doesn't care about the object where the methode is call.
+		We have to finish it (the program find methods and their return Type but doesn't care about the object where the methode is call.
 	 */
 	private void typerMethode(ObjCNoeud n) {
 		ArrayList<ObjCTypeSpecifier> typeAppel = new ArrayList<ObjCTypeSpecifier>(); //TODO This tab is unused, but it should be ><
@@ -78,6 +78,8 @@ public abstract class ObjCNoeud {
 	
 	private void utiliserMethodeTab(ObjCNoeud n, ArrayList<ObjCTypeSpecifier> typeAppel, ArrayList<ObjCTypeSpecifier> typeRetour, ArrayList<ArrayList<ObjCTypeSpecifier>> typeParam, ArrayList<String> nom) {
 		if(ObjCMessageExpression.class.isInstance(n) && ((ObjCMessageExpression) n).getTypeSpecifier() == null) {
+			
+			//First, we find the signature of this method
 			ObjCMessageExpression mE = (ObjCMessageExpression) n;
 			ArrayList<ObjCTypeSpecifier> paramCourant = new ArrayList<ObjCTypeSpecifier>();
 			boolean typeKnown = true;
@@ -89,6 +91,8 @@ public abstract class ObjCNoeud {
 						typeKnown = false;
 				}
 			}
+			
+			//If we know all arguments types
 			if(typeKnown) {
 				String nomCourant = mE.getMessageSelector().getMethName();
 				int trouve = -1;
@@ -106,6 +110,8 @@ public abstract class ObjCNoeud {
 					}
 					i++;
 				}
+				
+				//And if we find the signature in our tab
 				if(trouve != -1) {
 					mE.setTypeSpecifier(typeRetour.get(trouve));
 				}
@@ -117,6 +123,8 @@ public abstract class ObjCNoeud {
 	
 	private void remplirMethodeTab(ObjCNoeud n, ArrayList<ObjCTypeSpecifier> typeAppel, ArrayList<ObjCTypeSpecifier> typeRetour, ArrayList<ArrayList<ObjCTypeSpecifier>> typeParam, ArrayList<String> nom) {
 		if(ObjCMethodDeclaration.class.isInstance(n)) {
+			
+			//First, we find the signature of this method
 			ObjCMethodDeclaration mD = (ObjCMethodDeclaration) n;
 			if(mD.getTypeRetour() != null && mD.getName() != null) {
 				typeRetour.add(mD.getTypeRetour());
@@ -132,6 +140,7 @@ public abstract class ObjCNoeud {
 		}
 		else {
 			if(ObjCMessageExpression.class.isInstance(n) && ((ObjCMessageExpression) n).getTypeSpecifier() != null && ((ObjCMessageExpression) n).getMessageSelector() != null) {
+				//First, we find the signature of this method
 				ObjCMessageExpression mE = (ObjCMessageExpression) n;
 				ArrayList<ObjCTypeSpecifier> param = new ArrayList<ObjCTypeSpecifier>();
 				boolean typeKnown = true;
@@ -144,6 +153,7 @@ public abstract class ObjCNoeud {
 					}
 				}
 				if(typeKnown) {
+					//If we know all arguments types, we had it to the tabs
 					typeRetour.add(mE.getTypeSpecifier());
 					nom.add(mE.getMessageSelector().getMethName());
 					typeParam.add(param);
@@ -154,7 +164,7 @@ public abstract class ObjCNoeud {
 		}
 	}
 	
-	private boolean typerConstante(int type) {
+	private boolean typerConstante(int type) { //We try to find a Constant and guess what type can fit for it
 		boolean result = false;
 		if(ObjCExpression.class.isInstance(this))
 			if(ObjCConstante.class.isInstance(this))
@@ -182,7 +192,7 @@ public abstract class ObjCNoeud {
 		return result;
 	}
 	
-	private void typerExpression() {
+	private void typerExpression() { //This method run through the whole tree and call rechercheExpression on null type nodes
 		if(ObjCExpression.class.isInstance(this))
 			if(((ObjCExpression) this).getTypeSpecifier() == null || ((ObjCExpression) this).getTypeSpecifier().getType() == null)
 				((ObjCExpression) this).setTypeSpecifier(rechercheTypeExpression(this));
@@ -190,7 +200,7 @@ public abstract class ObjCNoeud {
 			fils.get(i).typerExpression();
 	}
 	
-	private int nbExpInconnu() {
+	private int nbExpInconnu() { //This method return the number of null type nodes
 		int res = 0;
 		if(ObjCExpression.class.isInstance(this) && ((ObjCExpression)this).getTypeSpecifier() != null && ((ObjCExpression)this).getTypeSpecifier().getType() == null)
 			res = 1;
@@ -201,11 +211,13 @@ public abstract class ObjCNoeud {
 		return res;
 	}
 	
-	private ObjCTypeSpecifier rechercheTypeExpressionDansFils(ObjCNoeud n) {
+	private ObjCTypeSpecifier rechercheTypeExpressionDansFils(ObjCNoeud n) {//This method search a non null type child
 		if(ObjCExpression.class.isInstance(n)) {
 			if(((ObjCExpression) n).getTypeSpecifier() != null && ((ObjCExpression) n).getTypeSpecifier().getType() != null)
 				return ((ObjCExpression) n).getTypeSpecifier();
 			ObjCTypeSpecifier type = null;
+			
+			//If we're not one of this nodes, we can continue to search our type in our children
 			if(n != null && ObjCExpression.class.isInstance(n) && !ObjCMessageExpression.class.isInstance(n) 
 					&& !ObjCMessageSelector.class.isInstance(n) && !(ObjCExpBinaire.class.isInstance(n) && (
 							((ObjCExpBinaire)n).getOperation().equals(ObjCOperation.different) ||
@@ -226,7 +238,7 @@ public abstract class ObjCNoeud {
 		return null;
 	}
 	
-	private ObjCTypeSpecifier rechercheTypeExpression(ObjCNoeud n) {
+	private ObjCTypeSpecifier rechercheTypeExpression(ObjCNoeud n) {//This method search if we can guess our type
 		if(ObjCExpression.class.isInstance(n)) {
 			if(((ObjCExpression) this).getTypeSpecifier() != null && ((ObjCExpression) n).getTypeSpecifier().getType() != null)
 				return ((ObjCExpression) n).getTypeSpecifier();
@@ -234,6 +246,8 @@ public abstract class ObjCNoeud {
 			type = rechercheTypeExpressionDansFils(n);
 			if(type != null)
 				return type;
+			
+			//If our father is not one of this nodes, we can continue to search our type in our fathers
 			if(n.pere != null && ObjCExpression.class.isInstance(n.pere) && ((ObjCExpression)n.pere).getTypeSpecifier() !=null
 					&& !ObjCMessageExpression.class.isInstance(n)
 					&& !ObjCMessageExpression.class.isInstance(n.pere) && !ObjCMessageSelector.class.isInstance(n.pere)
@@ -246,6 +260,7 @@ public abstract class ObjCNoeud {
 							((ObjCExpBinaire)n.pere).getOperation().equals(ObjCOperation.inferieurouegal) ))
 							&& !(ObjCPostfixExpression.class.isInstance(n.pere)))
 				return ((ObjCExpression)n.pere).getTypeSpecifier();
+			//After what we did, if our father isn't one of this types, we can stop searching
 			if(n.pere != null && ObjCExpBinaire.class.isInstance(n.pere)) {
 				ObjCOperation operation = ((ObjCExpBinaire)n.pere).getOperation();
 				if((operation.equals(ObjCOperation.diviser)) || operation.equals(ObjCOperation.et)
@@ -254,6 +269,7 @@ public abstract class ObjCNoeud {
 						 || operation.equals(ObjCOperation.plus))
 					return null;
 				else {
+					//If it is, we search our type in our brothers and their children
 					ObjCNoeud frere;
 					if(((ObjCExpBinaire)n.pere).getExpGauche().equals(n))
 						frere = ((ObjCExpBinaire)n.pere).getExpDroite();

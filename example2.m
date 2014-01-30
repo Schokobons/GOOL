@@ -1,3 +1,23 @@
+
+@implementation test
+int a = 0;
+
++ (BOOL) exemple {
+	unType unObjet;
+	char b;
+	a = [unObjet init];
+	[unObjet init : b];
+	[unObjet init];
+	if(a + 3 == 5 + 10) {
+		a = (10+5);
+	}
+	if(@"boo" == @"zee") {
+		b = 'h';
+	}
+}
+
+@end
+
 /*
 #import "exemple.h"
 int main(void) {
@@ -45,7 +65,7 @@ int main(int a) {
 }
 */
 
-
+/*
 @interface Personnage : NSObject
 {
     int vie;
@@ -60,7 +80,7 @@ int main(int a) {
 - (void) setVie:(int) uneVie etMana: (int) mana;
 
 @end
-
+*/
 
 /*
 #import "Voiture.h"
