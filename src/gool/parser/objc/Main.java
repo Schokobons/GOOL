@@ -1,16 +1,14 @@
 package gool.parser.objc;
 
 import gool.parser.objc.core.ObjCNoeud;
-import gool.parser.objc.core.ObjCOperation;
 import gool.parser.objc.core.ObjCRacine;
 import gool.parser.objc.jtb.core.*;
 import gool.parser.objc.jtb.visitor.*;
 import gool.recognizer.objc.*;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
+//This main is use to see if our tree and type seek work fine.
 
 public class Main {
 	
@@ -24,11 +22,12 @@ public class Main {
 	}
       try {
     	 TranslationUnit tu = parser.TranslationUnit();
-         System.err.println("Java program parsed successfully.");
+         System.out.println("Java program parsed successfully.");
          DepthFirstRetArguVisitor<String, ObjCNoeud> v1 = new DepthFirstRetArguVisitor<String, ObjCNoeud>();
          ObjCRacine root = new ObjCRacine();
          v1.visit(tu, root);
          root.print(0);
+         System.out.println("\n\n\n\n\n\n     -----Typage-----\n\n\n\n\n");
          root.typageExpression();
          root.print(0);
          ObjCRecognizer v = new ObjCRecognizer();
